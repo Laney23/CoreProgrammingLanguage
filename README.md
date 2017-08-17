@@ -4,9 +4,9 @@ This code tokenizes a given CORE program, then parses it, executes it, and prett
 
 ## CORE Language ##
 The abstract syntax tree for the CORE programming language is defined as:
-1.   <prog>	        ::=    program <decl seq> begin <stmt seq> end
-2.   <decl seq>	::=    <decl> | <decl> <decl seq>
-3.   <stmt seq>	::=    <stmt> | <stmt> <stmt seq>
+1.   <prog>	        ::=    program \<decl seq> begin \<stmt seq> end
+2.   <decl seq>	::=    \<decl> | \<decl> \<decl seq>
+3.   <stmt seq>	::=    \<stmt> | \<stmt> \<stmt seq>
 4.   <decl>		    ::=	int  <id list>;
 5.   <id list>		    ::=	<id> | <id>, <id list>
 6.   <stmt>		    ::=	<assign>|<if>|<loop>|<in>|<out>
@@ -56,6 +56,6 @@ Special symbols are:
 * !=
 * ==
 * <
-* >
+* \>
 * <=
 * \>=

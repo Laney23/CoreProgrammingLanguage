@@ -1,6 +1,7 @@
 Introduction
-This code creates an interpreter for the CORE programming language defined below
+This code tokenizes a given CORE program, interprets it, then pretty prints the given CORE program with the corresponding code executions.
 
+The abstract syntax tree for the CORE programming language is defined as:
 <prog>	    ::=    program <decl seq> begin <stmt seq> end
 <decl seq>	::=    <decl> | <decl> <decl seq>
 <stmt seq>	::=    <stmt> | <stmt> <stmt seq>

@@ -10,7 +10,7 @@
 #define tokenizer_hpp
 
 #include <stdio.h>
-
+#include <string.h>
 #endif /* tokenizer_hpp */
 
 int getToken();

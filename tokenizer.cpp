@@ -8,6 +8,41 @@
 
 #include "tokenizer.hpp"
 
+#define DELIMS_  " \f\n\r\t\v"
+
+class Tokenizer
+{
+    private:
+        char* tokens;
+    
+    protected:
+        void emit();
+        void accept(char c);
+        void reject();
+    
+
+};
+
+int tokenizeLine(const std::string& line)
+{
+    int counter = 0;
+    
+    /* Set up token array */
+    const int line_length = line.size();
+    char *token_values = new char[line_length];
+    
+    char *token = strtok((char*)line.c_str(), DELIMS_);
+    
+    while (token)
+    {
+        token_values[counter++] = *token;
+        token = strtok(NULL, DELIMS_);
+    }
+    
+    return 0;
+};
+
+
 /*
  * Name: getToken
  *
@@ -20,7 +55,7 @@
 int getToken()
 {
     return 0;
-} /* getToken */
+} /* function getToken */
 
 
 /*
@@ -35,7 +70,7 @@ int getToken()
 int skipToken()
 {
     return 0;
-} /* skipToken */
+} /* function skipToken */
 
 
 /*
@@ -50,7 +85,7 @@ int skipToken()
 int intVal()
 {
     return 0;
-} /* intVal */
+} /* function intVal */
 
 
 /*
@@ -65,7 +100,7 @@ int intVal()
 int idName()
 {
     return 0;
-} /* idName */
+} /* function idName */
 
 
 

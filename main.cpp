@@ -7,9 +7,14 @@
 */
 
 #include <iostream>
+#include "tokenizer.hpp"
+#include "base.hpp"
 
 int main(int argc, const char * argv[])
 {
+    std::map<char,int> token_values;
+    if (initMap(token_values) != 0) return ERROR;
+    
     std::cout << "Hello, World!\n";
     return 0;
 }

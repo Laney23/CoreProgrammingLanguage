@@ -21,11 +21,19 @@
 int processFileArgument(const char *file_name, std::ifstream& core_program)
 {
     /* Verify file exists in current directory */
+    struct stat buffer;
+    if (stat (file_name, &buffer) != 0)
+    {
+        std::cout << "Error in PFA";
+        return ERROR;
+    }
     
     /* Open file for processing */
     core_program.open(file_name, std::ios::in);
     
-    return SUCCESS;
+    if(core_program.is_open()) return SUCCESS;
+    
+    return ERROR;
 } /* function processFileArgument */
 
 

@@ -14,6 +14,7 @@
 #include <map>
 #include <vector>
 #include <fstream>
+#include <sys/stat.h>
 
 #define SUCCESS             0
 #define ERROR                 -1

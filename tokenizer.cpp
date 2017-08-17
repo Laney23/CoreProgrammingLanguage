@@ -40,7 +40,6 @@ int tokenize(const std::map<std::string,int> token_lookup_table, std::ifstream& 
 } /* function tokenize */
 
 
-
 /*
  * Name: tokenizeLine
  *

@@ -12,8 +12,9 @@ using namespace std;
 
 int main(int argc, const char * argv[])
 {
+    /* Exit program if correct input file amount isn't given */
     if (argc != 3) return ERROR;
-    
+
     /* Initialize variables */
     ifstream core_program;
     if(processFileArgument(argv[1], core_program) != SUCCESS) return ERROR;
@@ -30,6 +31,12 @@ int main(int argc, const char * argv[])
     }
     else
         core_program.close();
+    
+    int i = 0;
+    printf("length: %lu\n", token_values_list.size());
+    while (i < token_values_list.size()) {
+        printf("%i\n", token_values_list[i]);
+    }
     
     /* Parse tokens */
     

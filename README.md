@@ -20,7 +20,7 @@ The abstract syntax tree for the CORE programming language is defined as:
 14. \<exp>           ::=   \<fac>|\<fac>+\<exp>|\<fac>-\<exp>
 15. \<fac>            ::=   \<op> | \<op> * \<fac>
 16. \<op>             ::=  \<int> | \<id> | (\<exp>)
-17. \<comp op>   ::=  != | == | \< | \> | \<= | \>=
+17. \<comp op>   ::=    != | == | \< | \> | \<= | \>=
 18. \<id>              ::=  \<let> | \<let>\<id> | \<let>\<int>
 19. \<let>             ::=  A | B | C | ... | X | Y | Z
 20. \<int>             ::=  \<digit> | \<digit>\<int>

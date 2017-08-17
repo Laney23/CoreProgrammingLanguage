@@ -1,5 +1,5 @@
 Introduction
-This code tokenizes a given CORE program, interprets it, then pretty prints the given CORE program with the corresponding code executions.
+This code tokenizes a given CORE program, then parses it, executes it, and pretty prints the given CORE program with the corresponding code executions.
 
 The abstract syntax tree for the CORE programming language is defined as:
 <prog>	    ::=    program <decl seq> begin <stmt seq> end

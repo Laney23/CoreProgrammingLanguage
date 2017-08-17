@@ -7,28 +7,17 @@
 //
 
 #include "tokenizer.hpp"
+using namespace std;
 
 #define DELIMS_  " \f\n\r\t\v"
 
-class Tokenizer
-{
-    private:
-        char* tokens;
-    
-    protected:
-        void emit();
-        void accept(char c);
-        void reject();
-    
-
-};
 
 int tokenizeLine(const std::string& line)
 {
     int counter = 0;
     
     /* Set up token array */
-    const int line_length = line.size();
+    const int line_length = line.length();
     char *token_values = new char[line_length];
     
     char *token = strtok((char*)line.c_str(), DELIMS_);

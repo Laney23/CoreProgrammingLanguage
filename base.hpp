@@ -9,9 +9,14 @@
 #ifndef base_hpp
 #define base_hpp
 
+#include <iostream>
 #include <stdio.h>
-#define ERROR -1
+#include <map>
+#include <vector>
+
+#define SUCCESS             0
+#define ERROR                 -1
 
 #endif /* base_hpp */
 
-int initMap();
+int initMap(std::map<char,int> token_values);

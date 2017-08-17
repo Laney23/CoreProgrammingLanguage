@@ -19,4 +19,4 @@
 
 #endif /* base_hpp */
 
-int initMap(std::map<char,int> token_values);
+int initMap(std::map<std::string,int> token_values);

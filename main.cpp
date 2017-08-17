@@ -15,7 +15,7 @@ int main(int argc, const char * argv[])
     /* Initialize variables */
     vector<int> token_values_list;             /* vector to hold token values */
     token_values_list.reserve(100);            /* initially reserve space for 100 tokens */
-    map<char,int> token_lookup_table;   /* map of corresponding token values */
+    map<string,int> token_lookup_table;   /* map of corresponding token values */
     if (initMap(token_lookup_table) != SUCCESS) return ERROR;
     
     cout << "Hello, World!\n";

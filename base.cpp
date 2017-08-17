@@ -23,9 +23,27 @@ int processFileArgument(const char *file_name, std::ifstream& core_program)
     /* Verify file exists in current directory */
     
     /* Open file for processing */
+    core_program.open(file_name, std::ios::in);
     
     return SUCCESS;
 } /* function processFileArgument */
+
+
+/*
+ * Name: tearDown
+ *
+ * Purpose: frees memory before exit
+ *
+ * Parameters: std::ifstream& core_program      file stream to close
+ *
+ * Return: SUCCESS
+ */
+int tearDown(std::ifstream& core_program)
+{
+    core_program.close();
+    
+    return SUCCESS;
+} /* function tearDown */
 
 
 /*

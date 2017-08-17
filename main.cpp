@@ -22,6 +22,25 @@ int main(int argc, const char * argv[])
     map<string,int> token_lookup_table;   /* map of corresponding token values */
     if (initMap(token_lookup_table) != SUCCESS) return ERROR;
     
+    /* Tokenize */
+    if(tokenize(token_lookup_table, core_program, token_values_list) != SUCCESS)
+    {
+        core_program.close();
+        return ERROR;
+    }
+    else
+        core_program.close();
+    
+    /* Parse tokens */
+    
+    
+    /* Print outputs */
+    
     cout << "Hello, World!\n";
+    
+    /* Close file descriptor */
+    // TODO: May be irrelevant now
+    if(tearDown(core_program) != SUCCESS) return ERROR;
+    
     return 0;
 }

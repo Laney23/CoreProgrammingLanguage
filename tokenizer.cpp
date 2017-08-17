@@ -12,24 +12,43 @@ using namespace std;
 #define DELIMS_  " \f\n\r\t\v"
 
 /* Static function prototypes */
-int tokenizeLine(const std::map<std::string,int> token_lookup_table, const std::string& line);
+static int tokenizeLine(const std::map<std::string,int> token_lookup_table, const std::string& line);
 
 
-int tokenizeLine(const std::map<std::string,int> token_lookup_table, const std::string& line)
+/*
+ * Name: tokenize
+ *
+ * Purpose: tokenizes the given core program file into the given mapped token values
+ *
+ * Parameters:  const std::map<std::string,int> token_lookup_table        token values table
+ *                       std::ifstream& core_program                                            file stream of core program
+ *
+ * Return: SUCCESS or ERROR
+ */
+int tokenize(const std::map<std::string,int> token_lookup_table, std::ifstream& core_program, std::vector<int> token_values_list)
 {
-    int index = 0;
+    if (!core_program.is_open()) return ERROR;
     
-    /* Set up token array */
-    const int line_length = line.length();
-    char *token_values = new char[line_length];
+    /* Tokenize file line by line */
+    string line;
+    while (getline(core_program, line)) {
+        if(tokenizeLine(token_lookup_table, line) != SUCCESS) return ERROR;
+    }
     
+    
+    return SUCCESS;
+} /* function tokenize */
+
+
+static int tokenizeLine(const std::map<std::string,int> token_lookup_table, const std::string& line, std::vector<int> token_values_list)
+{
     char *token = std::strtok(line, DELIMS_);
     
     while (token)
     {
         /* if the token is in the lookup table, add the token to the values array */
         if (token_lookup_table.find(token) != token_lookup_table.end())
-            token_values[index++] = *token;
+            token_values_list.push_back(*token);
         
         token = strtok(NULL, DELIMS_);
     }

@@ -59,3 +59,7 @@ Special symbols are:
 * \>
 * <=
 * \>=
+
+All identifiers must start with an uppercase letter and be followed by zero or more uppercase letters or digits. All integers most be positive (unsigned).
+
+

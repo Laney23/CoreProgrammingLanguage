@@ -2,6 +2,10 @@
 
 This code tokenizes a given CORE program, then parses it, executes it, and pretty prints the given CORE program with the corresponding code executions.
 
+# Use #
+Call the program as follows:
+`./core_interpreter coreProgram inputdata`
+
 ## CORE Language ##
 The abstract syntax tree for the CORE programming language (with the corresponding token number in parenthesis) is defined as:
 1.   \<prog>	        ::=    program \<decl seq> begin \<stmt seq> end

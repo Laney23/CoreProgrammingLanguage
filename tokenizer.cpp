@@ -11,25 +11,31 @@ using namespace std;
 
 #define DELIMS_  " \f\n\r\t\v"
 
+/* Static function prototypes */
+int tokenizeLine(const std::map<std::string,int> token_lookup_table, const std::string& line);
 
-int tokenizeLine(const std::string& line)
+
+int tokenizeLine(const std::map<std::string,int> token_lookup_table, const std::string& line)
 {
-    int counter = 0;
+    int index = 0;
     
     /* Set up token array */
     const int line_length = line.length();
     char *token_values = new char[line_length];
     
-    char *token = strtok((char*)line.c_str(), DELIMS_);
+    char *token = strtok(line, DELIMS_);
     
     while (token)
     {
-        token_values[counter++] = *token;
+        /* if the token is in the lookup table, add the token to the values array */
+        if (token_lookup_table.find(token) != token_lookup_table.end())
+            token_values[index++] = *token;
+        
         token = strtok(NULL, DELIMS_);
     }
     
-    return 0;
-};
+    return SUCCESS;
+}; /* function tokenizeLine */
 
 
 /*

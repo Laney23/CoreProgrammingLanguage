@@ -10,6 +10,18 @@
 
 
 /*
+ * Name: processFileArgument
+ *
+ * Purpose: Processes and validates the file argument
+ *
+ * Parameters: 
+ *
+ * Return: SUCCESS
+ */
+
+
+
+/*
  * Name: initMap
  *
  * Purpose: Initializes the token map.

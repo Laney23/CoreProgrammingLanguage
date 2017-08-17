@@ -12,7 +12,7 @@ using namespace std;
 #define DELIMS_  " \f\n\r\t\v"
 
 /* Static function prototypes */
-static int tokenizeLine(const std::map<std::string,int> token_lookup_table, const std::string& line);
+static int tokenizeLine(const std::map<std::string,int> token_lookup_table, const string& str, vector<int>& token_values_list);
 
 
 /*
@@ -32,7 +32,7 @@ int tokenize(const std::map<std::string,int> token_lookup_table, std::ifstream& 
     /* Tokenize file line by line */
     string line;
     while (getline(core_program, line)) {
-        if(tokenizeLine(token_lookup_table, line) != SUCCESS) return ERROR;
+        if(tokenizeLine(token_lookup_table, line, token_values_list) != SUCCESS) return ERROR;
     }
     
     
@@ -40,21 +40,40 @@ int tokenize(const std::map<std::string,int> token_lookup_table, std::ifstream& 
 } /* function tokenize */
 
 
-static int tokenizeLine(const std::map<std::string,int> token_lookup_table, const std::string& line, std::vector<int> token_values_list)
+
+/*
+ * Name: tokenizeLine
+ *
+ * Purpose: tokenizes a given line and appends their values to token_values_list
+ *
+ * Parameters:
+ *
+ * Return: SUCCESS
+ * NOTE: Function adapted from http://oopweb.com/CPP/Documents/CPPHOWTO/Volume/C++Programming-HOWTO-7.html 
+ */
+static int tokenizeLine(const std::map<std::string,int> token_lookup_table, const string& str, vector<int>& token_values_list)
 {
-    char *token = std::strtok(line, DELIMS_);
+    // Skip delimiters at beginning.
+    string::size_type lastPos = str.find_first_not_of(DELIMS_, 0);
+    // Find first "non-delimiter".
+    string::size_type pos     = str.find_first_of(DELIMS_, lastPos);
     
-    while (token)
+    while (string::npos != pos || string::npos != lastPos)
     {
-        /* if the token is in the lookup table, add the token to the values array */
-        if (token_lookup_table.find(token) != token_lookup_table.end())
-            token_values_list.push_back(*token);
+        // Found a token, add it to the vector.
+        string token = str.substr(lastPos, pos - lastPos);
+        auto value = token_lookup_table.find(token);
         
-        token = strtok(NULL, DELIMS_);
+        if(value != token_lookup_table.end())
+            token_values_list.push_back(value->second);
+        // Skip delimiters.  Note the "not_of"
+        lastPos = str.find_first_not_of(DELIMS_, pos);
+        // Find next "non-delimiter"
+        pos = str.find_first_of(DELIMS_, lastPos);
     }
     
     return SUCCESS;
-}; /* function tokenizeLine */
+} /* function tokenizeLine */
 
 
 /*

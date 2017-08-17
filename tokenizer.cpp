@@ -23,7 +23,7 @@ int tokenizeLine(const std::map<std::string,int> token_lookup_table, const std::
     const int line_length = line.length();
     char *token_values = new char[line_length];
     
-    char *token = strtok(line, DELIMS_);
+    char *token = std::strtok(line, DELIMS_);
     
     while (token)
     {

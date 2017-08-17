@@ -12,7 +12,11 @@ using namespace std;
 
 int main(int argc, const char * argv[])
 {
+    if (argc != 3) return ERROR;
+    
     /* Initialize variables */
+    ifstream core_program;
+    if(processFileArgument(argv[1], core_program) != SUCCESS) return ERROR;
     vector<int> token_values_list;             /* vector to hold token values */
     token_values_list.reserve(100);            /* initially reserve space for 100 tokens */
     map<string,int> token_lookup_table;   /* map of corresponding token values */

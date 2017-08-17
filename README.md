@@ -4,7 +4,10 @@ This code tokenizes a given CORE program, then parses it, executes it, and prett
 
 # Use #
 Call the program as follows:
-`./core_interpreter coreProgram inputdata`
+
+`./core_interpreter coreProgram inputData`
+
+Where both `coreProgram` and `inputData` are files located in the current directory and `core_interpreter` is the compiled program name.
 
 ## CORE Language ##
 The abstract syntax tree for the CORE programming language (with the corresponding token number in parenthesis) is defined as:

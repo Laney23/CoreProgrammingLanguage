@@ -18,7 +18,14 @@
  *
  * Return: SUCCESS
  */
-
+int processFileArgument(const char *file_name, std::ifstream& core_program)
+{
+    /* Verify file exists in current directory */
+    
+    /* Open file for processing */
+    
+    return SUCCESS;
+} /* function processFileArgument */
 
 
 /*

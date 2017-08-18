@@ -36,6 +36,10 @@ int tokenize(const std::map<std::string,int> token_lookup_table, std::ifstream& 
         if(tokenizeLine(token_lookup_table, line, token_values_list) != SUCCESS) return ERROR;
     }
     
+    /* Add EOF token */
+    TokenPair pair = { 33, "EOF" };
+    token_values_list.push_back(pair);
+    
     return SUCCESS;
 } /* function tokenize */
 
@@ -63,7 +67,6 @@ static int tokenizeLine(const std::map<std::string,int> token_lookup_table, cons
         
         /* Found a token, add it to the vector */
         string token = str.substr(lastPos, pos - lastPos);
-        printf("\nstring: %s", token.c_str());
         auto value = token_lookup_table.find(token.c_str());
 
         /* Token is a value in th lookup table */
@@ -72,23 +75,24 @@ static int tokenizeLine(const std::map<std::string,int> token_lookup_table, cons
         else if (firstUpper(token))  /* Token is an identifier */
         {
             /* Check if rest of word contains capital letters and/or digits */
-            if (token.length() > 1)
+            if (token.length() > 1 && !string_is_valid(token))
             {
-                ;
+                printf("Invalid identifier. Please consult the context free grammar.\n");
+                return ERROR;
             }
+            pair.value = 32;
         }
         else if (isInteger(token)) /* Token is a number */
             pair.value = 31;
         else /* badly formatted */
         {
-            printf("This is an incorrectly formatted CORE program. Please check the context free grammar.\n");
-            ;//return ERROR;
+            printf("This is an incorrectly formatted CORE program. Please consult the context free grammar.\n");
+            return ERROR;
         }
         
         /* Add TokenPair into the storage vector */
         pair.token = token;
         token_values_list.push_back(pair);
-        printf("\ttoken: %i\n", pair.value);
         
         /* Skip delimiters.  Note the "not_of" */
         lastPos = str.find_first_not_of(DELIMS_, pos);
@@ -114,7 +118,8 @@ static inline bool isInteger(const std::string & s)
 /* Taken from: https://stackoverflow.com/q/2926878/2127502 */
 static inline bool is_not_alnum_space(char c)
 {
-    return !(isalpha(c) || isdigit(c) || (c == ' '));
+    //TODO: need to make sure this is capital alpha
+    return !(isalpha(c) || isdigit(c));
 }
 
 

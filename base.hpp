@@ -19,8 +19,16 @@
 #define SUCCESS             0
 #define ERROR                 -1
 
-#endif /* base_hpp */
+struct TokenPair
+{
+    int value;
+    std::string token;
+};
+
 
 int initMap(std::map<std::string,int>& token_values);
 int processFileArgument(const char *file_name, std::ifstream& core_program);
 int tearDown(std::ifstream& core_program);
+
+
+#endif /* base_hpp */

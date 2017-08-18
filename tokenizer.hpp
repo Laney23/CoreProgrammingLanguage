@@ -13,10 +13,12 @@
 #include <string>
 #include <array>
 #include "base.hpp"
-#endif /* tokenizer_hpp */
 
-int tokenize(const std::map<std::string,int> token_lookup_table, std::ifstream& core_program, std::vector<int> token_values_list);
+int tokenize(const std::map<std::string,int> token_lookup_table, std::ifstream& core_program, std::vector<TokenPair> token_values_list);
 int getToken();
 int skipToken();
 int intVal();
 int idName();
+
+
+#endif /* tokenizer_hpp */

@@ -18,7 +18,7 @@ int main(int argc, const char * argv[])
     /* Initialize variables */
     ifstream core_program;
     if(processFileArgument(argv[1], core_program) != SUCCESS) return ERROR;
-    vector<int> token_values_list;             /* vector to hold token values */
+    vector<TokenPair> token_values_list;             /* vector to hold token values */
     token_values_list.reserve(100);            /* initially reserve space for 100 tokens */
     map<string,int> token_lookup_table;   /* map of corresponding token values */
     if (initMap(token_lookup_table) != SUCCESS) return ERROR;
@@ -38,9 +38,9 @@ int main(int argc, const char * argv[])
     
     int i = 0;
     printf("length: %lu\n", token_values_list.size());
-    while (i < token_values_list.size()) {
-        printf("%i\n", token_values_list[i]);
-    }
+//    while (i < token_values_list.size()) {
+//        printf("%i\n", token_values_list[i]);
+//    }
     
     /* Parse tokens */
     

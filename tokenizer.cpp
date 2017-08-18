@@ -2,6 +2,9 @@
 //  tokenizer.cpp
 //  CoreProgrammingLanguage
 //
+// This class ensures that all tokens in the CORE program are valid
+// and returns them in a vector of TokenPairs
+//
 //  Created by Josh Laney on 8/17/17.
 //  Copyright © 2017 Aginor. All rights reserved.
 //
@@ -77,7 +80,7 @@ static int tokenizeLine(const std::map<std::string,int> token_lookup_table, cons
             /* Check if rest of word contains capital letters and/or digits */
             if (token.length() > 1 && !string_is_valid(token))
             {
-                printf("Invalid identifier. Please consult the context free grammar.\n");
+                printf("Token %s is an invalid identifier. Please consult the context free grammar.\n", token.c_str());
                 return ERROR;
             }
             pair.value = 32;
@@ -86,7 +89,7 @@ static int tokenizeLine(const std::map<std::string,int> token_lookup_table, cons
             pair.value = 31;
         else /* badly formatted */
         {
-            printf("This is an incorrectly formatted CORE program. Please consult the context free grammar.\n");
+            printf("Token %s is invalid. Please consult the context free grammar.\n", token.c_str());
             return ERROR;
         }
         
@@ -118,8 +121,7 @@ static inline bool isInteger(const std::string & s)
 /* Taken from: https://stackoverflow.com/q/2926878/2127502 */
 static inline bool is_not_alnum_space(char c)
 {
-    //TODO: need to make sure this is capital alpha
-    return !(isalpha(c) || isdigit(c));
+    return !((isalpha(c) && isupper(c)) || isdigit(c));
 }
 
 

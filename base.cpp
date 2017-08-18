@@ -7,7 +7,7 @@
 //
 
 #include "base.hpp"
-
+using namespace std;
 
 /*
  * Name: processFileArgument
@@ -18,18 +18,18 @@
  *
  * Return: SUCCESS
  */
-int processFileArgument(const char *file_name, std::ifstream& core_program)
+int processFileArgument(const char *file_name, ifstream& core_program)
 {
     /* Verify file exists in current directory */
     struct stat buffer;
     if (stat (file_name, &buffer) != 0)
     {
-        std::cout << "Error in PFA";
+        cout << "Error in PFA";
         return ERROR;
     }
     
     /* Open file for processing */
-    core_program.open(file_name, std::ios::in);
+    core_program.open(file_name, ios::in);
     
     if(core_program.is_open()) return SUCCESS;
     
@@ -46,7 +46,7 @@ int processFileArgument(const char *file_name, std::ifstream& core_program)
  *
  * Return: SUCCESS
  */
-int tearDown(std::ifstream& core_program)
+int tearDown(ifstream& core_program)
 {
     core_program.close();
     
@@ -63,7 +63,7 @@ int tearDown(std::ifstream& core_program)
  *
  * Return: SUCCESS
  */
-int initMap(std::map<std::string,int>& token_values)
+int initMap(map<string,int>& token_values)
 {
     token_values["program"] = 1;
     token_values["begin"] = 2;
@@ -103,9 +103,9 @@ int initMap(std::map<std::string,int>& token_values)
 } /* function initMap */
 
 
-bool firstUpper(const std::string& word)
+bool firstUpper(const string& word)
 {
-    return word.size() && std::isupper(word[0]);
+    return word.size() && isupper(word[0]);
 }
 
 

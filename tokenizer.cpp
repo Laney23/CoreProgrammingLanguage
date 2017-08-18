@@ -9,10 +9,11 @@
 #include "tokenizer.hpp"
 using namespace std;
 
-#define DELIMS_  " \f\n\r\t\v"
-
 /* Static function prototypes */
 static int tokenizeLine(const std::map<std::string,int> token_lookup_table, const string& str, vector<TokenPair>& token_values_list);
+static inline bool isInteger(const std::string & s);
+static inline bool is_not_alnum_space(char c);
+static bool string_is_valid(const std::string &str);
 
 
 /*
@@ -58,31 +59,36 @@ static int tokenizeLine(const std::map<std::string,int> token_lookup_table, cons
     
     while (string::npos != pos || string::npos != lastPos)
     {
+        TokenPair pair;
+        
         /* Found a token, add it to the vector */
         string token = str.substr(lastPos, pos - lastPos);
         printf("\nstring: %s", token.c_str());
         auto value = token_lookup_table.find(token.c_str());
- //TODO: Figure out tokenizing identifiers and numbers
+
+        /* Token is a value in th lookup table */
         if(value != token_lookup_table.end())
-        {
-            TokenPair pair;
             pair.value = value->second;
-            pair.token = token;
-            token_values_list.push_back(pair);
-            printf("\ttoken: %i\n", value->second);
+        else if (firstUpper(token))  /* Token is an identifier */
+        {
+            /* Check if rest of word contains capital letters and/or digits */
+            if (token.length() > 1)
+            {
+                ;
+            }
         }
-//        else if (<#condition#>) //identifier
-//        {
-//            
-//        }
-//        else if () //number
-//        {
-//            
-//        }
+        else if (isInteger(token)) /* Token is a number */
+            pair.value = 31;
         else /* badly formatted */
         {
+            printf("This is an incorrectly formatted CORE program. Please check the context free grammar.\n");
             ;//return ERROR;
         }
+        
+        /* Add TokenPair into the storage vector */
+        pair.token = token;
+        token_values_list.push_back(pair);
+        printf("\ttoken: %i\n", pair.value);
         
         /* Skip delimiters.  Note the "not_of" */
         lastPos = str.find_first_not_of(DELIMS_, pos);
@@ -92,6 +98,30 @@ static int tokenizeLine(const std::map<std::string,int> token_lookup_table, cons
     
     return SUCCESS;
 } /* function tokenizeLine */
+
+/* Taken from: https://stackoverflow.com/a/2845275/2127502 */
+static inline bool isInteger(const std::string & s)
+{
+    if(s.empty() || ((!isdigit(s[0])) && (s[0] != '-') && (s[0] != '+'))) return false ;
+    
+    char * p ;
+    strtol(s.c_str(), &p, 10) ;
+    
+    return (*p == 0) ;
+}
+
+
+/* Taken from: https://stackoverflow.com/q/2926878/2127502 */
+static inline bool is_not_alnum_space(char c)
+{
+    return !(isalpha(c) || isdigit(c) || (c == ' '));
+}
+
+
+static bool string_is_valid(const std::string &str)
+{
+    return find_if(str.begin(), str.end(), is_not_alnum_space) == str.end();
+}
 
 
 /*

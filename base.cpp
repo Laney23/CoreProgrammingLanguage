@@ -103,6 +103,9 @@ int initMap(std::map<std::string,int>& token_values)
 } /* function initMap */
 
 
-
+bool firstUpper(const std::string& word)
+{
+    return word.size() && std::isupper(word[0]);
+}
 
 

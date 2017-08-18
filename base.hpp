@@ -29,6 +29,6 @@ struct TokenPair
 int initMap(std::map<std::string,int>& token_values);
 int processFileArgument(const char *file_name, std::ifstream& core_program);
 int tearDown(std::ifstream& core_program);
-
+bool firstUpper(const std::string& word);
 
 #endif /* base_hpp */

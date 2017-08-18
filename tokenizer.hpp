@@ -14,7 +14,7 @@
 #include <array>
 #include "base.hpp"
 
-int tokenize(const std::map<std::string,int> token_lookup_table, std::ifstream& core_program, std::vector<TokenPair> token_values_list);
+int tokenize(const std::map<std::string,int> token_lookup_table, std::ifstream& core_program, std::vector<TokenPair>& token_values_list);
 int getToken();
 int skipToken();
 int intVal();

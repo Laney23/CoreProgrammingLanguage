@@ -38,9 +38,11 @@ int main(int argc, const char * argv[])
     
     int i = 0;
     printf("length: %lu\n", token_values_list.size());
-//    while (i < token_values_list.size()) {
-//        printf("%i\n", token_values_list[i]);
-//    }
+    printf("============\n");
+    while (i < token_values_list.size()) {
+        TokenPair x = token_values_list.at(i++);
+        printf("%i\t%s\n", x.value, x.token.c_str());
+    }
     
     /* Parse tokens */
     

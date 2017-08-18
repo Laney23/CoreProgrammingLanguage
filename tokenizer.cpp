@@ -25,7 +25,7 @@ static int tokenizeLine(const std::map<std::string,int> token_lookup_table, cons
  *
  * Return: SUCCESS or ERROR
  */
-int tokenize(const std::map<std::string,int> token_lookup_table, std::ifstream& core_program, std::vector<TokenPair> token_values_list)
+int tokenize(const std::map<std::string,int> token_lookup_table, std::ifstream& core_program, std::vector<TokenPair>& token_values_list)
 {
     if (!core_program.is_open()) return ERROR;
     
@@ -34,7 +34,6 @@ int tokenize(const std::map<std::string,int> token_lookup_table, std::ifstream& 
     while (getline(core_program, line)) {
         if(tokenizeLine(token_lookup_table, line, token_values_list) != SUCCESS) return ERROR;
     }
-    
     
     return SUCCESS;
 } /* function tokenize */
@@ -70,7 +69,7 @@ static int tokenizeLine(const std::map<std::string,int> token_lookup_table, cons
             pair.value = value->second;
             pair.token = token;
             token_values_list.push_back(pair);
-            printf("token: %i\n", value->second);
+            printf("\ttoken: %i\n", value->second);
         }
 //        else if (<#condition#>) //identifier
 //        {
@@ -82,7 +81,7 @@ static int tokenizeLine(const std::map<std::string,int> token_lookup_table, cons
 //        }
         else /* badly formatted */
         {
-            return ERROR;
+            ;//return ERROR;
         }
         
         /* Skip delimiters.  Note the "not_of" */

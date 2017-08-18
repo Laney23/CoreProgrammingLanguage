@@ -12,17 +12,36 @@
 #include <stdio.h>
 #include <string>
 #include <array>
+#include <map>
+#include <sys/stat.h>
 #include "base.hpp"
 
 
 #define DELIMS_  " \f\n\r\t\v"
 
+struct TokenPair
+{
+    int value;
+    std::string token;
+};
 
-int tokenize(const std::map<std::string,int> token_lookup_table, std::ifstream& core_program, std::vector<TokenPair>& token_values_list);
-int getToken();
-int skipToken();
-int intVal();
-int idName();
+
+class Tokenizer {
+    std::vector<TokenPair> tokens;
+    std::map<std::string,int> token_lookup_table;
+    std::ifstream core_program;
+    
+public:
+    Tokenizer(std::string file_name);
+    int tokenize();
+    int tokenizeLine(const std::string& str);
+    int processFileArgument(std::string file_name);
+    int print();
+    int getToken();
+    int skipToken();
+    int intVal();
+    int idName();
+};
 
 
 #endif /* tokenizer_hpp */

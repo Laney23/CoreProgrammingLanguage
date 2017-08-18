@@ -23,6 +23,10 @@ int main(int argc, const char * argv[])
     map<string,int> token_lookup_table;   /* map of corresponding token values */
     if (initMap(token_lookup_table) != SUCCESS) return ERROR;
     
+//    for(auto it = token_lookup_table.cbegin(); it != token_lookup_table.cend(); ++it)
+//        printf("K: %s\tV: %d\n", it->first.c_str(), it->second);
+//   
+    
     /* Tokenize */
     if(tokenize(token_lookup_table, core_program, token_values_list) != SUCCESS)
     {

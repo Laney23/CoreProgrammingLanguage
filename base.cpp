@@ -63,7 +63,7 @@ int tearDown(std::ifstream& core_program)
  *
  * Return: SUCCESS
  */
-int initMap(std::map<std::string,int> token_values)
+int initMap(std::map<std::string,int>& token_values)
 {
     token_values["program"] = 1;
     token_values["begin"] = 2;

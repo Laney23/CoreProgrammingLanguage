@@ -21,6 +21,6 @@
 
 #endif /* base_hpp */
 
-int initMap(std::map<std::string,int> token_values);
+int initMap(std::map<std::string,int>& token_values);
 int processFileArgument(const char *file_name, std::ifstream& core_program);
 int tearDown(std::ifstream& core_program);

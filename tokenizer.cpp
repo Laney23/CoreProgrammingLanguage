@@ -61,10 +61,14 @@ static int tokenizeLine(const std::map<std::string,int> token_lookup_table, cons
     {
         // Found a token, add it to the vector.
         string token = str.substr(lastPos, pos - lastPos);
-        auto value = token_lookup_table.find(token);
-        
+        printf("string: %s\n", token.c_str());
+        auto value = token_lookup_table.find(token.c_str());
+ //TODO: FIgure out tokenizing identifiers and numbers
         if(value != token_lookup_table.end())
+        {
             token_values_list.push_back(value->second);
+            printf("token: %i\n", value->second);
+        }
         // Skip delimiters.  Note the "not_of"
         lastPos = str.find_first_not_of(DELIMS_, pos);
         // Find next "non-delimiter"

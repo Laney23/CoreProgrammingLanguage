@@ -38,7 +38,6 @@ class Tokenizer {
 public:
     Tokenizer(std::string file_name);
     int tokenize();
-    int tokenizeLine(const std::string& str);
     int processFileArgument(std::string file_name);
     void print();
     TokenPair getToken();
@@ -46,6 +45,10 @@ public:
     int intVal();
     int idName();
     int totalTokens();
+    TokenPair front();
+    
+protected:
+    int tokenizeLine(const std::string& str);
 };
 
 

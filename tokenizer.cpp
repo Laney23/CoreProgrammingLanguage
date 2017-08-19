@@ -227,6 +227,23 @@ inline int Tokenizer::totalTokens()
 } /* function totalTokens */
 
 
+/*
+ * Name: front
+ * Purpose: gives the first token without incrementing the cursor
+ * Return: the first token
+ */
+TokenPair Tokenizer::front()
+{
+    if (Tokenizer::cursor+1 < Tokenizer::tokens.size())
+        return Tokenizer::tokens.at(Tokenizer::cursor+1);
+    else
+    {
+        printf("Out of tokens.\n");
+        return { 0, "0" };
+    }
+} /* function front */
+
+
 /* PRIVATE FUNCTIONS */
 
 

@@ -14,7 +14,7 @@
  * Purpose: initializes class values
  * Parameters:  Tokenizer toke                 tokenizer object to parse
  */
-Id::Id(Tokenizer toke)
+Id(Tokenizer &toke)
 {
     /* Initialize variables */
     Id::name = toke.idName();
@@ -27,7 +27,7 @@ Id::Id(Tokenizer toke)
  * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
-int parse(Tokenizer t)
+int IdList::parse(Tokenizer &t)
 {
     /* Parse id */
     IdList::id.parse(t);
@@ -52,7 +52,7 @@ int parse(Tokenizer t)
  * Purpose: execute the IdList object
  * Return: SUCCESS or ERROR
  */
-int execute()
+int Id::execute()
 {
     //TODO
     /*
@@ -76,59 +76,51 @@ int execute()
  * Purpose: print the IdList object
  * Return: SUCCESS or ERROR
  */
-int print()
+int Id::print()
 {
+    //TODO
     return Id::name;
 } /* function print */
 
 
 /*
  * Name: setId
- * Purpose: passes a value to update variables. This function can only be used
- *                after declaration sequence.
+ * Parameters: int value            the value to update the identifier to
+ * Purpose: Updates a variable's value.
  */
-void setId(int value)
+int Id::setId(int value)
 {
-    IdList::id.setId(value);
+    TableElement te;
+    int index = ParseObject::inTable(Id::name);
+    if (index > 0)
+        te = ParseObject::idTable.at(x);
     
-    if (IdList::option == 1)
-        IdList::iList.setId(value);
+    /* In Declaration Sequence and already in table */
+    if (index > 0 && ParseObject::inDecSeq == true) {
+        printf("Variable %s has already been declared.\n", te.idName);
+        return ERROR;
+    }
+    /* In Statement Sequence and in table */
+    else if (x >= 0 && te.inDecSeq == false)
+    {
+        
+    }
+    /* In Statement Sequence and not in table */
+    else if (x < 0 && ParseObject::inDecSeq == false)
+    {
+        printf("Variable %s was never declared. Declartion can only \
+                    be done in Declaration Sequence.\n", te.idName);
+        return ERROR;
+    }
+    /* In Declaration Sequence and not in table */
+    else
+    {
+        te.idName = Id::name;
+        te.idVal = value;
+        te.isInit = false;
+        ParseObject::idTable.push_back(te);
+    }
+    
+    return SUCCESS;
 } /* function setId */
 
-
-
-
-
-
-
-
-
-
-
-
-class Id:			# DONE
-def __init__(self,t):
-self.name = ""
-
-def parse(self):
-self.name = t.getValue()
-t.getToken()		# Identifier token
-
-def setId(self, val):
-x = inTable(self.name, idTable)
-if x >= 0 and idTable[x][2] == True:                                            # In DS and already in table
-print 'Variable already declared.'
-exit()
-elif x >= 0 and idTable[x][2] == False:                                        # In SS and in table
-idTable[x] = idTable[x][:1] + (val, False, True)
-elif x < 0 and len(idTable) > 0 and idTable[0][2] == False:			# In SS and not in table
-print 'Variable %s was never declared. Declaration can only be done in Declaration Sequence.' % self.name
-exit()
-else:                                                                                             # In DS and not in table
-idTable.append((self.name, val, True, False))
-
-def execute(self):
-return self.name
-
-def Print(self):
-return self.name

@@ -27,7 +27,7 @@ int main(int argc, const char * argv[])
     toke.print();
     
     /* Parse tokens */
-    Program program = Program(toke);
+    Program program = Program();
     program.parse(toke);
 
     /* Print outputs */

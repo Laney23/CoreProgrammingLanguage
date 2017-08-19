@@ -9,23 +9,25 @@
 #ifndef idlist_hpp
 #define idlist_hpp
 
+
 #include <stdio.h>
 #include "parse.hpp"
 #include "tokenizer.hpp"
 #include "id.hpp"
 
-class IdList;
+
+class IdList{};
 class IdList : ParseObject {
+    int option;
     Id id;
     IdList iList;
-    int option;
     
 public:
     IdList();
-    int parse(Tokenizer &t);
+    int parse(Tokenizer t);
     int execute();
     std::string getIdNames();
-    void setId(int value);
+    int setId(int value);
 };
 
 

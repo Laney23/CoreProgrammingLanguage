@@ -17,6 +17,7 @@
 Id::Id()
 {
     /* Initialize variables */
+    // todo
 //    Id::name = toke.idName();
 }; /* function IdList constructor */
 
@@ -27,7 +28,7 @@ Id::Id()
  * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
-int Id::parse(Tokenizer &t)
+int Id::parse(Tokenizer t)
 {
     /* Update Identifier name */
     Id::name = t.idName();
@@ -81,6 +82,7 @@ std::string Id::getName()
  */
 int Id::setId(int value)
 {
+    /* See if table contains the id already. If so, get a copy of it */
     TableElement te;
     int index = ParseObject::inTable(Id::name);
     if (index > 0)

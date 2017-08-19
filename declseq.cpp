@@ -18,6 +18,7 @@ DeclSeq::DeclSeq()
 {
     /* Initialize variables */
     DeclSeq::decl = Decl(toke);
+    DeclSeq::decl = Decl();
     option = 0;
 }; /* function DeclSeq constructor */
 

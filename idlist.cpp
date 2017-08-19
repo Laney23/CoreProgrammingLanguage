@@ -29,6 +29,7 @@ IdList::IdList()
  * Return: SUCCESS or ERROR
  */
 int IdList::parse(Tokenizer &t)
+int IdList::parse(Tokenizer t)
 {
     /* Parse id */
     IdList::id.parse(t);

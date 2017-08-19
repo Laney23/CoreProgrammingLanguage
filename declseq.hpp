@@ -18,8 +18,6 @@
 
 class DeclSeq : ParseObject {
     int option;
-
-protected:
     Decl decl;
     DeclSeq declSeq;
     

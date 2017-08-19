@@ -14,7 +14,7 @@
  * Purpose: initializes class values
  * Parameters:  Tokenizer toke                 tokenizer object to parse
  */
-Id(Tokenizer &toke)
+Id::Id(Tokenizer &toke)
 {
     /* Initialize variables */
     Id::name = toke.idName();
@@ -30,7 +30,7 @@ Id(Tokenizer &toke)
 int Id::parse(Tokenizer &t)
 {
     /* Parse id */
-    IdList::id.parse(t);
+    Id::id.parse(t);
     
     /* If list of ids, continue parsing */
     TokenPair p = t.front();
@@ -38,9 +38,9 @@ int Id::parse(Tokenizer &t)
     if (p.token.compare(",") == 0)
     {
         t.getToken();       /* remove ',' */
-        IdList::option = 1;
-        IdList::iList = IdList(t);
-        IdList::iList.parse(t);
+        Id::option = 1;
+        Id::iList = IdList(t);
+        Id::iList.parse(t);
     }
     
     return SUCCESS;
@@ -79,7 +79,8 @@ int Id::execute()
 int Id::print()
 {
     //TODO
-    return Id::name;
+    //return Id::name;
+    return 0;
 } /* function print */
 
 
@@ -93,20 +94,20 @@ int Id::setId(int value)
     TableElement te;
     int index = ParseObject::inTable(Id::name);
     if (index > 0)
-        te = ParseObject::idTable.at(x);
+        te = ParseObject::idTable.at(index);
     
     /* In Declaration Sequence and already in table */
     if (index > 0 && ParseObject::inDecSeq == true) {
-        printf("Variable %s has already been declared.\n", te.idName);
+        printf("Variable %s has already been declared.\n", te.idName.c_str());
         return ERROR;
     }
     /* In Statement Sequence and in table */
-    else if (x >= 0 && te.inDecSeq == false)
+    else if (index >= 0 && ParseObject::inDecSeq == false)
     {
         
     }
     /* In Statement Sequence and not in table */
-    else if (x < 0 && ParseObject::inDecSeq == false)
+    else if (index < 0 && ParseObject::inDecSeq == false)
     {
         printf("Variable %s was never declared. Declartion can only \
                     be done in Declaration Sequence.\n", te.idName);

@@ -1,0 +1,31 @@
+//
+//  program.hpp
+//  CoreProgrammingLanguage
+//
+//  Created by Josh Laney on 8/19/17.
+//  Copyright © 2017 Aginor. All rights reserved.
+//
+
+#ifndef program_hpp
+#define program_hpp
+
+#include <stdio.h>
+#include <string>
+#include "parse.hpp"
+#include "tokenizer.hpp"
+#include "declseq.hpp"
+
+class Program : ParseObject {
+    DeclSeq ds;
+    StmtSeq ss;
+    
+public:
+    Program(Tokenizer toke);
+    int parse(Tokenizer t);
+    int execute();
+    int print();
+    
+};
+
+
+#endif /* program_hpp */

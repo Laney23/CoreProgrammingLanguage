@@ -122,7 +122,7 @@ int Iff::print()
 {
     /* Print 'if' with correct indentation */
     std::string str = std::string("\t", ++ParseObject::indent);
-    str += "if "
+    str += "if ";
     printf("%s", str);
     
     /* Print condition */

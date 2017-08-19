@@ -34,9 +34,9 @@
 #define WRITE                11
 #define SEMIC                12
 #define COMMA            13
+#define EQUAL               14
 #define NUMBER            31
 #define IDENTIFIER        32
-
 
 
 struct TokenPair

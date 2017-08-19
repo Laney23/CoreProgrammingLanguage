@@ -84,6 +84,7 @@ std::string Id::getName()
  * Name: setId
  * Parameters: int value            the value to update the identifier to
  * Purpose: Updates a variable's value.
+ * Return: SUCCESS or ERROR
  */
 int Id::setId(int value)
 {

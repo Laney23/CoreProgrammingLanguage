@@ -73,7 +73,7 @@ int Decl::execute()
 int Decl::print()
 {
     printf("\tint ");
-    Decl::iList.print();
+    printf("%s", Decl::iList.print().c_str());
     printf(";");
     
     return SUCCESS;

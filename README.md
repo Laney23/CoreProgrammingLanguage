@@ -7,7 +7,7 @@ Call the program as follows:
 
 `./coreint coreProgram inputData`
 
-Where both `coreProgram` and `inputData` are files located in the current directory and `coreint` is the compiled program name.
+Where both `coreProgram` and `inputData` are files located in the current directory and `coreint` is the compiled program name. `coreProgram` contains a properly formatted CORE program and `inputData`  is the data that will be used by the `read` CORE keyword.
 
 ## CORE Language ##
 The abstract syntax tree for the CORE programming language (with the corresponding token number in parenthesis) is defined as:

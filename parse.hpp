@@ -24,6 +24,7 @@ struct TableElement {
 class ParseObject {
 protected:
     static bool inDecSeq;
+    static int indent;
     static std::vector<TableElement> idTable;
 
 public:

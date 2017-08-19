@@ -84,7 +84,7 @@ int Assign::execute()
 
 /*
  * Name: print
- * Purpose: print the Iff object
+ * Purpose: print the Assign object
  * Return: SUCCESS or ERROR
  */
 int Assign::print()

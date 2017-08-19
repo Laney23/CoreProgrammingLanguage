@@ -37,6 +37,7 @@
 #define EQUAL               14
 #define PLUS                   22
 #define MINUS                23
+#define TIMES                 24
 #define NUMBER            31
 #define IDENTIFIER        32
 

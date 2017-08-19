@@ -91,16 +91,15 @@ int Exp::print()
         return ERROR;
     
     /* Add +/- if necessary */
-    if (Exp::option == 1)
-    {
+    if (Exp::option == 0)
+        return SUCCESS;
+    else if (Exp::option == 1)
         printf(" + ");
-        Exp::exp.print();
-    }
-    else if (Exp::option == 2)
-    {
+    else
         printf(" - ");
-        Exp::exp.print();
-    }
+    
+    if (Exp::exp.print() != SUCCESS)
+        return ERROR;
     
     return SUCCESS;
 } /* function print */

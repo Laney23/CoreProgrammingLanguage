@@ -57,6 +57,7 @@ int Program::parse(Tokenizer t)
     }
     
     /* Parse statement sequence */
+    ParseObject::inDecSeq = false;
     Program::ss.parse(t);
     
     /* Remove "end" */

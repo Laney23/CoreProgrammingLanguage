@@ -23,7 +23,7 @@ public:
     int parse(Tokenizer &t);
     int execute();
     int print();
-    void setId(int value);
+    int setId(int value);
 };
 
 

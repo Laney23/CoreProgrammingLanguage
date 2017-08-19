@@ -29,19 +29,11 @@ Id::Id(Tokenizer &toke)
  */
 int Id::parse(Tokenizer &t)
 {
-    /* Parse id */
-    Id::id.parse(t);
+    /* Update Identifier name */
+    Id::name = t.idName();
     
-    /* If list of ids, continue parsing */
-    TokenPair p = t.front();
-    
-    if (p.token.compare(",") == 0)
-    {
-        t.getToken();       /* remove ',' */
-        Id::option = 1;
-        Id::iList = IdList(t);
-        Id::iList.parse(t);
-    }
+    /* Remove identifier token */
+    t.getToken();
     
     return SUCCESS;
 } /* function parse */
@@ -110,7 +102,7 @@ int Id::setId(int value)
     else if (index < 0 && ParseObject::inDecSeq == false)
     {
         printf("Variable %s was never declared. Declartion can only \
-                    be done in Declaration Sequence.\n", te.idName);
+                    be done in Declaration Sequence.\n", te.idName.c_str());
         return ERROR;
     }
     /* In Declaration Sequence and not in table */

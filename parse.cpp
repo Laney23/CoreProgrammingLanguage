@@ -20,13 +20,13 @@ int ParseObject::inTable(std::string key)
     if (ParseObject::idTable.size() == 0)
         return -1;
     
-    int i = 0;
+    int index = 0;
     TableElement te;
-    while (i < ParseObject::idTable.size())
+    while (index < ParseObject::idTable.size())
     {
-        te = ParseObject::idTable.at(i++);
+        te = ParseObject::idTable.at(index++);
         if (te.idName.compare(key) == 0)
-            return i;
+            return index;
     }
     
     return -1;

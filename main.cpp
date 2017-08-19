@@ -14,7 +14,7 @@ using namespace std;
 
 int main(int argc, const char * argv[])
 {
-    /* Exit program if correct amount of arguments given */
+    /* Exit program if incorrect amount of arguments given */
     if (argc != 3) return ERROR;
 
     /* Initialize variables */

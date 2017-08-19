@@ -43,7 +43,7 @@ public:
     TokenPair getToken();
     TokenPair skipToken();
     int intVal();
-    int idName();
+    std::string idName();
     int totalTokens();
     TokenPair front();
     

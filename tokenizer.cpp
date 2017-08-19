@@ -210,10 +210,18 @@ int Tokenizer::intVal()
 {
     return SUCCESS;
 }
-int Tokenizer::idName()
+
+
+/*
+ * Name: idName
+ * Purpose: gives the string value of the token
+ * Return: the string token
+ */
+string Tokenizer::idName()
 {
-    return SUCCESS;
-}
+    TokenPair p = Tokenizer::tokens.at(Tokenizer::cursor);
+    return p.token;
+} /* function idName */
 
 
 /*

@@ -20,7 +20,23 @@
 #include "base.hpp"
 
 
-#define DELIMS_  " \f\n\r\t\v"
+#define DELIMS_             " \f\n\r\t\v"
+#define PROGRAM         1
+#define BEGIN                2
+#define END                   3
+#define INT                     4
+#define IF                        5
+#define THEN                 6
+#define ELSE                   7
+#define WHILE                8
+#define LOOP                 9
+#define READ                 10
+#define WRITE                11
+#define SEMIC                12
+#define COMMA            13
+#define NUMBER            31
+#define IDENTIFIER        32
+
 
 
 struct TokenPair

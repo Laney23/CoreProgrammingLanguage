@@ -94,6 +94,7 @@ int Tokenizer::tokenizeLine(const string& str)
             
         /* Found a token, add it to the vector */
         string token = str.substr(lastPos, pos - lastPos);
+        // TODO : Check lowercase here
         auto value = Tokenizer::token_lookup_table.find(token.c_str());
             
         /* Token is a value in th lookup table */

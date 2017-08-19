@@ -30,15 +30,20 @@ Decl::Decl()
 int Decl::parse(Tokenizer t)
 {
     /* Remove the first token ('int') */
-    t.getToken();
+    TokenPair p = t.getToken();
+    if (p.value != INT)
+    {
+        printf("Expected keyword: int.\n");
+        return ERROR;
+    }
     
     /* Parse the IdList */
     if (Decl::iList.parse() != SUCCESS)
         return ERROR;
     
     /* Verify next token */
-    TokenPair p = t.getToken();
-    if (p.token.compare(";") != 0)
+    p = t.getToken();
+    if (p.value != SEMIC)
     {
         printf("Semicolon expected.\n");
         return ERROR;

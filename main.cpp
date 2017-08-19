@@ -32,7 +32,7 @@ int main(int argc, const char * argv[])
 
     /* Print outputs */
     program.print();
-
+//TODO: Figure out standardized error messages
     /* Execute program */
     program.execute();
 

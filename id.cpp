@@ -34,7 +34,12 @@ int Id::parse(Tokenizer t)
     Id::name = t.idName();
     
     /* Remove identifier token */
-    t.getToken();
+    TokenPair p = t.getToken();
+    if (p.value != IDENTIFIER)
+    {
+        printf("Identifier expected.\n");
+        return ERROR;
+    }
     
     return SUCCESS;
 } /* function parse */

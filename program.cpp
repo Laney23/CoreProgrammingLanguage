@@ -20,7 +20,7 @@ Program::Program()
     /* Initialize variables */
     ParseObject::idTable.reserve(100);
     ParseObject::inDecSeq = true;
-    ParseObject::indent = 1;
+    ParseObject::indent = 0;
     Program::ds = DeclSeq();
     Program::ss = StmtSeq();
 } /* function Program constructor */
@@ -38,8 +38,7 @@ int Program::parse(Tokenizer t)
     TokenPair p = t.getToken();
     
     /* Remove "program" */
-    std::transform(p.token.begin(), p.token.end(), p.token.begin(), ::tolower);
-    if(p.token.compare("program") != 0)
+    if(p.value != PROGRAM)
     {
         printf("Expected reserved word: program");
         return ERROR;
@@ -51,8 +50,7 @@ int Program::parse(Tokenizer t)
     
     /* Remove "begin" */
     p = t.getToken();
-    std::transform(p.token.begin(), p.token.end(), p.token.begin(), ::tolower);
-    if(p.token.compare("begin") != 0)
+    if(p.value != BEGIN)
     {
         printf("Expected reserved word: begin");
         return ERROR;
@@ -64,8 +62,7 @@ int Program::parse(Tokenizer t)
     
     /* Remove "end" */
     p = t.getToken();
-    std::transform(p.token.begin(), p.token.end(), p.token.begin(), ::tolower);
-    if(p.token.compare("end") != 0)
+    if(p.value != END)
     {
         printf("Expected reserved word: end");
         return ERROR;

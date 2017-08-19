@@ -36,8 +36,7 @@ int IdList::parse(Tokenizer t)
     
     /* If list of ids, continue parsing */
     TokenPair p = t.front();
-    
-    if (p.token.compare(",") == 0)
+    if (p.value == COMMA)
     {
         t.getToken();       /* remove ',' */
         IdList::option = 1;

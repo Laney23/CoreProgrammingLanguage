@@ -11,7 +11,6 @@
 
 
 #include <stdio.h>
-#include <string>
 #include "parse.hpp"
 #include "tokenizer.hpp"
 
@@ -30,18 +29,4 @@ public:
 
 
 #endif /* declseq_hpp */
-
-
-
-
-class DeclSeq:		# DONE
-def execute(self):
-self.decl.execute()
-if self.option == 1:
-self.declSeq.execute()
-
-def Print(self):
-self.decl.Print()
-if self.option == 1:
-self.declSeq.Print()
 

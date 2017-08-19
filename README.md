@@ -33,6 +33,8 @@ The abstract syntax tree for the CORE programming language (with the correspondi
 20. \<int>             ::=  \<digit> | \<digit>\<int>
 21. \<digit>          ::=  0 | 1 | 2 | 3 | ... | 9
 
+A valid CORE program must contain at least one Declaration Sequence and one Statement Sequence (i.e. no empty program).
+
 The reserved words are:
 * program (1)
 * begin (2)

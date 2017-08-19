@@ -8,6 +8,7 @@
 
 #include "parse.hpp"
 
+//TODO defaults for exec and parse
 
 /*
  * Name: print

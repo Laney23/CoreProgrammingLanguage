@@ -17,7 +17,6 @@
 DeclSeq::DeclSeq()
 {
     /* Initialize variables */
-    DeclSeq::decl = Decl(toke);
     DeclSeq::decl = Decl();
     option = 0;
 }; /* function DeclSeq constructor */
@@ -34,7 +33,6 @@ int DeclSeq::parse(Tokenizer t)
     /* Verify the first token */
     TokenPair p = t.front();
     std::transform(p.token.begin(), p.token.end(), p.token.begin(), ::tolower);
-    
     if (p.token.compare("int") != 0)
     {
         printf("int keyword expected.\n");
@@ -42,17 +40,18 @@ int DeclSeq::parse(Tokenizer t)
     }
     
     /* Parse declaration */
-    DeclSeq::decl.parse(t);
+    if (DeclSeq::decl.parse(t) != SUCCESS)
+        return ERROR;
     
     /* If the next token is 'int', then this is a sequence. Create the DeclSeq child and parse it */
     p = t.front();
     std::transform(p.token.begin(), p.token.end(), p.token.begin(), ::tolower);
-    
     if (p.token.compare("int") == 0)
     {
         DeclSeq::option = 1;
-        DeclSeq::declSeq = DeclSeq(t);
-        DeclSeq::declSeq.parse(t);
+        DeclSeq::declSeq = DeclSeq();
+        if (DeclSeq::declSeq.parse(t) != SUCCESS)
+            return ERROR;
     }
     
     return SUCCESS;

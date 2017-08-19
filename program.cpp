@@ -45,7 +45,8 @@ int Program::parse(Tokenizer t)
     }
     
     /* Parse declaration sequence */
-    Program::ds.parse(t);
+    if (Program::ds.parse(t) != SUCCESS)
+        return ERROR;
     
     /* Remove "begin" */
     p = t.getToken();
@@ -57,8 +58,8 @@ int Program::parse(Tokenizer t)
     }
     
     /* Parse statement sequence */
-    ParseObject::inDecSeq = false;
-    Program::ss.parse(t);
+    if (Program::ss.parse(t) != SUCCESS)
+        return ERROR;
     
     /* Remove "end" */
     p = t.getToken();
@@ -84,12 +85,8 @@ int Program::execute()
     if (Program::ds.execute() != SUCCESS)
         return ERROR;
     
-    /*
-     # Change idTable to Statement Sequence from Declaration Sequence
-     # (No more variables can be declared after this point)
-     for i in xrange(0,len(idTable)):
-     idTable[i] = idTable[i][:2] + (False, False)
-     */
+    /* Change idTable to Statement Sequence from Declaration Sequence */
+     ParseObject::inDecSeq = false;
     
     /* Execute the statement sequence */
     if (Program::ss.execute() != SUCCESS)

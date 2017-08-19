@@ -33,7 +33,8 @@ int Decl::parse(Tokenizer t)
     t.getToken();
     
     /* Parse the IdList */
-    Decl::iList.parse();
+    if (Decl::iList.parse() != SUCCESS)
+        return ERROR;
     
     /* Verify next token */
     TokenPair p = t.getToken();
@@ -54,12 +55,12 @@ int Decl::parse(Tokenizer t)
  */
 int Decl::execute()
 {
-
-    /*TODO
-     def execute(self):
-     # Set the initial value of the variable to None
-     self.iList.setId(None)
+    /* 
+     * Set all values to 0 initially. The isInit value will determine if the variable has actually
+     * been set. This will just add the variable to the lookup table
      */
+    if (Decl::iList.setId(0) != SUCCESS)
+        return ERROR;
      
     return SUCCESS;
 } /* function execute */
@@ -73,7 +74,7 @@ int Decl::execute()
 int Decl::print()
 {
     printf("\tint ");
-    printf("%s", Decl::iList.print().c_str());
+    printf("%s", Decl::iList.getIdNames());
     printf(";\n");
     
     return SUCCESS;

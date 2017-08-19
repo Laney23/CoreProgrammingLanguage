@@ -28,11 +28,11 @@ IdList::IdList()
  * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
-int IdList::parse(Tokenizer &t)
 int IdList::parse(Tokenizer t)
 {
     /* Parse id */
-    IdList::id.parse(t);
+    if (IdList::id.parse(t) != SUCCESS)
+        return ERROR;
     
     /* If list of ids, continue parsing */
     TokenPair p = t.front();
@@ -42,7 +42,8 @@ int IdList::parse(Tokenizer t)
         t.getToken();       /* remove ',' */
         IdList::option = 1;
         IdList::iList = IdList();
-        IdList::iList.parse(t);
+        if (IdList::iList.parse(t) != SUCCESS)
+            return ERROR;
     }
     
     return SUCCESS;
@@ -95,12 +96,19 @@ std::string IdList::getIdNames()
  * Name: setId
  * Purpose: passes a value to update variables. This function can only be used
  *                after declaration sequence.
+ * Return: SUCCESS or ERROR
  */
-void IdList::setId(int value)
+int IdList::setId(int value)
 {
-    IdList::id.setId(value);
+    if (IdList::id.setId(value) != SUCCESS)
+        return ERROR;
     
     if (IdList::option == 1)
-        IdList::iList.setId(value);
+    {
+        if (IdList::iList.setId(value) != SUCCESS)
+            return ERROR;
+    }
+
+    return SUCCESS;
 } /* function setId */
 

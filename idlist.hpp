@@ -16,7 +16,6 @@
 #include "id.hpp"
 
 
-class IdList{};
 class IdList : ParseObject {
     int option;
     Id id;

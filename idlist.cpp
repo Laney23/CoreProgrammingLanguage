@@ -18,7 +18,7 @@ IdList::IdList()
 {
     /* Initialize variables */
     IdList::id = Id();
-    option = 0;
+    IdList::option = 0;
 }; /* function IdList constructor */
 
 

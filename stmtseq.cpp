@@ -118,12 +118,12 @@ static bool isStmt(int value)
         case 10:       /* read */
         case 11:       /* write */
         case 32:       /* identifier */
-            return true
+            return true;
             break;
             
         default:
             return false;
             break;
     }
-}
+} /* function isStmt */
 

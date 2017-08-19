@@ -13,15 +13,18 @@
 #include <stdio.h>
 #include "parse.hpp"
 #include "tokenizer.hpp"
+#include "decl.hpp"
 
 
 class DeclSeq : ParseObject {
     int option;
+
+protected:
     Decl decl;
     DeclSeq declSeq;
     
 public:
-    DeclSeq(Tokenizer toke);
+    DeclSeq(Tokenizer &toke);
     int parse(Tokenizer t);
     int execute();
     int print();

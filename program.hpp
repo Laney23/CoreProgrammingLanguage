@@ -20,7 +20,7 @@ class Program : ParseObject {
     StmtSeq ss;
     
 public:
-    Program(Tokenizer toke);
+    Program(Tokenizer &toke);
     int parse(Tokenizer t);
     int execute();
     int print();

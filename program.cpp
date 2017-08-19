@@ -15,9 +15,11 @@ using namespace std;
  * Purpose: initializes class values
  * Parameters:  Tokenizer toke                 tokenizer object to parse
  */
-Program::Program(Tokenizer toke)
+Program::Program(Tokenizer &toke)
 {
     /* Initialize variables */
+    ParseObject::idTable.reserve(100);
+    ParseObject::inDecSeq = true;
     Program::ds = DeclSeq(toke);
     Program::ss = StmtSeq(toke);
 } /* function Program constructor */
@@ -29,7 +31,7 @@ Program::Program(Tokenizer toke)
  * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
-int parse(Tokenizer t)
+int Program::parse(Tokenizer t)
 {
     /* Initialize variables */
     TokenPair p = t.getToken();
@@ -75,7 +77,7 @@ int parse(Tokenizer t)
  * Purpose: execute the Program object
  * Return: SUCCESS or ERROR
  */
-int execute()
+int Program::execute()
 {
     /* Execute the declaration sequence */
     if (Program::ds.execute() != SUCCESS)
@@ -101,7 +103,7 @@ int execute()
  * Purpose: print the Program object
  * Return: SUCCESS or ERROR
  */
-int print()
+int Program::print()
 {
     printf("program\n");
     

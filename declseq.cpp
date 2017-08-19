@@ -14,7 +14,7 @@
  * Purpose: initializes class values
  * Parameters:  Tokenizer toke                 tokenizer object to parse
  */
-DeclSeq::DeclSeq(Tokenizer toke)
+DeclSeq::DeclSeq(Tokenizer &toke)
 {
     /* Initialize variables */
     DeclSeq::decl = Decl(toke);
@@ -28,7 +28,7 @@ DeclSeq::DeclSeq(Tokenizer toke)
  * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
-int parse(Tokenizer t)
+int DeclSeq::parse(Tokenizer t)
 {
     /* Verify the first token */
     TokenPair p = t.front();
@@ -63,10 +63,10 @@ int parse(Tokenizer t)
  * Purpose: execute the DeclSeq object
  * Return: SUCCESS or ERROR
  */
-int execute()
+int DeclSeq::execute()
 {
     /* Execute the declaration */
-    if (Program::decl.execute() != SUCCESS)
+    if (DeclSeq::decl.execute() != SUCCESS)
         return ERROR;
     
     /* Execute the declaration sequence */
@@ -85,10 +85,10 @@ int execute()
  * Purpose: print the DeclSeq object
  * Return: SUCCESS or ERROR
  */
-int print()
+int DeclSeq::print()
 {
     /* Print the declaration  */
-    if (Program::decl.print() != SUCCESS)
+    if (DeclSeq::decl.print() != SUCCESS)
         return ERROR;
     
     /* Print the declaration sequence */

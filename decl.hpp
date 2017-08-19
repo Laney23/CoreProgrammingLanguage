@@ -13,13 +13,13 @@
 #include <stdio.h>
 #include "parse.hpp"
 #include "tokenizer.hpp"
-
+#include "idlist.hpp"
 
 class Decl : ParseObject {
     IdList iList;
     
 public:
-    Decl(Tokenizer toke);
+    Decl(Tokenizer &toke);
     int parse(Tokenizer t);
     int execute();
     int print();

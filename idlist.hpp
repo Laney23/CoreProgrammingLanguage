@@ -12,16 +12,17 @@
 #include <stdio.h>
 #include "parse.hpp"
 #include "tokenizer.hpp"
+#include "id.hpp"
 
-
+class IdList;
 class IdList : ParseObject {
     Id id;
     IdList iList;
     int option;
     
 public:
-    IdList(Tokenizer toke);
-    int parse(Tokenizer t);
+    IdList(Tokenizer &toke);
+    int parse(Tokenizer &t);
     int execute();
     int print();
     void setId(int value);

@@ -17,7 +17,7 @@
 Decl::Decl()
 {
     /* Initialize variables */
-    DeclSeq::iList = IdList();
+    Decl::iList = IdList();
 }; /* function Decl constructor */
 
 
@@ -50,12 +50,12 @@ int Decl::parse(Tokenizer t)
 /*
  * Name: execute
  * Purpose: execute the Decl object
- * Return: SUCCESS or ERROR
+ * Return: SUCCESS 
  */
 int Decl::execute()
 {
 
-    /*
+    /*TODO
      def execute(self):
      # Set the initial value of the variable to None
      self.iList.setId(None)

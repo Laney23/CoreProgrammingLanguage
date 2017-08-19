@@ -94,7 +94,9 @@ int Id::setId(int value)
     /* In Statement Sequence and in table */
     else if (index >= 0 && ParseObject::inDecSeq == false)
     {
-        
+        te.idVal = value;
+        te.isInit = true;
+        ParseObject::idTable.at(index) = te;
     }
     /* In Statement Sequence and not in table */
     else if (index < 0 && ParseObject::inDecSeq == false)

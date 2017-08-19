@@ -15,7 +15,7 @@
 #include "tokenizer.hpp"
 
 
-class Decl {
+class Decl : ParseObject {
     IdList iList;
     
 public:

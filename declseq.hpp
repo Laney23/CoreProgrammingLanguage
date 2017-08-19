@@ -15,7 +15,7 @@
 #include "tokenizer.hpp"
 
 
-class DeclSeq {
+class DeclSeq : ParseObject {
     int option;
     Decl decl;
     DeclSeq declSeq;

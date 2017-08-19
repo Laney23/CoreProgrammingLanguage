@@ -14,7 +14,7 @@
 #include "tokenizer.hpp"
 
 
-class IdList {
+class IdList : ParseObject {
     Id id;
     IdList iList;
     int option;

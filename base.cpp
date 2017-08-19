@@ -7,6 +7,5 @@
 //
 
 #include "base.hpp"
-using namespace std;
 
 

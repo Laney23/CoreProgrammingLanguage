@@ -5,8 +5,9 @@
 *  Created by Josh Laney on 8/17/17.
 *  Copyright © 2017 Aginor. All rights reserved.
 */
-//TODO: includes need to be in each file
 
+#include <iostream>
+#include <stdio.h>
 #include "tokenizer.hpp"
 #include "base.hpp"
 using namespace std;

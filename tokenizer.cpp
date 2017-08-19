@@ -16,7 +16,7 @@ using namespace std;
 static inline bool isInteger(const std::string & s);
 static inline bool is_not_alnum_space(char c);
 static bool string_is_valid(const std::string &str);
-bool firstUpper(const std::string& word);
+static bool firstUpper(const std::string& word);
 
 
 /*
@@ -189,7 +189,7 @@ static inline bool isInteger(const std::string & s)
     
     
 /* Taken from: https://stackoverflow.com/q/2926878/2127502 */
- inline bool is_not_alnum_space(char c)
+static  inline bool is_not_alnum_space(char c)
 {
     return !((isalpha(c) && isupper(c)) || isdigit(c));
 }
@@ -201,7 +201,7 @@ static bool string_is_valid(const std::string &str)
 }
 
 
-bool firstUpper(const string& word)
+static inline bool firstUpper(const string& word)
 {
-    return word.size() && isupper(word[0]);
+    return (word.size() && isupper(word[0]));
 }

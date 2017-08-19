@@ -10,14 +10,17 @@
 #define tokenizer_hpp
 
 #include <stdio.h>
+#include <fstream>
 #include <string>
 #include <array>
 #include <map>
 #include <sys/stat.h>
+#include <vector>
 #include "base.hpp"
 
 
 #define DELIMS_  " \f\n\r\t\v"
+
 
 struct TokenPair
 {

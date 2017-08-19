@@ -20,7 +20,7 @@
 #include "assign.hpp"
 
 
-class Stmt {
+class Stmt : ParseObject t {
     int option;
     If iff;
     Loop loop;

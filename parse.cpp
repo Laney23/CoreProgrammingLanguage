@@ -10,6 +10,18 @@
 
 
 /*
+ * Name: print
+ * Purpose: print the ParseObject
+ * Return: SUCCESS or ERROR
+ */
+int print()
+{
+    return SUCCESS;
+} /* function print */
+
+
+
+/*
  * Name: inTable
  * Purpose: check if the identifier has been declared
  * Parameters: string key               identifier to search for

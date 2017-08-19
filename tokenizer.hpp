@@ -33,6 +33,7 @@ class Tokenizer {
     std::vector<TokenPair> tokens;
     std::map<std::string,int> token_lookup_table;
     std::ifstream core_program;
+    int cursor;
     
 public:
     Tokenizer(std::string file_name);
@@ -40,10 +41,11 @@ public:
     int tokenizeLine(const std::string& str);
     int processFileArgument(std::string file_name);
     void print();
-    int getToken();
-    int skipToken();
+    TokenPair getToken();
+    TokenPair skipToken();
     int intVal();
     int idName();
+    int totalTokens();
 };
 
 

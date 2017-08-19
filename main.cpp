@@ -25,10 +25,14 @@ int main(int argc, const char * argv[])
     toke.print();
     
     /* Parse tokens */
-    
-    
-    /* Print outputs */
-    
+//    Parser parser = Parser(toke);
+//
+//    /* Print outputs */
+//    parser.print();
+//
+//    /* Execute program */
+//    parser.execute();
+//
     cout << "Hello, World!\n";
     
     

@@ -15,7 +15,7 @@ using namespace std;
 
 
 static inline bool isInteger(const std::string & s);
-static inline bool is_not_alnum_space(char c);
+static inline bool is_not_alnum(char c);
 static bool string_is_valid(const std::string &str);
 static bool firstUpper(const std::string& word);
 
@@ -28,6 +28,7 @@ static bool firstUpper(const std::string& word);
 Tokenizer::Tokenizer(string file_name)
 {
     /* Initialize variables */
+    cursor = 0;
     Tokenizer::token_lookup_table =
     {
         {"program", 1}, {"begin", 2}, {"end", 3}, {"int", 4}, {"if", 5},
@@ -57,6 +58,7 @@ int Tokenizer::tokenize()
         
     /* Tokenize file line by line */
     string line;
+    //TODO: What if program is in all capitals?
     while (getline(Tokenizer::core_program, line)) {
         if(tokenizeLine(line) != SUCCESS) return ERROR;
     }
@@ -171,14 +173,62 @@ void Tokenizer::print()
 } /* function print */
 
 
+/*
+ * Name: getToken
+ * Purpose: returns the token at the front of the vector
+ * Return: the first token or empty TokenPair if out of tokens
+ */
+TokenPair Tokenizer::getToken()
+{
+    if (Tokenizer::cursor < Tokenizer::tokens.size())
+        return Tokenizer::tokens.at(Tokenizer::cursor++);
+    
+    printf("Out of tokens");
+    return { 0, "0" };
+} /* function getToken */
 
-int getToken();
-int skipToken();
-int intVal();
-int idName();
+
+/*
+ * Name: skipToken
+ * Purpose: gives the token value at the front of the vector without
+ *                 incrementing the cursor
+ * Return: the second token or empty TokenPair if out of tokens
+ */
+TokenPair Tokenizer::skipToken()
+{
+    if (Tokenizer::cursor+1 < Tokenizer::tokens.size())
+        return Tokenizer::tokens.at(Tokenizer::cursor+1);
+
+    printf("Out of tokens");
+    return { 0, "0" };
+} /* function skipToken */
+
+
+
+
+int Tokenizer::intVal()
+{
+    return SUCCESS;
+}
+int Tokenizer::idName()
+{
+    return SUCCESS;
+}
+
+
+/*
+ * Name: totalTokens
+ * Purpose: gives the total number of tokens
+ * Return: the total number of tokens
+ */
+inline int Tokenizer::totalTokens()
+{
+    return (int)Tokenizer::tokens.size();
+} /* function totalTokens */
 
 
 /* PRIVATE FUNCTIONS */
+
 
 /*
  * Name: isInteger

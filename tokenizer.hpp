@@ -1,10 +1,10 @@
-//
-//  tokenizer.hpp
-//  CoreProgrammingLanguage
-//
-//  Created by Josh Laney on 8/17/17.
-//  Copyright © 2017 Aginor. All rights reserved.
-//
+/*
+*  tokenizer.hpp
+*  CoreProgrammingLanguage
+*
+*  Created by Josh Laney on 8/17/17.
+*  Copyright © 2017 Aginor. All rights reserved.
+*/
 
 #ifndef tokenizer_hpp
 #define tokenizer_hpp
@@ -39,7 +39,7 @@ public:
     int tokenize();
     int tokenizeLine(const std::string& str);
     int processFileArgument(std::string file_name);
-    int print();
+    void print();
     int getToken();
     int skipToken();
     int intVal();

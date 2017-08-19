@@ -1,13 +1,14 @@
-//
-//  tokenizer.cpp
-//  CoreProgrammingLanguage
-//
-// This class ensures that all tokens in the CORE program are valid
-// and returns them in a vector of TokenPairs
-//
-//  Created by Josh Laney on 8/17/17.
-//  Copyright © 2017 Aginor. All rights reserved.
-//
+/*
+*  tokenizer.cpp
+*  CoreProgrammingLanguage
+*
+* This class ensures that all tokens in the CORE program are valid
+* and places them in a vector of TokenPairs. The parser will then
+* ask for tokens from the Tokenizer object, which will be returned.
+*
+*  Created by Josh Laney on 8/17/17.
+*  Copyright © 2017 Aginor. All rights reserved.
+*/
 
 #include "tokenizer.hpp"
 using namespace std;
@@ -20,10 +21,9 @@ static bool firstUpper(const std::string& word);
 
 
 /*
- * Name: Tokenize constructor
+ * Name: Tokenizer constructor
  * Purpose: initializes class values
- * Parameters:  string file_name                 file stream of core program
- * Return: SUCCESS or ERROR
+ * Parameters:  string file_name                 file name of core program
  */
 Tokenizer::Tokenizer(string file_name)
 {
@@ -41,7 +41,7 @@ Tokenizer::Tokenizer(string file_name)
     
     /* Perform file operations */
     processFileArgument(file_name);
-}
+} /* function Tokenizer constructor */
 
 
 /*
@@ -52,6 +52,7 @@ Tokenizer::Tokenizer(string file_name)
 */
 int Tokenizer::tokenize()
 {
+    /* Make sure constructor successfully opened file */
     if (!Tokenizer::core_program.is_open()) return ERROR;
         
     /* Tokenize file line by line */
@@ -73,9 +74,9 @@ int Tokenizer::tokenize()
 
 /*
 * Name: tokenizeLine
-* Purpose: tokenizes a given line and appends their values to token_values_list
-* Parameters:
-* Return: SUCCESS
+* Purpose: tokenizes a given line and appends their values to Tokenizer::tokens
+* Parameters: const string& str                                                     line to tokenize
+* Return: SUCCESS or ERROR
 * NOTE: Function adapted from http://oopweb.com/CPP/Documents/CPPHOWTO/Volume/C++Programming-HOWTO-7.html
 */
 int Tokenizer::tokenizeLine(const string& str)
@@ -131,8 +132,8 @@ int Tokenizer::tokenizeLine(const string& str)
 /*
  * Name: processFileArgument
  * Purpose: Processes and validates the file argument
- * Parameters: const char *file_nam         name of file to open
- * Return: SUCCESS
+ * Parameters: string file_nam         name of file to open
+ * Return: SUCCESS or ERROR
  */
 int Tokenizer::processFileArgument(string file_name)
 {
@@ -140,31 +141,34 @@ int Tokenizer::processFileArgument(string file_name)
     struct stat buffer;
     if (stat (file_name.c_str(), &buffer) != 0)
     {
-        printf("Error in PFA");
+        printf("File does not exist in current directory");
         return ERROR;
     }
     
     /* Open file for processing */
     Tokenizer::core_program.open(file_name, ios::in);
     
+    /* Verify file is opened */
     if(Tokenizer::core_program.is_open()) return SUCCESS;
     
     return ERROR;
 } /* function processFileArgument */
 
 
-int Tokenizer::print()
+/*
+ * Name: print
+ * Purpose: Prints all tokens in the Tokenizer::tokens vector
+ */
+void Tokenizer::print()
 {
     int i = 0;
-    printf("length: %lu\n", Tokenizer::tokens.size());
-    printf("============\n");
+    printf("Number of tokens: %lu\n", Tokenizer::tokens.size());
+    printf("================\n");
     while (i < Tokenizer::tokens.size()) {
         TokenPair x = Tokenizer::tokens.at(i++);
-        printf("%i\t%s\n", x.value, x.token.c_str());
+        printf("Value: %i\t\tToken: %s\n", x.value, x.token.c_str());
     }
-    
-    return SUCCESS;
-}
+} /* function print */
 
 
 
@@ -176,8 +180,14 @@ int idName();
 
 /* PRIVATE FUNCTIONS */
 
-/* Taken from: https://stackoverflow.com/a/2845275/2127502 */
-static inline bool isInteger(const std::string & s)
+/*
+ * Name: isInteger
+ * Purpose: verifies that a string is an integer
+ * Parameters: const string &s                    string to verify
+ * Return: True or false if the character is a valid identifier
+ * NOTE: Function taken from https://stackoverflow.com/a/2845275/2127502
+ */
+static inline bool isInteger(const string &s)
 {
     if(s.empty() || ((!isdigit(s[0])) && (s[0] != '-') && (s[0] != '+'))) return false ;
         
@@ -185,23 +195,43 @@ static inline bool isInteger(const std::string & s)
     strtol(s.c_str(), &p, 10) ;
         
     return (*p == 0) ;
-}
+} /* function isInteger */
     
-    
-/* Taken from: https://stackoverflow.com/q/2926878/2127502 */
-static  inline bool is_not_alnum_space(char c)
+
+/*
+ * Name: is_not_alnum
+ * Purpose: verifies that a character is capital alphanumeric
+ * Parameters: char c                                character to verify
+ * Return: True or false if the character is a valid identifier
+ * NOTE: Function taken from https://stackoverflow.com/q/2926878/2127502
+ */
+static  inline bool is_not_alnum(char c)
 {
     return !((isalpha(c) && isupper(c)) || isdigit(c));
-}
+} /* function is_not_alnum */
     
-    
-static bool string_is_valid(const std::string &str)
+
+/*
+ * Name: string_is_valid
+ * Purpose: verifies that every letter in a string is capital alphanumeric
+ * Parameters: const string& str                                      string to verify
+ * Return: True or false if the string is a valid identifier
+ * NOTE: Function taken from https://stackoverflow.com/q/2926878/2127502
+ */
+static bool string_is_valid(const string &str)
 {
-    return find_if(str.begin(), str.end(), is_not_alnum_space) == str.end();
-}
+    return find_if(str.begin(), str.end(), is_not_alnum) == str.end();
+} /* function string_is_valid */
 
 
-static inline bool firstUpper(const string& word)
+/*
+ * Name: firstUpper
+ * Purpose: checks if the first character of a string is uppercase
+ * Parameters: const string& word                       string to verify
+ * Return: True or false if the first letter is uppercase
+ * NOTE: Function taken from https://stackoverflow.com/a/14305515/2127502
+ */
+static inline bool firstUpper(const string &word)
 {
     return (word.size() && isupper(word[0]));
-}
+} /* function firstUpper */

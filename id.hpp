@@ -19,7 +19,7 @@ class Id : ParseObject {
     std::string name;
     
 public:
-    Id(Tokenizer &toke);
+    Id();
     int parse(Tokenizer &t);
     int execute();
     std::string getName();

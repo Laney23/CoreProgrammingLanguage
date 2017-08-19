@@ -14,7 +14,7 @@
  * Purpose: initializes class values
  * Parameters:  Tokenizer toke                 tokenizer object to parse
  */
-DeclSeq::DeclSeq(Tokenizer &toke)
+DeclSeq::DeclSeq()
 {
     /* Initialize variables */
     DeclSeq::decl = Decl(toke);

@@ -10,6 +10,8 @@
 #include <stdio.h>
 #include "tokenizer.hpp"
 #include "base.hpp"
+#include "program.hpp"
+
 using namespace std;
 
 int main(int argc, const char * argv[])
@@ -25,14 +27,15 @@ int main(int argc, const char * argv[])
     toke.print();
     
     /* Parse tokens */
-//    Parser parser = Parser(toke);
-//
-//    /* Print outputs */
-//    parser.print();
-//
-//    /* Execute program */
-//    parser.execute();
-//
+    Program program = Program(toke);
+    program.parse(toke);
+
+    /* Print outputs */
+    program.print();
+
+    /* Execute program */
+    program.execute();
+
     cout << "Hello, World!\n";
     
     

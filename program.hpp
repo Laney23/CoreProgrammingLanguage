@@ -14,13 +14,14 @@
 #include "parse.hpp"
 #include "tokenizer.hpp"
 #include "declseq.hpp"
+#include "stmtseq.hpp"
 
 class Program : ParseObject {
     DeclSeq ds;
     StmtSeq ss;
     
 public:
-    Program(Tokenizer &toke);
+    Program();
     int parse(Tokenizer t);
     int execute();
     int print();

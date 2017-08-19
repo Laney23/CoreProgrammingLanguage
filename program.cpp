@@ -15,13 +15,13 @@ using namespace std;
  * Purpose: initializes class values
  * Parameters:  Tokenizer toke                 tokenizer object to parse
  */
-Program::Program(Tokenizer &toke)
+Program::Program()
 {
     /* Initialize variables */
     ParseObject::idTable.reserve(100);
     ParseObject::inDecSeq = true;
-    Program::ds = DeclSeq(toke);
-    Program::ss = StmtSeq(toke);
+    Program::ds = DeclSeq();
+    Program::ss = StmtSeq();
 } /* function Program constructor */
 
 

@@ -24,7 +24,7 @@ protected:
     DeclSeq declSeq;
     
 public:
-    DeclSeq(Tokenizer &toke);
+    DeclSeq();
     int parse(Tokenizer t);
     int execute();
     int print();

@@ -14,10 +14,10 @@
  * Purpose: initializes class values
  * Parameters:  Tokenizer toke                 tokenizer object to parse
  */
-Decl::Decl(Tokenizer &toke)
+Decl::Decl()
 {
     /* Initialize variables */
-    DeclSeq::iList = IdList(toke);
+    DeclSeq::iList = IdList();
 }; /* function Decl constructor */
 
 
@@ -74,7 +74,7 @@ int Decl::print()
 {
     printf("\tint ");
     printf("%s", Decl::iList.print().c_str());
-    printf(";");
+    printf(";\n");
     
     return SUCCESS;
 } /* function print */

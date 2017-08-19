@@ -19,7 +19,7 @@ class Decl : ParseObject {
     IdList iList;
     
 public:
-    Decl(Tokenizer &toke);
+    Decl();
     int parse(Tokenizer t);
     int execute();
     int print();

@@ -14,10 +14,10 @@
  * Purpose: initializes class values
  * Parameters:  Tokenizer toke                 tokenizer object to parse
  */
-IdList::IdList(Tokenizer &toke)
+IdList::IdList()
 {
     /* Initialize variables */
-    IdList::id = Id(toke);
+    IdList::id = Id();
     option = 0;
 }; /* function IdList constructor */
 

@@ -27,7 +27,7 @@ Id(Tokenizer &toke)
  * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
-int IdList::parse(Tokenizer &t)
+int Id::parse(Tokenizer &t)
 {
     /* Parse id */
     IdList::id.parse(t);

@@ -14,7 +14,7 @@
  * Purpose: initializes class values
  * Parameters:  Tokenizer toke                 tokenizer object to parse
  */
-IdList::IdList(Tokenizer toke)
+IdList::IdList(Tokenizer &toke)
 {
     /* Initialize variables */
     IdList::id = Id(toke);
@@ -28,7 +28,7 @@ IdList::IdList(Tokenizer toke)
  * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
-int parse(Tokenizer t)
+int IdList::parse(Tokenizer &t)
 {
     /* Parse id */
     IdList::id.parse(t);
@@ -53,7 +53,7 @@ int parse(Tokenizer t)
  * Purpose: execute the IdList object
  * Return: SUCCESS or ERROR
  */
-int execute()
+int IdList::execute()
 {
     //TODO
     /*
@@ -77,9 +77,9 @@ int execute()
  * Purpose: print the IdList object
  * Return: SUCCESS or ERROR
  */
-int print()
+int IdList::print()
 {
-    string returnString = IdList::id.print();
+    std::string returnString = IdList::id.print();
     if (IdList::option == 1)
     {
         //TODO
@@ -95,7 +95,7 @@ int print()
  * Purpose: passes a value to update variables. This function can only be used
  *                after declaration sequence.
  */
-void setId(int value)
+void IdList::setId(int value)
 {
     IdList::id.setId(value);
     

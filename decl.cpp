@@ -27,7 +27,7 @@ Decl::Decl(Tokenizer &toke)
  * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
-int parse(Tokenizer t)
+int Decl::parse(Tokenizer t)
 {
     /* Remove the first token ('int') */
     t.getToken();
@@ -52,7 +52,7 @@ int parse(Tokenizer t)
  * Purpose: execute the Decl object
  * Return: SUCCESS or ERROR
  */
-int execute()
+int Decl::execute()
 {
 
     /*
@@ -70,7 +70,7 @@ int execute()
  * Purpose: print the Decl object
  * Return: SUCCESS or ERROR
  */
-int print()
+int Decl::print()
 {
     printf("\tint ");
     Decl::iList.print();

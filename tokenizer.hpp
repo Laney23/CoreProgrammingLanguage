@@ -35,6 +35,8 @@
 #define SEMIC                12
 #define COMMA            13
 #define EQUAL               14
+#define PLUS                   22
+#define MINUS                23
 #define NUMBER            31
 #define IDENTIFIER        32
 

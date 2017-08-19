@@ -40,7 +40,7 @@ int IdList::parse(Tokenizer &t)
     {
         t.getToken();       /* remove ',' */
         IdList::option = 1;
-        IdList::iList = IdList(t);
+        IdList::iList = IdList();
         IdList::iList.parse(t);
     }
     

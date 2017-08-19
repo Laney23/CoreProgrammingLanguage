@@ -10,14 +10,27 @@
 #define parse_hpp
 
 #include <stdio.h>
+#include <vector>
 #include "tokenizer.hpp"
 
+
+struct TableElement {
+    std::string idName;
+    int idVal;
+    bool isInit;
+};
+
+
 class ParseObject {
-   
+protected:
+    static bool inDecSeq;
+    static std::vector<TableElement> idTable;
+
 public:
-    virtual int parse(Tokenizer::Tokenizer toke);
+    virtual int parse(Tokenizer &toke);
     virtual int execute();
     virtual int print();
+    int inTable(std::string key);
 };
 
 

@@ -65,14 +65,12 @@ int Id::execute()
 
 /*
  * Name: print
- * Purpose: print the IdList object
+ * Purpose: print the Id object
  * Return: SUCCESS or ERROR
  */
-int Id::print()
+std::string Id::getName()
 {
-    //TODO
-    //return Id::name;
-    return 0;
+    return Id::name;
 } /* function print */
 
 

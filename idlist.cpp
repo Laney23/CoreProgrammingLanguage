@@ -77,13 +77,13 @@ int IdList::execute()
  * Purpose: print the IdList object
  * Return: SUCCESS or ERROR
  */
-int IdList::print()
+std::string IdList::getIdNames()
 {
-    std::string returnString = IdList::id.print();
+    std::string returnString = IdList::id.getName();
     if (IdList::option == 1)
     {
-        //TODO
-        //returnString += ", " + str(self.iList.Print())
+        returnString += ", ";
+        returnString += IdList::iList.print();
     }
     
     return returnString;

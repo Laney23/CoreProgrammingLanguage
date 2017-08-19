@@ -24,7 +24,7 @@ public:
     IdList(Tokenizer &toke);
     int parse(Tokenizer &t);
     int execute();
-    int print();
+    std::string getIdNames();
     void setId(int value);
 };
 

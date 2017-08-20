@@ -74,6 +74,29 @@ int IdList::execute()
 
 /*
  * Name: print
+ * Purpose: print the Id object
+ * Return: SUCCESS or ERROR
+ */
+int IdList::print()
+{
+    /* Print the id */
+    if (IdList::id.print() != SUCCESS) {
+        return ERROR;
+    }
+    
+    if (IdList::option == 1)
+    {
+        printf(", ");
+        if (IdList::iList.print() != SUCCESS) {
+            return ERROR;
+        }
+    }
+    return SUCCESS;
+} /* function print */
+
+
+/*
+ * Name: getIdNames
  * Purpose: print the IdList object
  * Return: SUCCESS or ERROR
  */
@@ -87,7 +110,7 @@ std::string IdList::getIdNames()
     }
     
     return returnString;
-} /* function print */
+} /* function getIdNames */
 
 
 /*

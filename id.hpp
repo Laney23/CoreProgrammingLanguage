@@ -22,6 +22,7 @@ public:
     Id();
     int parse(Tokenizer t);
     int execute();
+    int print();
     std::string getName();
     int setId(int value);
 };

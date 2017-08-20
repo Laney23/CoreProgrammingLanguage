@@ -29,9 +29,6 @@ Id::Id()
  */
 int Id::parse(Tokenizer t)
 {
-    /* Update Identifier name */
-    Id::name = t.idName();
-    
     /* Remove identifier token */
     TokenPair p = t.getToken();
     if (p.value != IDENTIFIER)
@@ -39,6 +36,9 @@ int Id::parse(Tokenizer t)
         printf("Identifier expected.\n");
         return ERROR;
     }
+    
+    /* Update Identifier name */
+    Id::name = p.token;
     
     return SUCCESS;
 } /* function parse */
@@ -73,10 +73,23 @@ int Id::execute()
  * Purpose: print the Id object
  * Return: SUCCESS or ERROR
  */
+int Id::print()
+{
+    printf("%s", Id::name.c_str());
+    
+    return SUCCESS;
+} /* function print */
+
+
+/*
+ * Name: getName
+ * Purpose: gives the Id name
+ * Return: SUCCESS or ERROR
+ */
 std::string Id::getName()
 {
     return Id::name;
-} /* function print */
+} /* function getName */
 
 
 /*

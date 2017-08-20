@@ -10,8 +10,8 @@
 #define base_hpp
 
 
-#define SUCCESS             0
-#define ERROR                 -1
+#define SUCCESS             -1
+#define ERROR                 -2
 
 
 #endif /* base_hpp */

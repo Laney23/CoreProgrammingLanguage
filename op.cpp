@@ -26,7 +26,7 @@ Op::Op()
  * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
-int Op::parse(Tokenizer t)
+int Op::parse(Tokenizer &t)
 {
     /* Grab the first token and parse accordingly  */
     TokenPair p = t.front();
@@ -34,7 +34,7 @@ int Op::parse(Tokenizer t)
     {
         /* Parse integer */
         Op::i = Int();
-        if (Op::i.parse(t) != SUCCESS)
+        if (Op::i.parse(&t) != SUCCESS)
             return ERROR;
     }
     else if(p.value == IDENTIFIER)
@@ -45,7 +45,7 @@ int Op::parse(Tokenizer t)
         
         /* Parse Identifier */
         Op::id = Id();
-        if (Op::id.parse(t) != SUCCESS)
+        if (Op::id.parse(&t) != SUCCESS)
             return ERROR;
     }
     else if(p.value == LP)
@@ -56,7 +56,7 @@ int Op::parse(Tokenizer t)
         
         /* Parse factor */
         Op::e = Exp();
-        if (Op::e.parse(t) != SUCCESS)   //NOTE: DIfferent from Python
+        if (Op::e.parse(&t) != SUCCESS)   //NOTE: DIfferent from Python
             return ERROR;
         
         p = t.getToken();

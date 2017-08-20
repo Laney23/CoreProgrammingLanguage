@@ -26,7 +26,7 @@ Loop::Loop()
  * Purpose: parse the Loop object
  * Return: SUCCESS or ERROR
  */
-int Loop::parse(Tokenizer t)
+int Loop::parse(Tokenizer &t)
 {
     /* Remove 'while' */
     TokenPair p = t.getToken();
@@ -37,7 +37,7 @@ int Loop::parse(Tokenizer t)
     }
     
     /* Parse the condition */
-    if (Loop::c.parse(t) != SUCCESS)
+    if (Loop::c.parse(&t) != SUCCESS)
         return ERROR;
     
     /* Remove 'loop' */
@@ -49,7 +49,7 @@ int Loop::parse(Tokenizer t)
     }
     
     /* Parse the statement sequence */
-    if (Loop::ss.parse(t) != SUCCESS)
+    if (Loop::ss.parse(&t) != SUCCESS)
         return ERROR;
     
     /* Remove 'end' */

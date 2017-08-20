@@ -25,14 +25,14 @@ Cond::Cond()
  * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
-int Cond::parse(Tokenizer t)
+int Cond::parse(Tokenizer &t)
 {
     /* Parse based on the first token  */
     TokenPair p = t.front();
     if(p.value == LP)
     {
         Cond::comp = Comp();
-        Cond::comp.parse(t);
+        Cond::comp.parse(&t);
     }
     else if (p.value == EXCL)
     {
@@ -42,7 +42,7 @@ int Cond::parse(Tokenizer t)
         
         /* Parse condition */
         Cond::c1 = Cond();
-        Cond::c1.parse(t);
+        Cond::c1.parse(&t);
     }
     else if (p.value == LB)
     {
@@ -51,7 +51,7 @@ int Cond::parse(Tokenizer t)
         
         /* Parse condition */
         Cond::c1 = Cond();
-        Cond::c1.parse(t);
+        Cond::c1.parse(&t);
         
         /* Check next token */
         p = t.front();
@@ -64,7 +64,7 @@ int Cond::parse(Tokenizer t)
             
             /* Parse the second condition */
             Cond::c2 = Cond();
-            Cond::c2.parse(t);
+            Cond::c2.parse(&t);
         }
         else if (p.value == OR)
         {
@@ -75,7 +75,7 @@ int Cond::parse(Tokenizer t)
             
             /* Parse the second condition */
             Cond::c2 = Cond();
-            Cond::c2.parse(t);
+            Cond::c2.parse(&t);
         }
         else
         {

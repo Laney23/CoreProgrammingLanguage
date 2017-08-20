@@ -30,7 +30,7 @@ class Stmt : ParseObject t {
     
 public:
     Stmt();
-    int parse(Tokenizer t);
+    int parse(Tokenizer &t);
     int execute();
     int print();
 };

@@ -27,7 +27,7 @@ StmtSeq::StmtSeq()
  * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
-int StmtSeq::parse(Tokenizer t)
+int StmtSeq::parse(Tokenizer &t)
 {
     /* Check the first token */
     TokenPair p = t.front();
@@ -35,7 +35,7 @@ int StmtSeq::parse(Tokenizer t)
     /* Call parse on statement object */
     if (isStmt(p.value))
     {
-        if (StmtSeq::st.parse() != SUCCESS)
+        if (StmtSeq::st.parse(&t) != SUCCESS)
             return ERROR;
     }
     else
@@ -50,7 +50,7 @@ int StmtSeq::parse(Tokenizer t)
     {
         StmtSeq::option = 1;
         StmtSeq::stsq = StmtSeq();
-        StmtSeq::stsq.parse(t);
+        StmtSeq::stsq.parse(&t);
     }
     
     return SUCCESS;

@@ -27,7 +27,7 @@ DeclSeq::DeclSeq()
  * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
-int DeclSeq::parse(Tokenizer t)
+int DeclSeq::parse(Tokenizer &t)
 {
     /* Verify the first token */
     TokenPair p = t.front();

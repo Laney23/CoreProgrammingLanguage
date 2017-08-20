@@ -24,7 +24,7 @@ Int::Int()
  * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
-int Int::parse(Tokenizer t)
+int Int::parse(Tokenizer &t)
 {
     /* Verify the integer token  */
     TokenPair p = t.front();

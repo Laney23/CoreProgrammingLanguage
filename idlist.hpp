@@ -23,7 +23,7 @@ class IdList : ParseObject {
     
 public:
     IdList();
-    int parse(Tokenizer t);
+    int parse(Tokenizer &t);
     int execute();
     int print();
     std::string getIdNames();

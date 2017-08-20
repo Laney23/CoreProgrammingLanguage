@@ -28,10 +28,10 @@ Exp::Exp()
  * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
-int Exp::parse(Tokenizer t)
+int Exp::parse(Tokenizer &t)
 {
     /* Parse the factor */
-    if (Exp::fact.parse(t) != SUCCESS)
+    if (Exp::fact.parse(&t) != SUCCESS)
         return ERROR;
     
     /* Check if it's + or -  */
@@ -40,7 +40,7 @@ int Exp::parse(Tokenizer t)
     {
         /* Remove '+' */
         t.getToken();
-        if (Exp::exp.parse() != SUCCESS)
+        if (Exp::exp.parse(&t) != SUCCESS)
             return ERROR;
     }
     else if (p.value == MINUS)
@@ -48,7 +48,7 @@ int Exp::parse(Tokenizer t)
         Exp::option = 2;
         /* Remove '-' */
         t.getToken();
-        if (Exp::exp.parse() != SUCCESS)
+        if (Exp::exp.parse(&t) != SUCCESS)
             return ERROR;
     }
     

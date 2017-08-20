@@ -26,7 +26,7 @@ class Op : ParseObject {
     
 public:
     Op();
-    int parse(Tokenizer t);
+    int parse(Tokenizer &t);
     int execute();
     int print();
 };

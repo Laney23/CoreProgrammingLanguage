@@ -26,10 +26,10 @@ Assign::Assign()
  * Purpose: parse the Assign object
  * Return: SUCCESS or ERROR
  */
-int Assign::parse(Tokenizer t)
+int Assign::parse(Tokenizer &t)
 {
     /* Parse the identifier */
-    if (Assign::id.parse(t) != SUCCESS)
+    if (Assign::id.parse(&t) != SUCCESS)
         return ERROR;
     
     /* Remove '=' */
@@ -41,7 +41,7 @@ int Assign::parse(Tokenizer t)
     }
     
     /* Parse the expression */
-    if (Assign::e.parse(t) != SUCCESS)
+    if (Assign::e.parse(&t) != SUCCESS)
         return ERROR;
     
     /* Remove ';' */

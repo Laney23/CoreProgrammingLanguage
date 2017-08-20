@@ -23,7 +23,7 @@ class Assign : ParseObject {
     
 public:
     Assign();
-    int parse(Tokenizer t);
+    int parse(Tokenizer &t);
     int execute();
     int print();
 };

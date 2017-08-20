@@ -23,7 +23,7 @@ class Fact : ParseObject {
     
 public:
     Fact();
-    int parse(Tokenizer t);
+    int parse(Tokenizer &t);
     int execute();
     int print();
 };

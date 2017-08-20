@@ -27,10 +27,10 @@ Fact::Fact()
  * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
-int Fact::parse(Tokenizer t)
+int Fact::parse(Tokenizer &t)
 {
     /* Parse the operator */
-    if (Fact::op.parse(t) != SUCCESS)
+    if (Fact::op.parse(&t) != SUCCESS)
         return ERROR;
     
     /* Check if it's + or -  */
@@ -43,7 +43,7 @@ int Fact::parse(Tokenizer t)
         
         /* Parse factor */
         Fact::f = Fact();
-        if (Fact::f.parse() != SUCCESS)
+        if (Fact::f.parse(&t) != SUCCESS)
             return ERROR;
     }
     

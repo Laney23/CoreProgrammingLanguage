@@ -27,10 +27,10 @@ IdList::IdList()
  * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
-int IdList::parse(Tokenizer t)
+int IdList::parse(Tokenizer &t)
 {
     /* Parse id */
-    if (IdList::id.parse(t) != SUCCESS)
+    if (IdList::id.parse(&t) != SUCCESS)
         return ERROR;
     
     /* If list of ids, continue parsing */
@@ -40,7 +40,7 @@ int IdList::parse(Tokenizer t)
         t.getToken();       /* remove ',' */
         IdList::option = 1;
         IdList::iList = IdList();
-        if (IdList::iList.parse(t) != SUCCESS)
+        if (IdList::iList.parse(&t) != SUCCESS)
             return ERROR;
     }
     

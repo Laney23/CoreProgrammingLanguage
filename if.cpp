@@ -27,7 +27,7 @@ Iff::Iff()
  * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
-int Iff::parse(Tokenizer t)
+int Iff::parse(Tokenizer &t)
 {
     /* Initialize variables */
     TokenPair p = t.getToken();
@@ -40,7 +40,7 @@ int Iff::parse(Tokenizer t)
     }
     
     /* Parse the condition */
-    if (Iff::condition.parse() != SUCCESS)
+    if (Iff::condition.parse(&t) != SUCCESS)
         return ERROR;
     
     /* Remove "then" */
@@ -52,7 +52,7 @@ int Iff::parse(Tokenizer t)
     }
     
     /* Parse the statement sequence */
-    if (Iff::ss1.parse() != SUCCESS)
+    if (Iff::ss1.parse(&t) != SUCCESS)
         return ERROR;
     
     /* Check for else statement */
@@ -63,7 +63,7 @@ int Iff::parse(Tokenizer t)
         /* Remove 'else' */
         p = t.getToken();
         Iff::ss2 = StmtSeq();
-        if (Iff::ss2.parse() != SUCCESS)
+        if (Iff::ss2.parse(&t) != SUCCESS)
             return ERROR;
     }
     

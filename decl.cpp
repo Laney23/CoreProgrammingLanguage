@@ -26,7 +26,7 @@ Decl::Decl()
  * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
-int Decl::parse(Tokenizer t)
+int Decl::parse(Tokenizer &t)
 {
     /* Remove the first token ('int') */
     TokenPair p = t.getToken();
@@ -37,7 +37,7 @@ int Decl::parse(Tokenizer t)
     }
     
     /* Parse the IdList */
-    if (Decl::iList.parse() != SUCCESS)
+    if (Decl::iList.parse(&t) != SUCCESS)
         return ERROR;
     
     /* Verify next token */

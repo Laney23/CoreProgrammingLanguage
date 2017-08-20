@@ -28,7 +28,7 @@ Output::Output()
  * Purpose: parse the Output object
  * Return: SUCCESS or ERROR
  */
-int Output::parse(Tokenizer t)
+int Output::parse(Tokenizer &t)
 {
     /* Remove 'while' */
     TokenPair p = t.getToken();
@@ -39,7 +39,7 @@ int Output::parse(Tokenizer t)
     }
     
     /* Parse the condition */
-    if (Output::iList.parse(t) != SUCCESS)
+    if (Output::iList.parse(&t) != SUCCESS)
         return ERROR;
     
     /* Remove ';' */

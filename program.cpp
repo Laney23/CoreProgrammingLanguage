@@ -31,7 +31,7 @@ Program::Program()
  * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
-int Program::parse(Tokenizer t)
+int Program::parse(Tokenizer &t)
 {
     /* Initialize variables */
     TokenPair p = t.getToken();

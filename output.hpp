@@ -22,7 +22,7 @@ class Output : ParseObject {
     
 public:
     Output();
-    int parse(Tokenizer t);
+    int parse(Tokenizer &t);
     int execute();
     int print();
 };

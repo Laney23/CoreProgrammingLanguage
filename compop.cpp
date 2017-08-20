@@ -25,7 +25,7 @@ CompOp::CompOp()
  * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
-int CompOp::parse(Tokenizer t)
+int CompOp::parse(Tokenizer &t)
 {
     /* Remove comparison operator token */
     TokenPair p = t.getToken();

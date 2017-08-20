@@ -23,7 +23,7 @@ class DeclSeq : ParseObject {
     
 public:
     DeclSeq();
-    int parse(Tokenizer t);
+    int parse(Tokenizer &t);
     int execute();
     int print();
 };

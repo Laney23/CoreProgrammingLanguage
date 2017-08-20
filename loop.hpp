@@ -23,7 +23,7 @@ class Loop : ParseObject {
     
 public:
     Loop();
-    int parse(Tokenizer t);
+    int parse(Tokenizer &t);
     int execute();
     int print();
 };

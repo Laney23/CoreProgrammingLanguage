@@ -20,7 +20,7 @@ class CompOp : ParseObject {
     
 public:
     CompOp();
-    int parse(Tokenizer t);
+    int parse(Tokenizer &t);
     int execute();
     int print();
 };

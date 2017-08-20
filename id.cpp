@@ -27,7 +27,7 @@ Id::Id()
  * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
-int Id::parse(Tokenizer t)
+int Id::parse(Tokenizer &t)
 {
     /* Remove identifier token */
     TokenPair p = t.getToken();

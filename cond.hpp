@@ -24,7 +24,7 @@ class Cond : ParseObject {
     
 public:
     Cond();
-    int parse(Tokenizer t);
+    int parse(Tokenizer &t);
     int execute();
     int print();
 };

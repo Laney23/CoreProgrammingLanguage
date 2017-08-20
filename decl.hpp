@@ -21,7 +21,7 @@ class Decl : ParseObject {
     
 public:
     Decl();
-    int parse(Tokenizer t);
+    int parse(Tokenizer &t);
     int execute();
     int print();
 };

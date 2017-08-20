@@ -23,7 +23,7 @@ class Exp : ParseObject {
     
 public:
     Exp();
-    int parse(Tokenizer t);
+    int parse(Tokenizer &t);
     int execute();
     int print();
 };

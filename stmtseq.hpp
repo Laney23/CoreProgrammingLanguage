@@ -23,7 +23,7 @@ class StmtSeq : ParseObject {
     
 public:
     StmtSeq();
-    int parse(Tokenizer t);
+    int parse(Tokenizer &t);
     int execute();
     int print();
 };

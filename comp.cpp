@@ -27,7 +27,7 @@ Comp::Comp()
  * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
-int Comp::parse(Tokenizer t)
+int Comp::parse(Tokenizer &t)
 {
     /* Remove the '('  */
     TokenPair p = t.getToken();
@@ -38,11 +38,11 @@ int Comp::parse(Tokenizer t)
     }
     
     /* Parse operators and comparison operator */
-    if (Comp::op1.parse(t) != SUCCESS)
+    if (Comp::op1.parse(&t) != SUCCESS)
         return ERROR;
-    if (Comp::cop.parse(t) != SUCCESS)
+    if (Comp::cop.parse(&t) != SUCCESS)
         return ERROR;
-    if (Comp::op2.parse(t) != SUCCESS)
+    if (Comp::op2.parse(&t) != SUCCESS)
         return ERROR;
     
     /* Remove the ')'  */

@@ -17,7 +17,7 @@ class Int : ParseObject {
     int value;
     
 public:
-    Int();
+    Int() {};
     int parse(Tokenizer *t);
     int execute();
     int print();

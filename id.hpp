@@ -10,9 +10,7 @@
 #define id_hpp
 
 
-#include <stdio.h>
 #include "parse.hpp"
-#include "tokenizer.hpp"
 
 
 class Id : ParseObject {

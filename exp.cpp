@@ -9,6 +9,20 @@
 #include "exp.hpp"
 
 
+//TODO: comment this
+Exp::Exp()
+{
+    Exp::option = 0;
+    Exp::fact = new Fact();
+    Exp::exp = new Exp();
+}
+Exp::~Exp()
+{
+    delete Exp::fact;
+    delete Exp::exp;
+}
+
+
 /*
  * Name: parse
  * Purpose: parse the Exp object
@@ -18,7 +32,7 @@
 int Exp::parse(Tokenizer *t)
 {
     /* Parse the factor */
-    if (Exp::fact.parse(t) != SUCCESS)
+    if (Exp::fact->parse(t) != SUCCESS)
         return ERROR;
     
     /* Check if it's + or -  */
@@ -27,7 +41,7 @@ int Exp::parse(Tokenizer *t)
     {
         /* Remove '+' */
         t->getToken();
-        if (Exp::exp.parse(t) != SUCCESS)
+        if (Exp::exp->parse(t) != SUCCESS)
             return ERROR;
     }
     else if (p.value == MINUS)
@@ -35,7 +49,7 @@ int Exp::parse(Tokenizer *t)
         Exp::option = 2;
         /* Remove '-' */
         t->getToken();
-        if (Exp::exp.parse(t) != SUCCESS)
+        if (Exp::exp->parse(t) != SUCCESS)
             return ERROR;
     }
     
@@ -52,11 +66,11 @@ int Exp::execute()
 {
     switch (Exp::option) {
         case 0:
-            return Exp::fact.execute();
+            return Exp::fact->execute();
         case 1:
-            return Exp::fact.execute() + Exp::exp.execute();
+            return Exp::fact->execute() + Exp::exp->execute();
         case 2:
-            return Exp::fact.execute() - Exp::exp.execute();
+            return Exp::fact->execute() - Exp::exp->execute();
             
         default:
             return ERROR;
@@ -73,7 +87,7 @@ int Exp::execute()
 int Exp::print()
 {
     /* Print the factor */
-    if (Exp::fact.print() != SUCCESS)
+    if (Exp::fact->print() != SUCCESS)
         return ERROR;
     
     /* Add +/- if necessary */
@@ -84,7 +98,7 @@ int Exp::print()
     else
         printf(" - ");
     
-    if (Exp::exp.print() != SUCCESS)
+    if (Exp::exp->print() != SUCCESS)
         return ERROR;
     
     return SUCCESS;

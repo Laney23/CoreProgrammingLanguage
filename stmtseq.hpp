@@ -10,21 +10,20 @@
 #define stmtseq_hpp
 
 
-#include <stdio.h>
 #include "parse.hpp"
-#include "tokenizer.hpp"
 #include "stmt.hpp"
 
 
 class Stmt;
+
 class StmtSeq : ParseObject {
     int option;
     Stmt *st;
     StmtSeq *stsq;
     
 public:
-    StmtSeq() : option(0), st(new Stmt()) {};
-    ~StmtSeq() { delete st; if(option == 1) delete stsq; }
+    StmtSeq();
+    ~StmtSeq();
     int parse(Tokenizer *t);
     int execute();
     int print();

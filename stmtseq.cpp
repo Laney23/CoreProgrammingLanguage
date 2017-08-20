@@ -10,6 +10,19 @@
 static bool isStmt(int value);
 
 
+//TODO: comment this
+StmtSeq::StmtSeq()
+{
+    StmtSeq::option = 0;
+    StmtSeq::st = new Stmt();
+}
+StmtSeq::~StmtSeq()
+{
+    delete StmtSeq::st;
+    if(option == 1)
+        delete StmtSeq::stsq;
+}
+
 /*
  * Name: parse
  * Purpose: parse the StmtSeq object

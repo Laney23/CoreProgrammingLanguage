@@ -10,12 +10,9 @@
 #define output_hpp
 
 
-#include <stdio.h>
 #include <vector>
 #include "parse.hpp"
-#include "tokenizer.hpp"
 #include "idlist.hpp"
-
 
 class Output : ParseObject {
     IdList *iList;

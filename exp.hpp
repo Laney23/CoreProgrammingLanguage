@@ -10,11 +10,11 @@
 #define exp_hpp
 
 
-#include <stdio.h>
 #include "parse.hpp"
-#include "tokenizer.hpp"
 #include "fact.hpp"
 
+
+class Fact;
 
 class Exp : ParseObject {
     int option;
@@ -22,8 +22,8 @@ class Exp : ParseObject {
     Exp *exp;
     
 public:
-    Exp() : option(0), fact(new Fact()), exp(new Exp()) {};
-    ~Exp() { delete fact; delete exp; }
+    Exp();
+    ~Exp();
     int parse(Tokenizer *t);
     int execute();
     int print();

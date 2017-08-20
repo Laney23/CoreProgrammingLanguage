@@ -9,7 +9,7 @@
 #include "output.hpp"
 
 
-static std::vector<std::string> split(const std::string &text, char sep);
+static std::vector<std::string> splitter(const std::string &text, char sep);
 
 
 /*
@@ -51,10 +51,11 @@ int Output::parse(Tokenizer *t)
 int Output::execute()
 {
     /* Get list of identifiers */
-    std::string s = Output::iList->getNames();
+    std::string s = Output::iList->getIdNames();
     
     /* Split the string by comma delimeter and lookup each item */
-    std::vector<std::string> ids = split(&s, ",");
+    std::vector<std::string> ids = splitter(s, ',');
+    
     int count = 0;
     while (count < ids.size())
     {
@@ -87,7 +88,7 @@ int Output::execute()
 int Output::print()
 {
     /* Print 'while' with correct indentation */
-    std::string str = std::string(++ParseObject::indent, "\t");
+    std::string str = std::string("\t", ++ParseObject::indent);
     str += "write ";
     printf("%s", str.c_str());
     
@@ -105,9 +106,10 @@ int Output::print()
 } /* function print */
 
 
+
 //TODO: fill out this comment section
 // https://stackoverflow.com/a/7408245/2127502
-static std::vector<std::string> split(const std::string &text, char sep)
+std::vector<std::string> splitter(const std::string &text, char sep)
 {
     std::vector<std::string> tokens;
     std::size_t start = 0, end = 0;
@@ -118,4 +120,3 @@ static std::vector<std::string> split(const std::string &text, char sep)
     tokens.push_back(text.substr(start));
     return tokens;
 } /* function split */
-

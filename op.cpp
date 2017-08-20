@@ -9,6 +9,17 @@
 #include "op.hpp"
 
 
+//TODO: comment this
+Op::~Op()
+{
+    if(Op::option == 0)
+        delete Op::i;
+    if(Op::option == 1)
+        delete Op::id;
+    if(Op::option == 2)
+        delete Op::e;
+}
+
 /*
  * Name: parse
  * Purpose: parse the Op object

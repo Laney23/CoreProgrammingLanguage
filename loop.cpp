@@ -8,6 +8,21 @@
 
 #include "loop.hpp"
 
+//TODO: comments
+Loop::Loop()
+{
+    Loop::c = new Cond();
+    Loop::ss = new StmtSeq();
+}
+
+
+Loop::~Loop()
+{
+    delete c;
+    delete ss;
+}
+
+
 
 /*
  * Name: parse

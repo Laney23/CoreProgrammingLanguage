@@ -10,9 +10,7 @@
 #define assign_hpp
 
 
-#include <stdio.h>
 #include "parse.hpp"
-#include "tokenizer.hpp"
 #include "exp.hpp"
 #include "id.hpp"
 

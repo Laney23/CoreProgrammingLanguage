@@ -10,11 +10,11 @@
 #define op_hpp
 
 
-#include <stdio.h>
 #include "parse.hpp"
-#include "tokenizer.hpp"
 #include "id.hpp"
 #include "int.hpp"
+#include "exp.hpp"
+
 
 class Exp;
 
@@ -26,7 +26,7 @@ class Op : ParseObject {
     
 public:
     Op() : option(0) {};
-    ~Op() { if(option == 0) delete i; if(option == 1) delete id; if(option == 2) delete e; }
+    ~Op();
     int parse(Tokenizer *t);
     int execute();
     int print();

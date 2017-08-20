@@ -9,6 +9,21 @@
 #include "stmt.hpp"
 
 
+//TODO: comment htis
+Stmt::~Stmt()
+{
+    if(Stmt::option == 1)
+        delete Stmt::iff;
+    if(Stmt::option == 2)
+        delete Stmt::loop;
+    /*if(option == 3) delete in;*/
+    if(Stmt::option == 4)
+        delete Stmt::out;
+    if(Stmt::option == 5)
+        delete Stmt::assign;
+}
+
+
 /*
  * Name: parse
  * Purpose: parse the Stmt object

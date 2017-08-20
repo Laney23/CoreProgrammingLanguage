@@ -10,9 +10,7 @@
 #define comp_hpp
 
 
-#include <stdio.h>
 #include "parse.hpp"
-#include "tokenizer.hpp"
 #include "op.hpp"
 #include "compop.hpp"
 

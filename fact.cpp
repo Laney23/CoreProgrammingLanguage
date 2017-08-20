@@ -9,6 +9,19 @@
 #include "fact.hpp"
 
 
+//TODO: comment this
+Fact::Fact()
+{
+    Fact::option = 0;
+    Fact::op = new Op();
+}
+Fact::~Fact()
+{
+    delete Fact::op;
+    if(Fact::option == 1)
+        delete Fact::f;
+}
+
 /*
  * Name: parse
  * Purpose: parse the Fact object

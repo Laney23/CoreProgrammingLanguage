@@ -10,22 +10,22 @@
 #define if_hpp
 
 
-#include <stdio.h>
 #include "parse.hpp"
-#include "tokenizer.hpp"
 #include "cond.hpp"
 #include "stmtseq.hpp"
 
 
+class StmtSeq;
+
 class Iff  : ParseObject {
     int option;
-    Cond *condition;
+    Cond *cond;
     StmtSeq *ss1;
     StmtSeq *ss2;
     
 public:
-    Iff() : option(0), ss1(new StmtSeq()), condition(new Cond()) {};
-    ~Iff() { delete condition; delete ss1; if(option == 1) delete ss2; }
+    Iff();
+    ~Iff();
     int parse(Tokenizer *t);
     int execute();
     int print();

@@ -9,6 +9,21 @@
 #include "if.hpp"
 
 
+//TODO: comment these
+Iff::Iff()
+{
+    Iff:option = 0;
+    Iff::ss1 = new StmtSeq();
+    Iff::cond = new Cond();
+}
+Iff::~Iff()
+{
+    delete Iff::cond;
+    delete Iff::ss1;
+    if(option == 1)
+        delete Iff::ss2;
+}
+
 /*
  * Name: parse
  * Purpose: parse the Iff object
@@ -28,7 +43,7 @@ int Iff::parse(Tokenizer *t)
     }
     
     /* Parse the condition */
-    if (Iff::condition->parse(t) != SUCCESS)
+    if (Iff::cond->parse(t) != SUCCESS)
         return ERROR;
     
     /* Remove "then" */
@@ -108,12 +123,12 @@ int Iff::execute()
 int Iff::print()
 {
     /* Print 'if' with correct indentation */
-    std::string str = std::string(++ParseObject::indent, "\t");
+    std::string str = std::string("\t", ++ParseObject::indent);
     str += "if ";
     printf("%s", str.c_str());
     
     /* Print condition */
-    if (Iff::condition->print() != SUCCESS)
+    if (Iff::cond->print() != SUCCESS)
         return ERROR;
     
     /* Print 'then' */
@@ -127,7 +142,7 @@ int Iff::print()
     if (Iff::option == 1)
     {
         printf("\n");
-        std::string str = std::string(ParseObject::indent, "\t");
+        std::string str = std::string("\t", ParseObject::indent);
         str += "else\n";
         printf("%s", str.c_str());
         
@@ -138,7 +153,7 @@ int Iff::print()
     
     /* Print 'end' */
     printf("\n");
-    std::string str = std::string(ParseObject::indent--, "\t");
+    str = std::string("\t", ParseObject::indent--);
     str += "end;";
     printf("%s\n", str.c_str());
     

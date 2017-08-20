@@ -10,9 +10,7 @@
 #define decl_hpp
 
 
-#include <stdio.h>
 #include "parse.hpp"
-#include "tokenizer.hpp"
 #include "idlist.hpp"
 
 

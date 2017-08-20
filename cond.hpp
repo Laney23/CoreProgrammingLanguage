@@ -10,9 +10,7 @@
 #define cond_hpp
 
 
-#include <stdio.h>
 #include "parse.hpp"
-#include "tokenizer.hpp"
 #include "comp.hpp"
 
 

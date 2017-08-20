@@ -60,7 +60,7 @@ int Comp::parse(Tokenizer t)
 /*
  * Name: execute
  * Purpose: execute the Comp object
- * Return: The evaluated value of the factor
+ * Return: SUCCESS or ERROR
  */
 int Comp::execute()
 {

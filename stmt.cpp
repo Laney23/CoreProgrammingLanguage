@@ -23,7 +23,7 @@ int Stmt::parse(Tokenizer *t)
     /* Parse each type of statement individually */
     switch (p.value) {
         case 5:        /* if */
-            Stmt::iff = new If();
+            Stmt::iff = new Iff();
             if (Stmt::iff.parse(t) != SUCCESS)
                 return ERROR;
             break;
@@ -33,12 +33,12 @@ int Stmt::parse(Tokenizer *t)
             if (Stmt::loop->parse(t) != SUCCESS)
                 return ERROR;
             break;
-        case 10:     /* read */
-            Stmt::option = 2;
-            Stmt::in = new Input();
-            if (Stmt::in->parse(t) != SUCCESS)
-                return ERROR;
-            break;
+//        case 10:     /* read */
+//            Stmt::option = 2;
+//            Stmt::in = new Input();
+//            if (Stmt::in->parse(t) != SUCCESS)
+//                return ERROR;
+//            break;
         case 11:     /* write */
             Stmt::option = 3;
             Stmt::out = new Output();
@@ -77,10 +77,10 @@ int Stmt::execute()
             if (Stmt::loop->execute() != SUCCESS)
                 return ERROR;
             break;
-        case 2:
-            if (Stmt::in->execute() != SUCCESS)
-                return ERROR;
-            break;
+//        case 2:
+//            if (Stmt::in->execute() != SUCCESS)
+//                return ERROR;
+//            break;
         case 3:
             if (Stmt::out->execute() != SUCCESS)
                 return ERROR;

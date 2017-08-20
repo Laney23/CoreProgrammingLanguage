@@ -15,14 +15,14 @@
 #include "tokenizer.hpp"
 #include "if.hpp"
 #include "loop.hpp"
-#include "output.hpp
+#include "output.hpp"
 //#include "input.hpp"
 #include "assign.hpp"
 
 
 class Stmt : ParseObject {
     int option;
-    If *iff;
+    Iff *iff;
     Loop *loop;
 //    Input *in;
     Output *out;

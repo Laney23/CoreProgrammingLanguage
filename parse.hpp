@@ -31,6 +31,7 @@ public:
     virtual int parse(Tokenizer *toke);
     virtual int execute();
     virtual int print();
+    virtual void destroy();
     int inTable(std::string key);
 };
 

@@ -1,13 +1,13 @@
 //
-//  if.hpp
+//  loop.hpp
 //  CoreProgrammingLanguage
 //
-//  Created by Josh Laney on 8/19/17.
+//  Created by Josh Laney on 8/20/17.
 //  Copyright © 2017 Aginor. All rights reserved.
 //
 
-#ifndef if_hpp
-#define if_hpp
+#ifndef loop_hpp
+#define loop_hpp
 
 
 #include <stdio.h>
@@ -17,18 +17,16 @@
 #include "stmtseq.hpp"
 
 
-class Iff  : ParseObject {
-    int option;
-    Cond condition;
-    StmtSeq ss1;
-    StmtSeq ss2;
+class Loop : ParseObject {
+    Cond c;
+    StmtSeq ss;
     
 public:
-    Iff();
+    Loop();
     int parse(Tokenizer t);
     int execute();
     int print();
 };
 
 
-#endif /* if_hpp */
+#endif /* loop_hpp */

@@ -118,6 +118,7 @@ int Stmt::print()
 {
 
     // TODO
+    // also include newline at the end
     return SUCCESS;
 } /* function print */
 

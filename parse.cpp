@@ -21,7 +21,6 @@ int print()
 } /* function print */
 
 
-
 /*
  * Name: inTable
  * Purpose: check if the identifier has been declared

@@ -45,6 +45,12 @@
 #define PLUS                   22
 #define MINUS                23
 #define TIMES                 24
+#define NOTEQ              25
+#define ISEQ                   26
+#define LT                        27
+#define GT                      28
+#define LTEQ                  29
+#define GTEQ                 30
 #define NUMBER            31
 #define IDENTIFIER        32
 

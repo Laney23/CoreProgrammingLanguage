@@ -10,6 +10,18 @@
 
 
 /*
+ * Name: ParseObject constructor
+ * Purpose: initializes class values
+ */
+ParseObject::ParseObject()
+{
+    inDecSeq = true;
+    indent = 0;
+    idTable.reserve(100);
+} /* function ParseObject constructor */
+
+
+/*
  * Name: inTable
  * Purpose: check if the identifier has been declared
  * Parameters: string key               identifier to search for

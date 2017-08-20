@@ -90,8 +90,7 @@ int Id::setId(int value)
 {
     /* See if table contains the id already. If so, get a copy of it */
     TableElement te;
-printTable();
-    int index = inTable(name);
+    int index = ParseObject::inTable(name);
     if (index > 0)
         te = idTable.at(index);
     
@@ -121,8 +120,6 @@ printTable();
         te.idVal = value;
         te.isInit = false;
         idTable.push_back(te);
-        printf("In Id");
-printTable();
     }
     
     return SUCCESS;

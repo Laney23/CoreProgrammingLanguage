@@ -21,7 +21,7 @@ class Program : public ParseObject {
     StmtSeq *ss;
     
 public:
-    Program();
+    Program() { };
     ~Program() { delete ds; delete ss; }
     int parse(Tokenizer *t);
     int execute();

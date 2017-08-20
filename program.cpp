@@ -11,21 +11,6 @@ using namespace std;
 
 
 /*
- * Name: Program constructor
- * Purpose: initializes class values
- */
-Program::Program()
-{
-    /* Initialize variables */
-    idTable.reserve(100);
-    inDecSeq = true;
-    indent = 0;
-    ds = new DeclSeq;
-    ss = new StmtSeq;
-} /* function Program constructor */
-
-
-/*
  * Name: parse
  * Purpose: parse the Program object
  * Parameters: Tokenizer t          token object to parse
@@ -44,6 +29,7 @@ int Program::parse(Tokenizer *t)
     }
     
     /* Parse declaration sequence */
+    ds = new DeclSeq;
     if (ds->parse(t) != SUCCESS)
         return ERROR;
     
@@ -57,6 +43,7 @@ int Program::parse(Tokenizer *t)
     printf("before ss parse");
 printTable();
     /* Parse statement sequence */
+    ss = new StmtSeq;
     if (ss->parse(t) != SUCCESS)
         return ERROR;
     

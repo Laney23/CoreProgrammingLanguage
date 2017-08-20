@@ -12,7 +12,6 @@
 /*
  * Name: Exp constructor
  * Purpose: initializes class values
- * Parameters:  Tokenizer toke                 tokenizer object to parse
  */
 Exp::Exp()
 {

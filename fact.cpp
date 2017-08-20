@@ -12,7 +12,6 @@
 /*
  * Name: Fact constructor
  * Purpose: initializes class values
- * Parameters:  Tokenizer toke                 tokenizer object to parse
  */
 Fact::Fact()
 {
@@ -59,6 +58,7 @@ int Fact::parse(Tokenizer t)
  */
 int Fact::execute()
 {
+    //TODO
     if (Fact::option == 1)
         return Fact::op.execute() * Fact::f.execute();
     else

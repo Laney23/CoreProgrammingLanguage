@@ -12,7 +12,6 @@ static bool isStmt(int value);
 /*
  * Name: StmtSeq constructor
  * Purpose: initializes class values
- * Parameters:  Tokenizer toke                 tokenizer object to parse
  */
 StmtSeq::StmtSeq()
 {

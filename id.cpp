@@ -12,7 +12,6 @@
 /*
  * Name: Id constructor
  * Purpose: initializes class values
- * Parameters:  Tokenizer toke                 tokenizer object to parse
  */
 Id::Id()
 {

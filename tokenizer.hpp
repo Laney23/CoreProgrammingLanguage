@@ -35,6 +35,8 @@
 #define SEMIC                12
 #define COMMA            13
 #define EQUAL               14
+#define LP                       20
+#define RP                       21
 #define PLUS                   22
 #define MINUS                23
 #define TIMES                 24

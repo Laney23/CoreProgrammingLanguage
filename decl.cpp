@@ -12,7 +12,6 @@
 /*
  * Name: Decl constructor
  * Purpose: initializes class values
- * Parameters:  Tokenizer toke                 tokenizer object to parse
  */
 Decl::Decl()
 {

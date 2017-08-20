@@ -12,7 +12,6 @@
 /*
  * Name: Stmt constructor
  * Purpose: initializes class values
- * Parameters:  Tokenizer toke                 tokenizer object to parse
  */
 Stmt::Stmt()
 {

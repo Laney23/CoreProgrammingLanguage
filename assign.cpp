@@ -25,7 +25,6 @@ Assign::Assign()
 /*
  * Name: parse
  * Purpose: parse the Assign object
- * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
 int Assign::parse(Tokenizer t)

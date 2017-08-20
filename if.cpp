@@ -12,7 +12,6 @@
 /*
  * Name: Iff constructor
  * Purpose: initializes class values
- * Parameters:  Tokenizer toke                 tokenizer object to parse
  */
 Iff::Iff()
 {
@@ -121,7 +120,7 @@ int Iff::execute()
 int Iff::print()
 {
     /* Print 'if' with correct indentation */
-    std::string str = std::string("\t", ++ParseObject::indent);
+    std::string str = std::string(++ParseObject::indent, "\t");
     str += "if ";
     printf("%s", str);
     
@@ -140,7 +139,7 @@ int Iff::print()
     if (Iff::option == 1)
     {
         printf("\n");
-        str = std::string("\t", ParseObject::indent);
+        std::string str = std::string(ParseObject::indent, "\t");
         str += "else\n";
         printf("%s", str);
         
@@ -151,7 +150,7 @@ int Iff::print()
     
     /* Print 'end' */
     printf("\n");
-    str = std::string("\t", ParseObject::indent--);
+    std::string str = std::string(ParseObject::indent--, "\t");
     str += "end;";
     printf("%s\n", str);
     

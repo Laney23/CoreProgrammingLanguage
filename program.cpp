@@ -13,7 +13,6 @@ using namespace std;
 /*
  * Name: Program constructor
  * Purpose: initializes class values
- * Parameters:  Tokenizer toke                 tokenizer object to parse
  */
 Program::Program()
 {

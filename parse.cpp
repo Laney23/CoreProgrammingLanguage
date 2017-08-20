@@ -8,7 +8,27 @@
 
 #include "parse.hpp"
 
-//TODO defaults for exec and parse
+/*
+ * Name: parse
+ * Purpose: parse the ParseObject
+ * Return: SUCCESS or ERROR
+ */
+int parse()
+{
+    return SUCCESS;
+} /* function print */
+
+
+/*
+ * Name: execute
+ * Purpose: execute the ParseObject
+ * Return: SUCCESS or ERROR
+ */
+int execute()
+{
+    return SUCCESS;
+} /* function print */
+
 
 /*
  * Name: print

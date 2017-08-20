@@ -10,19 +10,6 @@
 
 
 /*
- * Name: Exp constructor
- * Purpose: initializes class values
- */
-Exp::Exp()
-{
-    /* Initialize variables */
-    Exp::fact = Fact();
-    Exp::exp = Exp();
-    Exp::option = 0;
-} /* function Exp constructor */
-
-
-/*
  * Name: parse
  * Purpose: parse the Exp object
  * Parameters: Tokenizer t          token object to parse

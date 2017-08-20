@@ -10,17 +10,6 @@
 
 
 /*
- * Name: Decl constructor
- * Purpose: initializes class values
- */
-Decl::Decl()
-{
-    /* Initialize variables */
-    Decl::iList = IdList();
-}; /* function Decl constructor */
-
-
-/*
  * Name: parse
  * Purpose: parse the Decl object
  * Parameters: Tokenizer t          token object to parse

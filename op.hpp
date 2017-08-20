@@ -25,8 +25,8 @@ class Op : ParseObject {
     Exp e;
     
 public:
-    Op();
     int parse(Tokenizer &t);
+    Op() : option(0) {};
     int execute();
     int print();
 };

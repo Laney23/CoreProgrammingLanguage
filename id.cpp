@@ -10,18 +10,6 @@
 
 
 /*
- * Name: Id constructor
- * Purpose: initializes class values
- */
-Id::Id()
-{
-    /* Initialize variables */
-    // todo
-//    Id::name = toke.idName();
-}; /* function IdList constructor */
-
-
-/*
  * Name: parse
  * Purpose: parse the IdList object
  * Parameters: Tokenizer t          token object to parse

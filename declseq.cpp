@@ -10,18 +10,6 @@
 
 
 /*
- * Name: DeclSeq constructor
- * Purpose: initializes class values
- */
-DeclSeq::DeclSeq()
-{
-    /* Initialize variables */
-    DeclSeq::decl = Decl();
-    option = 0;
-}; /* function DeclSeq constructor */
-
-
-/*
  * Name: parse
  * Purpose: parse the DeclSeq object
  * Parameters: Tokenizer t          token object to parse

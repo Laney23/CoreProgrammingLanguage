@@ -10,17 +10,6 @@
 
 
 /*
- * Name: Op constructor
- * Purpose: initializes class values
- */
-Op::Op()
-{
-    /* Initialize variables */
-    Op::option = 0;
-} /* function Exp constructor */
-
-
-/*
  * Name: parse
  * Purpose: parse the Op object
  * Parameters: Tokenizer t          token object to parse

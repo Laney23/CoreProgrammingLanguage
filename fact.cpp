@@ -10,18 +10,6 @@
 
 
 /*
- * Name: Fact constructor
- * Purpose: initializes class values
- */
-Fact::Fact()
-{
-    /* Initialize variables */
-    Fact::op = Op();
-    Fact::option = 0;
-} /* function Exp constructor */
-
-
-/*
  * Name: parse
  * Purpose: parse the Fact object
  * Parameters: Tokenizer t          token object to parse

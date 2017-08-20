@@ -10,15 +10,6 @@
 
 
 /*
- * Name: Int constructor
- * Purpose: initializes class values
- */
-Int::Int()
-{
-} /* function Int constructor */
-
-
-/*
  * Name: parse
  * Purpose: parse the Int object
  * Parameters: Tokenizer t          token object to parse

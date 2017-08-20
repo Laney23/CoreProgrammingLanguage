@@ -9,17 +9,6 @@
 #include "stmtseq.hpp"
 static bool isStmt(int value);
 
-/*
- * Name: StmtSeq constructor
- * Purpose: initializes class values
- */
-StmtSeq::StmtSeq()
-{
-    /* Initialize variables */
-    option = 0;
-    StmtSeq::st = Stmt();
-}; /* function StmtSeq constructor */
-
 
 /*
  * Name: parse

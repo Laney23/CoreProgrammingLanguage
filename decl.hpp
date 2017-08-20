@@ -20,8 +20,8 @@ class Decl : ParseObject {
     IdList iList;
     
 public:
-    Decl();
     int parse(Tokenizer &t);
+    Decl() : iList(IdList()) {};
     int execute();
     int print();
 };

@@ -13,17 +13,6 @@ static std::vector<std::string> split(const std::string &text, char sep);
 
 
 /*
- * Name: Output constructor
- * Purpose: initializes class values
- */
-Output::Output()
-{
-    /* Initialize variables */
-    Output::iList = IdList();
-} /* function Loop constructor */
-
-
-/*
  * Name: parse
  * Purpose: parse the Output object
  * Return: SUCCESS or ERROR

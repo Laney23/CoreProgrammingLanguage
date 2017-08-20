@@ -10,16 +10,6 @@
 
 
 /*
- * Name: CompOp constructor
- * Purpose: initializes class values
- */
-CompOp::CompOp()
-{
-    CompOp::option = 0;
-} /* function CompOp constructor */
-
-
-/*
  * Name: parse
  * Purpose: parse the CompOp object
  * Parameters: Tokenizer t          token object to parse

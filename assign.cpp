@@ -10,18 +10,6 @@
 
 
 /*
- * Name: Assign constructor
- * Purpose: initializes class values
- */
-Assign::Assign()
-{
-    /* Initialize variables */
-    Assign::e = Exp();
-    Assign::id = Id();
-} /* function Assign constructor */
-
-
-/*
  * Name: parse
  * Purpose: parse the Assign object
  * Return: SUCCESS or ERROR

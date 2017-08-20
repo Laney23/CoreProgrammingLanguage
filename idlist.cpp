@@ -10,18 +10,6 @@
 
 
 /*
- * Name: IdList constructor
- * Purpose: initializes class values
- */
-IdList::IdList()
-{
-    /* Initialize variables */
-    IdList::id = Id();
-    IdList::option = 0;
-}; /* function IdList constructor */
-
-
-/*
  * Name: parse
  * Purpose: parse the IdList object
  * Parameters: Tokenizer t          token object to parse

@@ -22,8 +22,8 @@ class Assign : ParseObject {
     Id id;
     
 public:
-    Assign();
     int parse(Tokenizer &t);
+    Assign() : e(Exp()), id(Id()) {};
     int execute();
     int print();
 };

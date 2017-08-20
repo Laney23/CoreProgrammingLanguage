@@ -10,17 +10,6 @@
 
 
 /*
- * Name: Stmt constructor
- * Purpose: initializes class values
- */
-Stmt::Stmt()
-{
-    /* Initialize variables */
-    option = 0;
-}; /* function Stmt constructor */
-
-
-/*
  * Name: parse
  * Purpose: parse the Stmt object
  * Parameters: Tokenizer t          token object to parse

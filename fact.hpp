@@ -22,8 +22,8 @@ class Fact : ParseObject {
     Op op;
     
 public:
-    Fact();
     int parse(Tokenizer &t);
+    Fact() : option(0), op(Op()) {};
     int execute();
     int print();
 };

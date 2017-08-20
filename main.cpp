@@ -20,21 +20,31 @@ int main(int argc, const char * argv[])
     if (argc != 3) return ERROR;
 
     /* Initialize variables */
-    Tokenizer toke = Tokenizer(argv[1]);
+    Tokenizer *toke = new Tokenizer(argv[1]);
     
     /* Tokenize */
-    if(toke.tokenize() != SUCCESS) return ERROR;
-    toke.print();
+    if(toke->tokenize() != SUCCESS) return ERROR;
+    toke->print();
     
     /* Parse tokens */
     Program program = Program();
-    program.parse(&toke);
+    if (program.parse(toke) != SUCCESS)
+    {
+        delete toke;
+        return ERROR;
+    }
 
+    /* Delete tokenizer object after parsing */
+    delete toke;
+    
     /* Print outputs */
-    program.print();
+    if (program.print() != SUCCESS)
+        return ERROR;
+    
 //TODO: Figure out standardized error messages
     /* Execute program */
-    program.execute();
+    if (program.execute() != SUCCESS)
+        return ERROR;
 
     cout << "Hello, World!\n";
     

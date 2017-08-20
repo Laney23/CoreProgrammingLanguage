@@ -10,18 +10,6 @@
 
 
 /*
- * Name: Comp constructor
- * Purpose: initializes class values
- */
-Comp::Comp()
-{
-    Comp::op1 = Op();
-    Comp::op2 = Op();
-    Comp::cop = CompOp();
-} /* function Comp constructor */
-
-
-/*
  * Name: parse
  * Purpose: parse the Comp object
  * Parameters: Tokenizer t          token object to parse

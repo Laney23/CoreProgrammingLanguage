@@ -21,6 +21,7 @@
 
 
 class Stmt : ParseObject t {
+class Stmt : ParseObject {
     int option;
     If iff;
     Loop loop;
@@ -29,8 +30,8 @@ class Stmt : ParseObject t {
     Assign assign;
     
 public:
-    Stmt();
     int parse(Tokenizer &t);
+    Stmt() : option(0) {};
     int execute();
     int print();
 };

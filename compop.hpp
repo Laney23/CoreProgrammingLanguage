@@ -19,8 +19,8 @@ class CompOp : ParseObject {
     int option;
     
 public:
-    CompOp();
     int parse(Tokenizer &t);
+    CompOp() : option(0) {};
     int execute();
     int print();
 };

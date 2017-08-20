@@ -10,16 +10,6 @@
 
 
 /*
- * Name: Cond constructor
- * Purpose: initializes class values
- */
-Cond::Cond()
-{
-    Cond::option = 0;
-} /* function Int constructor */
-
-
-/*
  * Name: parse
  * Purpose: parse the Cond object
  * Parameters: Tokenizer t          token object to parse

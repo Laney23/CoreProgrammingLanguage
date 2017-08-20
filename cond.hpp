@@ -23,8 +23,8 @@ class Cond : ParseObject {
     Comp comp;
     
 public:
-    Cond();
     int parse(Tokenizer &t);
+    Cond() : option(0) {};
     int execute();
     int print();
 };

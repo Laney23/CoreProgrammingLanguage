@@ -10,18 +10,6 @@
 
 
 /*
- * Name: Iff constructor
- * Purpose: initializes class values
- */
-Iff::Iff()
-{
-    /* Initialize variables */
-    Iff::condition = Cond();
-    Iff::ss1 = StmtSeq();
-} /* function Iff constructor */
-
-
-/*
  * Name: parse
  * Purpose: parse the Iff object
  * Parameters: Tokenizer t          token object to parse

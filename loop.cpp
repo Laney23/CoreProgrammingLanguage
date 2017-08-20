@@ -10,18 +10,6 @@
 
 
 /*
- * Name: Loop constructor
- * Purpose: initializes class values
- */
-Loop::Loop()
-{
-    /* Initialize variables */
-    Loop::c = Cond();
-    Loop::ss = StmtSeq();
-} /* function Loop constructor */
-
-
-/*
  * Name: parse
  * Purpose: parse the Loop object
  * Return: SUCCESS or ERROR

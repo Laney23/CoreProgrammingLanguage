@@ -44,7 +44,7 @@ int Program::parse(Tokenizer *t)
     }
     
     /* Parse declaration sequence */
-    if (Program::ds.parse(t) != SUCCESS)
+    if (Program::ds->parse(t) != SUCCESS)
         return ERROR;
     
     /* Remove "begin" */
@@ -56,7 +56,7 @@ int Program::parse(Tokenizer *t)
     }
     
     /* Parse statement sequence */
-    if (Program::ss.parse(t) != SUCCESS)
+    if (Program::ss->parse(t) != SUCCESS)
         return ERROR;
     
     /* Remove "end" */
@@ -79,14 +79,14 @@ int Program::parse(Tokenizer *t)
 int Program::execute()
 {
     /* Execute the declaration sequence */
-    if (Program::ds.execute() != SUCCESS)
+    if (Program::ds->execute() != SUCCESS)
         return ERROR;
     
     /* Change idTable to Statement Sequence from Declaration Sequence */
      ParseObject::inDecSeq = false;
     
     /* Execute the statement sequence */
-    if (Program::ss.execute() != SUCCESS)
+    if (Program::ss->execute() != SUCCESS)
         return ERROR;
     
     return SUCCESS;
@@ -103,13 +103,13 @@ int Program::print()
     printf("program\n");
     
     /* Print the declaration sequence */
-    if (Program::ds.print() != SUCCESS)
+    if (Program::ds->print() != SUCCESS)
         return ERROR;
     
     printf("begin\n");
     
     /* Print the statement sequence */
-    if (Program::ss.print() != SUCCESS)
+    if (Program::ss->print() != SUCCESS)
         return ERROR;
     
     printf("end\n");

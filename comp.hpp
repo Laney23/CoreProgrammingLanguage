@@ -24,6 +24,7 @@ class Comp : ParseObject {
     
 public:
     Comp() : op1(new Op()), op2(new Op()), cop(new CompOp()) {};
+    ~Comp() { delete op1; delete op2; delete cop; }
     int parse(Tokenizer *t);
     int execute();
     int print();

@@ -21,6 +21,7 @@ class Decl : ParseObject {
     
 public:
     Decl() : iList(new IdList()) {};
+    ~Decl() { delete iList; }
     int parse(Tokenizer *t);
     int execute();
     int print();

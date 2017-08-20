@@ -23,6 +23,7 @@ class Loop : ParseObject {
     
 public:
     Loop() : c(new Cond()), ss(new StmtSeq()) {};
+    ~Loop() { delete c; delete ss; }
     int parse(Tokenizer *t);
     int execute();
     int print();

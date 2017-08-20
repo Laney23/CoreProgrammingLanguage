@@ -28,7 +28,7 @@ int Output::parse(Tokenizer *t)
     }
     
     /* Parse the condition */
-    if (Output::iList.parse(t) != SUCCESS)
+    if (Output::iList->parse(t) != SUCCESS)
         return ERROR;
     
     /* Remove ';' */
@@ -51,7 +51,7 @@ int Output::parse(Tokenizer *t)
 int Output::execute()
 {
     /* Get list of identifiers */
-    std::string s = Output::iList.getNames();
+    std::string s = Output::iList->getNames();
     
     /* Split the string by comma delimeter and lookup each item */
     std::vector<std::string> ids = split(&s, ",");
@@ -92,7 +92,7 @@ int Output::print()
     printf("%s", str.c_str());
     
     /* Print the id list */
-    if (Output::iList.print() != SUCCESS)
+    if (Output::iList->print() != SUCCESS)
         return ERROR;
     
     /* Print ';' */

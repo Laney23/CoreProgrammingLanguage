@@ -15,7 +15,7 @@
 #include "tokenizer.hpp"
 #include "op.hpp"
 
-
+class Op;
 class Fact : ParseObject {
     int option;
     Fact *f;
@@ -23,6 +23,7 @@ class Fact : ParseObject {
     
 public:
     Fact() : option(0), op(new Op()) {};
+    ~Fact() { delete op; if(option == 1) delete fact; }
     int parse(Tokenizer *t);
     int execute();
     int print();

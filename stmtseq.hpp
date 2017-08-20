@@ -16,6 +16,7 @@
 #include "stmt.hpp"
 
 
+class Stmt;
 class StmtSeq : ParseObject {
     int option;
     Stmt *st;
@@ -23,6 +24,7 @@ class StmtSeq : ParseObject {
     
 public:
     StmtSeq() : option(0), st(new Stmt()) {};
+    ~StmtSeq() { delete st; if(option == 1) delete stsq; }
     int parse(Tokenizer *t);
     int execute();
     int print();

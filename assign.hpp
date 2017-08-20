@@ -23,6 +23,7 @@ class Assign : ParseObject {
     
 public:
     Assign() : e(new Exp()), id(new Id()) {};
+    ~Assign() { delete e; delete id; }
     int parse(Tokenizer *t);
     int execute();
     int print();

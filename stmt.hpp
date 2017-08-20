@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include "parse.hpp"
 #include "tokenizer.hpp"
+#include "stmtseq.hpp"
 #include "if.hpp"
 #include "loop.hpp"
 #include "output.hpp"
@@ -30,6 +31,7 @@ class Stmt : ParseObject {
     
 public:
     Stmt() : option(0) {};
+    ~Stmt() { if(option == 1) delete iff; if(option == 2) delete loop; /*if(option == 3) delete in;*/ if(option == 4) delete out; if(option == 5) delete assign; }
     int parse(Tokenizer *t);
     int execute();
     int print();

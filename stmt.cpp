@@ -24,7 +24,7 @@ int Stmt::parse(Tokenizer *t)
     switch (p.value) {
         case 5:        /* if */
             Stmt::iff = new Iff();
-            if (Stmt::iff.parse(t) != SUCCESS)
+            if (Stmt::iff->parse(t) != SUCCESS)
                 return ERROR;
             break;
         case 8:       /* while */

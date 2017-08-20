@@ -24,6 +24,7 @@ class Cond : ParseObject {
     
 public:
     Cond() : option(0) {};
+    ~Cond() { if (option == 0) delete comp; else delete c1; if (option == 2 || option == 3) delete c2; }
     int parse(Tokenizer *t);
     int execute();
     int print();

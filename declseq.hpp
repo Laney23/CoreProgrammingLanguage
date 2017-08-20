@@ -23,6 +23,7 @@ class DeclSeq : ParseObject {
     
 public:
     DeclSeq() : option(0), decl(new Decl()) {};
+    ~DeclSeq() { delete decl; if(option == 1) delete declSeq; }
     int parse(Tokenizer *t);
     int execute();
     int print();

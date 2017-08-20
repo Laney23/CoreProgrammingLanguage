@@ -24,6 +24,7 @@ class Program : ParseObject {
     
 public:
     Program();
+    ~Program() { delete ds; delete ss; }
     int parse(Tokenizer *t);
     int execute();
     int print();

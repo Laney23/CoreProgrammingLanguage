@@ -25,6 +25,7 @@ class Iff  : ParseObject {
     
 public:
     Iff() : option(0), ss1(new StmtSeq()), condition(new Cond()) {};
+    ~Iff() { delete condition; delete ss1; if(option == 1) delete ss2; }
     int parse(Tokenizer *t);
     int execute();
     int print();

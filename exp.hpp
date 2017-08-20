@@ -23,6 +23,7 @@ class Exp : ParseObject {
     
 public:
     Exp() : option(0), fact(new Fact()), exp(new Exp()) {};
+    ~Exp() { delete fact; delete exp; }
     int parse(Tokenizer *t);
     int execute();
     int print();

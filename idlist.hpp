@@ -23,6 +23,7 @@ class IdList : ParseObject {
     
 public:
     IdList() : option(0), id(new Id()) {};
+    ~IdList() { delete id; if(option == 1) delete iList; }
     int parse(Tokenizer *t);
     int execute();
     int print();

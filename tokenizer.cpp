@@ -205,12 +205,25 @@ TokenPair Tokenizer::skipToken()
 } /* function skipToken */
 
 
-
-
+/*
+ * Name: intVal
+ * Purpose: gives the integer value of the token
+ * Return: the token value
+ * NOTE: Can only be called on integers 
+ */
 int Tokenizer::intVal()
 {
-    return SUCCESS;
-}
+    TokenPair p = Tokenizer::tokens.at(Tokenizer::cursor);
+    /* Verify string is integer */
+    if(!isInteger(p.token))
+    {
+        printf("Function intVal() can only be called on integers.\n");
+        return ERROR;
+    }
+    
+    /* Convert string value */
+    return stoi(p.token);
+} /* function intVal */
 
 
 /*

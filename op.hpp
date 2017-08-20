@@ -20,9 +20,9 @@
 
 class Op : ParseObject {
     int option; 
-    Int i;
-    Id id;
-    Exp e;
+    Int *i;
+    Id *id;
+    Exp *e;
     
 public:
     Op() : option(0) {};

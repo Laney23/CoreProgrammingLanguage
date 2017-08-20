@@ -18,11 +18,11 @@
 
 
 class Assign : ParseObject {
-    Exp e;
-    Id id;
+    Exp *e;
+    Id *id;
     
 public:
-    Assign() : e(Exp()), id(Id()) {};
+    Assign() : e(new Exp()), id(new Id()) {};
     int parse(Tokenizer *t);
     int execute();
     int print();

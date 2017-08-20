@@ -42,6 +42,7 @@ int main(int argc, const char * argv[])
         return ERROR;
     
 //TODO: Figure out standardized error messages
+    //TODO: Build destroy function
     /* Execute program */
     if (program.execute() != SUCCESS)
         return ERROR;

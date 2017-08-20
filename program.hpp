@@ -19,8 +19,8 @@
 
 
 class Program : ParseObject {
-    DeclSeq ds;
-    StmtSeq ss;
+    DeclSeq *ds;
+    StmtSeq *ss;
     
 public:
     Program();

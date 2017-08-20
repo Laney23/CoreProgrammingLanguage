@@ -18,9 +18,9 @@
 
 class Cond : ParseObject {
     int option;
-    Cond c1;
-    Cond c2;
-    Comp comp;
+    Cond *c1;
+    Cond *c2;
+    Comp *comp;
     
 public:
     Cond() : option(0) {};

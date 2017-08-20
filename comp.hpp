@@ -18,12 +18,12 @@
 
 
 class Comp : ParseObject {
-    Op op1;
-    Op op2;
-    CompOp cop;
+    Op *op1;
+    Op *op2;
+    CompOp *cop;
     
 public:
-    Comp() : op1(Op()), op2(Op()), cop(CompOp()) {};
+    Comp() : op1(new Op()), op2(new Op()), cop(new CompOp()) {};
     int parse(Tokenizer *t);
     int execute();
     int print();

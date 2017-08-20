@@ -22,8 +22,8 @@ int Op::parse(Tokenizer *t)
     if(p.value == NUMBER)
     {
         /* Parse integer */
-        Op::i = Int();
-        if (Op::i.parse(t) != SUCCESS)
+        Op::i = new Int();
+        if (Op::i->parse(t) != SUCCESS)
             return ERROR;
     }
     else if(p.value == IDENTIFIER)
@@ -33,8 +33,8 @@ int Op::parse(Tokenizer *t)
         t->getToken();
         
         /* Parse Identifier */
-        Op::id = Id();
-        if (Op::id.parse(t) != SUCCESS)
+        Op::id = new Id();
+        if (Op::id->parse(t) != SUCCESS)
             return ERROR;
     }
     else if(p.value == LP)
@@ -44,8 +44,8 @@ int Op::parse(Tokenizer *t)
         t->getToken();
         
         /* Parse factor */
-        Op::e = Exp();
-        if (Op::e.parse(t) != SUCCESS)   //NOTE: DIfferent from Python
+        Op::e = new Exp();
+        if (Op::e->parse(t) != SUCCESS)   //NOTE: DIfferent from Python
             return ERROR;
         
         p = t->getToken();
@@ -74,14 +74,14 @@ int Op::execute()
     if (Op::option == 0)
     {
         int rv;
-        if ((rv = Op::i.execute()) != SUCCESS)
+        if ((rv = Op::i->execute()) != SUCCESS)
             return ERROR;
         return rv;
     }
     else if (Op::option == 1)
     {
         /* To execute an Identifier, look up its value in the idTable and return it. Check first if it was initialized */
-        int index = ParseObject::inTable(Op::id.getName());
+        int index = ParseObject::inTable(Op::id->getName());
         TableElement te = ParseObject::idTable.at(index);
         if (!te.isInit) {
             printf("Variable %s was never initialized.\n", te.idName.c_str());
@@ -94,7 +94,7 @@ int Op::execute()
     else
     {
         int rv;
-        if ((rv = Op::e.execute()) != SUCCESS)
+        if ((rv = Op::e->execute()) != SUCCESS)
             return ERROR;
         return rv;
     }
@@ -113,20 +113,20 @@ int Op::print()
     /* Print the integer */
     if (Op::option == 0)
     {
-        if (Op::i.print() != SUCCESS)
+        if (Op::i->print() != SUCCESS)
             return ERROR;
     }
     /* Print the identifier */
     if (Op::option == 1)
     {
-        if (Op::id.print() != SUCCESS)
+        if (Op::id->print() != SUCCESS)
             return ERROR;
     }
     /* Print the expression */
     else
     {
         printf("(");
-        if (Op::e.print() != SUCCESS)
+        if (Op::e->print() != SUCCESS)
             return ERROR;
         printf(")");
     }

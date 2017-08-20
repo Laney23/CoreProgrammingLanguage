@@ -18,11 +18,11 @@
 
 class StmtSeq : ParseObject {
     int option;
-    Stmt st;
-    StmtSeq stsq;
+    Stmt *st;
+    StmtSeq *stsq;
     
 public:
-    StmtSeq() : option(0), st(Stmt()) {};
+    StmtSeq() : option(0), st(new Stmt()) {};
     int parse(Tokenizer *t);
     int execute();
     int print();

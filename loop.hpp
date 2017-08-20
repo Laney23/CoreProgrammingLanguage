@@ -18,11 +18,11 @@
 
 
 class Loop : ParseObject {
-    Cond c;
-    StmtSeq ss;
+    Cond *c;
+    StmtSeq *ss;
     
 public:
-    Loop() : c(Cond()), ss(StmtSeq()) {};
+    Loop() : c(new Cond()), ss(new StmtSeq()) {};
     int parse(Tokenizer *t);
     int execute();
     int print();

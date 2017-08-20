@@ -24,7 +24,7 @@ int StmtSeq::parse(Tokenizer *t)
     /* Call parse on statement object */
     if (isStmt(p.value))
     {
-        if (StmtSeq::st.parse(t) != SUCCESS)
+        if (StmtSeq::st->parse(t) != SUCCESS)
             return ERROR;
     }
     else
@@ -38,8 +38,8 @@ int StmtSeq::parse(Tokenizer *t)
     if (isStmt(p.value))
     {
         StmtSeq::option = 1;
-        StmtSeq::stsq = StmtSeq();
-        StmtSeq::stsq.parse(t);
+        StmtSeq::stsq = new StmtSeq();
+        StmtSeq::stsq->parse(t);
     }
     
     return SUCCESS;
@@ -54,13 +54,13 @@ int StmtSeq::parse(Tokenizer *t)
 int StmtSeq::execute()
 {
     /* Execute the statement */
-    if (StmtSeq::st.execute() != SUCCESS)
+    if (StmtSeq::st->execute() != SUCCESS)
         return ERROR;
     
     /* Execute the declaration sequence */
     if (StmtSeq::option == 1)
     {
-        if (StmtSeq::stsq.execute() != SUCCESS)
+        if (StmtSeq::stsq->execute() != SUCCESS)
             return ERROR;
     }
     
@@ -77,14 +77,14 @@ int StmtSeq::print()
 {
     /* Print the statement with correct number of tabs  */
     std::string returnString = std::string("\t", ParseObject::indent);
-    if (StmtSeq::st.print() != SUCCESS)
+    if (StmtSeq::st->print() != SUCCESS)
         return ERROR;
     
     /* If it's part of a statement sequence, print the statement sequence */
     if (StmtSeq::option == 1)
     {
         printf("\n");
-        if (StmtSeq::stsq.print() != SUCCESS)
+        if (StmtSeq::stsq->print() != SUCCESS)
             return ERROR;
     }
     

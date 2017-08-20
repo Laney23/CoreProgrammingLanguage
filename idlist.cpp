@@ -18,7 +18,7 @@
 int IdList::parse(Tokenizer *t)
 {
     /* Parse id */
-    if (IdList::id.parse(t) != SUCCESS)
+    if (IdList::id->parse(t) != SUCCESS)
         return ERROR;
     
     /* If list of ids, continue parsing */
@@ -27,8 +27,8 @@ int IdList::parse(Tokenizer *t)
     {
         t->getToken();       /* remove ',' */
         IdList::option = 1;
-        IdList::iList = IdList();
-        if (IdList::iList.parse(t) != SUCCESS)
+        IdList::iList = new IdList();
+        if (IdList::iList->parse(t) != SUCCESS)
             return ERROR;
     }
     
@@ -68,14 +68,14 @@ int IdList::execute()
 int IdList::print()
 {
     /* Print the id */
-    if (IdList::id.print() != SUCCESS) {
+    if (IdList::id->print() != SUCCESS) {
         return ERROR;
     }
     
     if (IdList::option == 1)
     {
         printf(", ");
-        if (IdList::iList.print() != SUCCESS) {
+        if (IdList::iList->print() != SUCCESS) {
             return ERROR;
         }
     }
@@ -90,11 +90,11 @@ int IdList::print()
  */
 std::string IdList::getIdNames()
 {
-    std::string returnString = IdList::id.getName();
+    std::string returnString = IdList::id->getName();
     if (IdList::option == 1)
     {
         returnString += ", ";
-        returnString += IdList::iList.print();
+        returnString += IdList::iList->print();
     }
     
     return returnString;
@@ -109,12 +109,12 @@ std::string IdList::getIdNames()
  */
 int IdList::setId(int value)
 {
-    if (IdList::id.setId(value) != SUCCESS)
+    if (IdList::id->setId(value) != SUCCESS)
         return ERROR;
     
     if (IdList::option == 1)
     {
-        if (IdList::iList.setId(value) != SUCCESS)
+        if (IdList::iList->setId(value) != SUCCESS)
             return ERROR;
     }
 

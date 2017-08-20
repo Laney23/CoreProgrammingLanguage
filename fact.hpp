@@ -18,11 +18,11 @@
 
 class Fact : ParseObject {
     int option;
-    Fact f;
-    Op op;
+    Fact *f;
+    Op *op;
     
 public:
-    Fact() : option(0), op(Op()) {};
+    Fact() : option(0), op(new Op()) {};
     int parse(Tokenizer *t);
     int execute();
     int print();

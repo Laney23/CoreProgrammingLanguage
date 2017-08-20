@@ -17,10 +17,10 @@
 
 
 class Decl : ParseObject {
-    IdList iList;
+    IdList *iList;
     
 public:
-    Decl() : iList(IdList()) {};
+    Decl() : iList(new IdList()) {};
     int parse(Tokenizer *t);
     int execute();
     int print();

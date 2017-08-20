@@ -19,12 +19,12 @@
 
 class Iff  : ParseObject {
     int option;
-    Cond condition;
-    StmtSeq ss1;
-    StmtSeq ss2;
+    Cond *condition;
+    StmtSeq *ss1;
+    StmtSeq *ss2;
     
 public:
-    Iff() : option(0), ss1(StmtSeq()), condition(Cond()) {};
+    Iff() : option(0), ss1(new StmtSeq()), condition(new Cond()) {};
     int parse(Tokenizer *t);
     int execute();
     int print();

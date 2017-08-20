@@ -18,11 +18,11 @@
 
 class IdList : ParseObject {
     int option;
-    Id id;
-    IdList iList;
+    Id *id;
+    IdList *iList;
     
 public:
-    IdList() : option(0), id(Id()) {};
+    IdList() : option(0), id(new Id()) {};
     int parse(Tokenizer *t);
     int execute();
     int print();

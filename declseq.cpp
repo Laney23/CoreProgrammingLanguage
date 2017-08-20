@@ -27,7 +27,7 @@ int DeclSeq::parse(Tokenizer *t)
     }
     
     /* Parse declaration */
-    if (DeclSeq::decl.parse(t) != SUCCESS)
+    if (DeclSeq::decl->parse(t) != SUCCESS)
         return ERROR;
     
     /* If the next token is 'int', then this is a sequence. Create the DeclSeq child and parse it */
@@ -36,8 +36,8 @@ int DeclSeq::parse(Tokenizer *t)
     if (p.token.compare("int") == 0)
     {
         DeclSeq::option = 1;
-        DeclSeq::declSeq = DeclSeq();
-        if (DeclSeq::declSeq.parse(t) != SUCCESS)
+        DeclSeq::declSeq = new DeclSeq();
+        if (DeclSeq::declSeq->parse(t) != SUCCESS)
             return ERROR;
     }
     
@@ -53,13 +53,13 @@ int DeclSeq::parse(Tokenizer *t)
 int DeclSeq::execute()
 {
     /* Execute the declaration */
-    if (DeclSeq::decl.execute() != SUCCESS)
+    if (DeclSeq::decl->execute() != SUCCESS)
         return ERROR;
     
     /* Execute the declaration sequence */
     if (DeclSeq::option == 1)
     {
-        if (DeclSeq::declSeq.execute() != SUCCESS)
+        if (DeclSeq::declSeq->execute() != SUCCESS)
             return ERROR;
     }
     
@@ -75,13 +75,13 @@ int DeclSeq::execute()
 int DeclSeq::print()
 {
     /* Print the declaration  */
-    if (DeclSeq::decl.print() != SUCCESS)
+    if (DeclSeq::decl->print() != SUCCESS)
         return ERROR;
     
     /* Print the declaration sequence */
     if (DeclSeq::option == 1)
     {
-        if (DeclSeq::declSeq.print() != SUCCESS)
+        if (DeclSeq::declSeq->print() != SUCCESS)
             return ERROR;
     }
     

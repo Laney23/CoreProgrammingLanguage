@@ -16,17 +16,17 @@
 #include "if.hpp"
 #include "loop.hpp"
 #include "output.hpp
-#include "input.hpp"
+//#include "input.hpp"
 #include "assign.hpp"
 
 
 class Stmt : ParseObject {
     int option;
-    If iff;
-    Loop loop;
-    Input in;
-    Output out;
-    Assign assign;
+    If *iff;
+    Loop *loop;
+//    Input *in;
+    Output *out;
+    Assign *assign;
     
 public:
     Stmt() : option(0) {};

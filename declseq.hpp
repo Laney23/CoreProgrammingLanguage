@@ -18,11 +18,11 @@
 
 class DeclSeq : ParseObject {
     int option;
-    Decl decl;
-    DeclSeq declSeq;
+    Decl *decl;
+    DeclSeq *declSeq;
     
 public:
-    DeclSeq() : option(0), decl(Decl()) {};
+    DeclSeq() : option(0), decl(new Decl()) {};
     int parse(Tokenizer *t);
     int execute();
     int print();

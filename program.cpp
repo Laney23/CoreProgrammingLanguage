@@ -20,8 +20,8 @@ Program::Program()
     ParseObject::idTable.reserve(100);
     ParseObject::inDecSeq = true;
     ParseObject::indent = 0;
-    Program::ds = DeclSeq();
-    Program::ss = StmtSeq();
+    Program::ds = new DeclSeq();
+    Program::ss = new StmtSeq();
 } /* function Program constructor */
 
 

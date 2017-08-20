@@ -18,11 +18,11 @@
 
 class Exp : ParseObject {
     int option;
-    Fact fact;
-    Exp exp;
+    Fact *fact;
+    Exp *exp;
     
 public:
-    Exp() : option(0), fact(Fact()), exp(Exp()) {};
+    Exp() : option(0), fact(new Fact()), exp(new Exp()) {};
     int parse(Tokenizer *t);
     int execute();
     int print();

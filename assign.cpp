@@ -17,7 +17,7 @@
 int Assign::parse(Tokenizer *t)
 {
     /* Parse the identifier */
-    if (Assign::id.parse(t) != SUCCESS)
+    if (Assign::id->parse(t) != SUCCESS)
         return ERROR;
     
     /* Remove '=' */
@@ -29,7 +29,7 @@ int Assign::parse(Tokenizer *t)
     }
     
     /* Parse the expression */
-    if (Assign::e.parse(t) != SUCCESS)
+    if (Assign::e->parse(t) != SUCCESS)
         return ERROR;
     
     /* Remove ';' */
@@ -52,10 +52,10 @@ int Assign::parse(Tokenizer *t)
 int Assign::execute()
 {
     /* Check if the identifier is already in the table and then update its value if it is */
-    std::string name = Assign::id.getName();
+    std::string name = Assign::id->getName();
     if (ParseObject::inTable(name) >= 0)
     {
-        if (Assign::id.setId(Assign::e.execute()) != SUCCESS)
+        if (Assign::id->setId(Assign::e->execute()) != SUCCESS)
             return ERROR;
     }
     else
@@ -76,12 +76,12 @@ int Assign::execute()
 int Assign::print()
 {
     /* Print the identifier */
-    std::string str = Assign::id.getName();
+    std::string str = Assign::id->getName();
     str += " = ";
     printf("%s", str.c_str());
     
     /* Print the expression */
-    if (Assign::e.print() != SUCCESS)
+    if (Assign::e->print() != SUCCESS)
         return ERROR;
     
     /* Print ';' */

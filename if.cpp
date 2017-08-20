@@ -28,7 +28,7 @@ int Iff::parse(Tokenizer *t)
     }
     
     /* Parse the condition */
-    if (Iff::condition.parse(t) != SUCCESS)
+    if (Iff::condition->parse(t) != SUCCESS)
         return ERROR;
     
     /* Remove "then" */
@@ -40,7 +40,7 @@ int Iff::parse(Tokenizer *t)
     }
     
     /* Parse the statement sequence */
-    if (Iff::ss1.parse(t) != SUCCESS)
+    if (Iff::ss1->parse(t) != SUCCESS)
         return ERROR;
     
     /* Check for else statement */
@@ -50,8 +50,8 @@ int Iff::parse(Tokenizer *t)
         Iff::option = 1;
         /* Remove 'else' */
         p = t->getToken();
-        Iff::ss2 = StmtSeq();
-        if (Iff::ss2.parse(t) != SUCCESS)
+        Iff::ss2 = new StmtSeq();
+        if (Iff::ss2->parse(t) != SUCCESS)
             return ERROR;
     }
     
@@ -83,16 +83,16 @@ int Iff::parse(Tokenizer *t)
 int Iff::execute()
 {
     /* Execute the condition */
-    if (Iff::cond.execute() == true)
+    if (Iff::cond->execute() == true)
     {
         /* If the condition is true, execute the statement sequence */
-        if (Iff::ss1.execute() != SUCCESS)
+        if (Iff::ss1->execute() != SUCCESS)
             return ERROR;
     }
     /* if this is an if/then/else statement, execute the second statement sequence */
     else if (Iff::option == 1)
     {
-        if (Iff::ss2.execute() != SUCCESS)
+        if (Iff::ss2->execute() != SUCCESS)
             return ERROR;
     }
 
@@ -110,17 +110,17 @@ int Iff::print()
     /* Print 'if' with correct indentation */
     std::string str = std::string(++ParseObject::indent, "\t");
     str += "if ";
-    printf("%s", str);
+    printf("%s", str.c_str());
     
     /* Print condition */
-    if (Iff::condition.print() != SUCCESS)
+    if (Iff::condition->print() != SUCCESS)
         return ERROR;
     
     /* Print 'then' */
     printf(" then\n");
     
     /* Print statement sequence */
-    if (Iff::ss1.print() != SUCCESS)
+    if (Iff::ss1->print() != SUCCESS)
         return ERROR;
     
     /* Print else if necessary */
@@ -129,10 +129,10 @@ int Iff::print()
         printf("\n");
         std::string str = std::string(ParseObject::indent, "\t");
         str += "else\n";
-        printf("%s", str);
+        printf("%s", str.c_str());
         
         /* Print statement sequence */
-        if (Iff::ss2.print() != SUCCESS)
+        if (Iff::ss2->print() != SUCCESS)
             return ERROR;
     }
     
@@ -140,7 +140,7 @@ int Iff::print()
     printf("\n");
     std::string str = std::string(ParseObject::indent--, "\t");
     str += "end;";
-    printf("%s\n", str);
+    printf("%s\n", str.c_str());
     
     
     return SUCCESS;

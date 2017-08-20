@@ -28,9 +28,11 @@ protected:
     std::vector<TableElement> idTable;
 
 public:
-    virtual int parse(Tokenizer *toke);
-    virtual int execute();
-    virtual int print();
+    ParseObject() {};
+    ~ParseObject() {};
+    virtual int parse(Tokenizer *toke) { return SUCCESS; };
+    virtual int execute() { return SUCCESS; };
+    virtual int print() { return SUCCESS; };
     int inTable(std::string key);
 };
 

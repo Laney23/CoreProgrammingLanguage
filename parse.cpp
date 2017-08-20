@@ -8,38 +8,6 @@
 
 #include "parse.hpp"
 
-/*
- * Name: parse
- * Purpose: parse the ParseObject
- * Return: SUCCESS or ERROR
- */
-int parse()
-{
-    return SUCCESS;
-} /* function print */
-
-
-/*
- * Name: execute
- * Purpose: execute the ParseObject
- * Return: SUCCESS or ERROR
- */
-int execute()
-{
-    return SUCCESS;
-} /* function print */
-
-
-/*
- * Name: print
- * Purpose: print the ParseObject
- * Return: SUCCESS or ERROR
- */
-int print()
-{
-    return SUCCESS;
-} /* function print */
-
 
 /*
  * Name: inTable

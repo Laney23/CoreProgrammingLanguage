@@ -10,16 +10,11 @@
 
 
 //TODO: comment this
-Fact::Fact()
-{
-    Fact::option = 0;
-    Fact::op = new Op();
-}
 Fact::~Fact()
 {
-    delete Fact::op;
-    if(Fact::option == 1)
-        delete Fact::f;
+    delete op;
+    if(option == 1)
+        delete f;
 }
 
 /*
@@ -31,7 +26,8 @@ Fact::~Fact()
 int Fact::parse(Tokenizer *t)
 {
     /* Parse the operator */
-    if (Fact::op->parse(t) != SUCCESS)
+    op = new Op();
+    if (op->parse(t) != SUCCESS)
         return ERROR;
     
     /* Check if it's + or -  */
@@ -43,8 +39,8 @@ int Fact::parse(Tokenizer *t)
         t->getToken();
         
         /* Parse factor */
-        Fact::f = new Fact();
-        if (Fact::f->parse(t) != SUCCESS)
+        f = new Fact();
+        if (f->parse(t) != SUCCESS)
             return ERROR;
     }
     
@@ -60,10 +56,10 @@ int Fact::parse(Tokenizer *t)
 int Fact::execute()
 {
     //TODO
-    if (Fact::option == 1)
-        return Fact::op->execute() * Fact::f->execute();
+    if (option == 1)
+        return op->execute() * f->execute();
     else
-        return Fact::op->execute();
+        return op->execute();
  } /* function execute */
 
 
@@ -75,14 +71,14 @@ int Fact::execute()
 int Fact::print()
 {
     /* Print the factor */
-    if (Fact::op->print() != SUCCESS)
+    if (op->print() != SUCCESS)
         return ERROR;
     
     /* Add * if necessary */
-    if (Fact::option == 1)
+    if (option == 1)
     {
         printf(" * ");
-        if (Fact::f->print() != SUCCESS)
+        if (f->print() != SUCCESS)
             return ERROR;
     }
     

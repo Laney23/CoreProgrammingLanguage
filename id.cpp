@@ -26,7 +26,7 @@ int Id::parse(Tokenizer *t)
     }
     
     /* Update Identifier name */
-    Id::name = p.token;
+    name = p.token;
     
     return SUCCESS;
 } /* function parse */
@@ -63,7 +63,7 @@ int Id::execute()
  */
 int Id::print()
 {
-    printf("%s", Id::name.c_str());
+    printf("%s", name.c_str());
     
     return SUCCESS;
 } /* function print */
@@ -76,7 +76,7 @@ int Id::print()
  */
 std::string Id::getName()
 {
-    return Id::name;
+    return name;
 } /* function getName */
 
 
@@ -90,7 +90,9 @@ int Id::setId(int value)
 {
     /* See if table contains the id already. If so, get a copy of it */
     TableElement te;
-    int index = ParseObject::inTable(Id::name);
+printf("id name: %s\n", name.c_str());
+    ParseObject::printTable();
+    int index = ParseObject::inTable(name);
     if (index > 0)
         te = ParseObject::idTable.at(index);
     

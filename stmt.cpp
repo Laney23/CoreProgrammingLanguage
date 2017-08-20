@@ -32,6 +32,7 @@ Stmt::~Stmt()
  */
 int Stmt::parse(Tokenizer *t)
 {
+printf("start of statement %d\n", t->front().value);
     /* Check the first token */
     TokenPair p = t->front();
     
@@ -71,6 +72,7 @@ int Stmt::parse(Tokenizer *t)
             break;      /* Should never happen */
     }
     
+printf("end of statement %d\n", t->front().value);
     return SUCCESS;
 } /* function parse */
 
@@ -120,9 +122,33 @@ int Stmt::execute()
  */
 int Stmt::print()
 {
-
-    // TODO
-    // also include newline at the end
+    /* Execute the proper statement */
+    switch (option) {
+        case 0:
+            if (iff->print() != SUCCESS)
+                return ERROR;
+            break;
+        case 1:
+            if (loop->print() != SUCCESS)
+                return ERROR;
+            break;
+            //        case 2:
+            //            if (in->print() != SUCCESS)
+            //                return ERROR;
+            //            break;
+        case 3:
+            if (out->print() != SUCCESS)
+                return ERROR;
+            break;
+        case 4:
+            if (assign->print() != SUCCESS)
+                return ERROR;
+            break;
+            
+        default:            /* This will never happen */
+            break;
+    }
+    
     return SUCCESS;
 } /* function print */
 

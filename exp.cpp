@@ -10,16 +10,10 @@
 
 
 //TODO: comment this
-Exp::Exp()
-{
-    Exp::option = 0;
-    Exp::fact = new Fact();
-    Exp::exp = new Exp();
-}
 Exp::~Exp()
 {
-    delete Exp::fact;
-    delete Exp::exp;
+    delete fact;
+    delete exp;
 }
 
 
@@ -32,7 +26,8 @@ Exp::~Exp()
 int Exp::parse(Tokenizer *t)
 {
     /* Parse the factor */
-    if (Exp::fact->parse(t) != SUCCESS)
+    fact = new Fact;
+    if (fact->parse(t) != SUCCESS)
         return ERROR;
     
     /* Check if it's + or -  */
@@ -41,7 +36,8 @@ int Exp::parse(Tokenizer *t)
     {
         /* Remove '+' */
         t->getToken();
-        if (Exp::exp->parse(t) != SUCCESS)
+        exp = new Exp;
+        if (exp->parse(t) != SUCCESS)
             return ERROR;
     }
     else if (p.value == MINUS)
@@ -49,7 +45,8 @@ int Exp::parse(Tokenizer *t)
         Exp::option = 2;
         /* Remove '-' */
         t->getToken();
-        if (Exp::exp->parse(t) != SUCCESS)
+        exp = new Exp;
+        if (exp->parse(t) != SUCCESS)
             return ERROR;
     }
     
@@ -64,13 +61,13 @@ int Exp::parse(Tokenizer *t)
  */
 int Exp::execute()
 {
-    switch (Exp::option) {
+    switch (option) {
         case 0:
-            return Exp::fact->execute();
+            return fact->execute();
         case 1:
-            return Exp::fact->execute() + Exp::exp->execute();
+            return fact->execute() + exp->execute();
         case 2:
-            return Exp::fact->execute() - Exp::exp->execute();
+            return fact->execute() - exp->execute();
             
         default:
             return ERROR;
@@ -87,18 +84,19 @@ int Exp::execute()
 int Exp::print()
 {
     /* Print the factor */
-    if (Exp::fact->print() != SUCCESS)
+    if (fact->print() != SUCCESS)
         return ERROR;
     
     /* Add +/- if necessary */
-    if (Exp::option == 0)
+    printf("%d", option);
+    if (option == 0)
         return SUCCESS;
-    else if (Exp::option == 1)
+    else if (option == 1)
         printf(" + ");
     else
         printf(" - ");
     
-    if (Exp::exp->print() != SUCCESS)
+    if (exp->print() != SUCCESS)
         return ERROR;
     
     return SUCCESS;

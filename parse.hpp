@@ -33,6 +33,7 @@ public:
     virtual int parse(Tokenizer *toke) { return SUCCESS; };
     virtual int execute() { return SUCCESS; };
     virtual int print() { return SUCCESS; };
+    int printTable();
     int inTable(std::string key);
 };
 

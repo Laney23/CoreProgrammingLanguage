@@ -19,10 +19,9 @@ int DeclSeq::parse(Tokenizer *t)
 {
     /* Verify the first token */
     TokenPair p = t->front();
-    std::transform(p.token.begin(), p.token.end(), p.token.begin(), ::tolower);
-    if (p.token.compare("int") != 0)
+    if (p.value != INT)
     {
-        printf("int keyword expected.\n");
+        printf("int keyword expected. Got %d\n", p.value);
         return ERROR;
     }
     
@@ -33,7 +32,7 @@ int DeclSeq::parse(Tokenizer *t)
     /* If the next token is 'int', then this is a sequence. Create the DeclSeq child and parse it */
     p = t->front();
     std::transform(p.token.begin(), p.token.end(), p.token.begin(), ::tolower);
-    if (p.token.compare("int") == 0)
+    if (p.value == INT)
     {
         DeclSeq::option = 1;
         DeclSeq::declSeq = new DeclSeq();

@@ -21,7 +21,7 @@ class Fact : ParseObject {
     Op *op;
     
 public:
-    Fact();
+    Fact() : option(0) { };
     ~Fact();
     int parse(Tokenizer *t);
     int execute();

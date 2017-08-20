@@ -12,12 +12,12 @@
 //TODO: comment this
 Op::~Op()
 {
-    if(Op::option == 0)
-        delete Op::i;
-    if(Op::option == 1)
-        delete Op::id;
-    if(Op::option == 2)
-        delete Op::e;
+    if(option == 0)
+        delete i;
+    if(option == 1)
+        delete id;
+    if(option == 2)
+        delete e;
 }
 
 /*
@@ -33,30 +33,30 @@ int Op::parse(Tokenizer *t)
     if(p.value == NUMBER)
     {
         /* Parse integer */
-        Op::i = new Int();
-        if (Op::i->parse(t) != SUCCESS)
+        i = new Int();
+        if (i->parse(t) != SUCCESS)
             return ERROR;
     }
     else if(p.value == IDENTIFIER)
     {
-        Op::option = 1;
+        option = 1;
         /* Remove identifier */
         t->getToken();
         
         /* Parse Identifier */
-        Op::id = new Id();
-        if (Op::id->parse(t) != SUCCESS)
+        id = new Id();
+        if (id->parse(t) != SUCCESS)
             return ERROR;
     }
     else if(p.value == LP)
     {
-        Op::option = 2;
+        option = 2;
         /* Remove '(' */
         t->getToken();
         
         /* Parse factor */
-        Op::e = new Exp();
-        if (Op::e->parse(t) != SUCCESS)   //NOTE: DIfferent from Python
+        e = new Exp();
+        if (e->parse(t) != SUCCESS)   //NOTE: DIfferent from Python
             return ERROR;
         
         p = t->getToken();
@@ -82,14 +82,14 @@ int Op::parse(Tokenizer *t)
  */
 int Op::execute()
 {
-    if (Op::option == 0)
+    if (option == 0)
     {
         int rv;
-        if ((rv = Op::i->execute()) != SUCCESS)
+        if ((rv = i->execute()) != SUCCESS)
             return ERROR;
         return rv;
     }
-    else if (Op::option == 1)
+    else if (option == 1)
     {
         /* To execute an Identifier, look up its value in the idTable and return it. Check first if it was initialized */
         int index = ParseObject::inTable(Op::id->getName());
@@ -105,7 +105,7 @@ int Op::execute()
     else
     {
         int rv;
-        if ((rv = Op::e->execute()) != SUCCESS)
+        if ((rv = e->execute()) != SUCCESS)
             return ERROR;
         return rv;
     }
@@ -122,13 +122,13 @@ int Op::execute()
 int Op::print()
 {
     /* Print the integer */
-    if (Op::option == 0)
+    if (option == 0)
     {
-        if (Op::i->print() != SUCCESS)
+        if (i->print() != SUCCESS)
             return ERROR;
     }
     /* Print the identifier */
-    if (Op::option == 1)
+    if (option == 1)
     {
         if (Op::id->print() != SUCCESS)
             return ERROR;
@@ -137,7 +137,7 @@ int Op::print()
     else
     {
         printf("(");
-        if (Op::e->print() != SUCCESS)
+        if (e->print() != SUCCESS)
             return ERROR;
         printf(")");
     }

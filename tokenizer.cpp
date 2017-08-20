@@ -29,7 +29,7 @@ Tokenizer::Tokenizer(string file_name)
 {
     /* Initialize variables */
     cursor = 0;
-    Tokenizer::token_lookup_table =
+    token_lookup_table =
     {
         {"program", 1}, {"begin", 2}, {"end", 3}, {"int", 4}, {"if", 5},
         {"then", 6}, {"else", 7}, {"while", 8}, {"loop", 9}, {"read", 10},
@@ -38,7 +38,7 @@ Tokenizer::Tokenizer(string file_name)
         {"-", 23}, {"*", 24}, {"!=", 25}, {"==", 26}, {"<", 27}, {">", 28},
         {"<=", 29}, {">=", 30}, {"NUMBER", 31}, {"IDENTIFIER", 32}, {"EOF", 33}
     };
-    Tokenizer::tokens.reserve(100);            /* initially reserve space for 100 tokens */
+    tokens.reserve(100);            /* initially reserve space for 100 tokens */
     
     /* Perform file operations */
     processFileArgument(file_name);
@@ -54,12 +54,12 @@ Tokenizer::Tokenizer(string file_name)
 int Tokenizer::tokenize()
 {
     /* Make sure constructor successfully opened file */
-    if (!Tokenizer::core_program.is_open()) return ERROR;
+    if (!core_program.is_open()) return ERROR;
         
     /* Tokenize file line by line */
     string line;
     //TODO: What if program is in all capitals?
-    while (getline(Tokenizer::core_program, line)) {
+    while (getline(core_program, line)) {
         if(tokenizeLine(line) != SUCCESS) return ERROR;
     }
         
@@ -68,7 +68,7 @@ int Tokenizer::tokenize()
     tokens.push_back(pair);
     
     /* Close input file */
-    Tokenizer::core_program.close();
+    core_program.close();
         
     return SUCCESS;
 } /* function tokenize */
@@ -95,10 +95,10 @@ int Tokenizer::tokenizeLine(const string& str)
         /* Found a token, add it to the vector */
         string token = str.substr(lastPos, pos - lastPos);
         // TODO : Check lowercase here
-        auto value = Tokenizer::token_lookup_table.find(token.c_str());
+        auto value = token_lookup_table.find(token.c_str());
             
         /* Token is a value in th lookup table */
-        if(value != Tokenizer::token_lookup_table.end())
+        if(value != token_lookup_table.end())
                 pair.value = value->second;
         else if (firstUpper(token))  /* Token is an identifier */
         {
@@ -120,7 +120,7 @@ int Tokenizer::tokenizeLine(const string& str)
             
         /* Add TokenPair into the storage vector */
         pair.token = token;
-        Tokenizer::tokens.push_back(pair);
+        tokens.push_back(pair);
             
         /* Skip delimiters.  Note the "not_of" */
         lastPos = str.find_first_not_of(DELIMS_, pos);
@@ -149,10 +149,11 @@ int Tokenizer::processFileArgument(string file_name)
     }
     
     /* Open file for processing */
-    Tokenizer::core_program.open(file_name, ios::in);
+    core_program.open(file_name, ios::in);
     
     /* Verify file is opened */
-    if(Tokenizer::core_program.is_open()) return SUCCESS;
+    if(core_program.is_open())
+        return SUCCESS;
     
     return ERROR;
 } /* function processFileArgument */
@@ -165,10 +166,10 @@ int Tokenizer::processFileArgument(string file_name)
 void Tokenizer::print()
 {
     int i = 0;
-    printf("Number of tokens: %lu\n", Tokenizer::tokens.size());
+    printf("Number of tokens: %lu\n", tokens.size());
     printf("================\n");
-    while (i < Tokenizer::tokens.size()) {
-        TokenPair x = Tokenizer::tokens.at(i++);
+    while (i < tokens.size()) {
+        TokenPair x = tokens.at(i++);
         printf("Value: %i\t\tToken: %s\n", x.value, x.token.c_str());
     }
 } /* function print */
@@ -181,8 +182,8 @@ void Tokenizer::print()
  */
 TokenPair Tokenizer::getToken()
 {
-    if (Tokenizer::cursor < Tokenizer::tokens.size())
-        return Tokenizer::tokens.at(Tokenizer::cursor++);
+    if (cursor < tokens.size())
+        return tokens.at(cursor++);
     
     printf("Out of tokens");
     return { 0, "0" };
@@ -191,14 +192,14 @@ TokenPair Tokenizer::getToken()
 
 /*
  * Name: skipToken
- * Purpose: gives the token value at the front of the vector without
+ * Purpose: gives the token value of the second token without
  *                 incrementing the cursor
  * Return: the second token or empty TokenPair if out of tokens
  */
 TokenPair Tokenizer::skipToken()
 {
-    if (Tokenizer::cursor+1 < Tokenizer::tokens.size())
-        return Tokenizer::tokens.at(Tokenizer::cursor+1);
+    if (cursor+1 < tokens.size())
+        return tokens.at(cursor+1);
 
     printf("Out of tokens");
     return { 0, "0" };
@@ -213,7 +214,7 @@ TokenPair Tokenizer::skipToken()
  */
 int Tokenizer::intVal()
 {
-    TokenPair p = Tokenizer::tokens.at(Tokenizer::cursor);
+    TokenPair p = tokens.at(cursor);
     /* Verify string is integer */
     if(!isInteger(p.token))
     {
@@ -233,7 +234,7 @@ int Tokenizer::intVal()
  */
 string Tokenizer::idName()
 {
-    TokenPair p = Tokenizer::tokens.at(Tokenizer::cursor);
+    TokenPair p = tokens.at(cursor);
     return p.token;
 } /* function idName */
 
@@ -245,7 +246,7 @@ string Tokenizer::idName()
  */
 inline int Tokenizer::totalTokens()
 {
-    return (int)Tokenizer::tokens.size();
+    return (int)tokens.size();
 } /* function totalTokens */
 
 
@@ -256,8 +257,8 @@ inline int Tokenizer::totalTokens()
  */
 TokenPair Tokenizer::front()
 {
-    if (Tokenizer::cursor+1 < Tokenizer::tokens.size())
-        return Tokenizer::tokens.at(Tokenizer::cursor+1);
+    if (cursor < tokens.size())
+        return tokens.at(cursor);
     else
     {
         printf("Out of tokens.\n");

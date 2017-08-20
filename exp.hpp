@@ -22,7 +22,7 @@ class Exp : ParseObject {
     Exp *exp;
     
 public:
-    Exp();
+    Exp() : option(0) { };
     ~Exp();
     int parse(Tokenizer *t);
     int execute();

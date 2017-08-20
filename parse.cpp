@@ -32,4 +32,12 @@ int ParseObject::inTable(std::string key)
     return -1;
 } /* function inTable */
 
-
+//TODO: comment this
+int ParseObject::printTable()
+{
+    printf("t sz: %lu", idTable.size());
+    for (int i = 0; i < idTable.size(); i++)
+        printf("\n%i: %s\n", i, idTable.at(i).idName.c_str());
+    
+    return SUCCESS;
+}

@@ -17,10 +17,10 @@ static std::vector<std::string> split(const std::string &text, char sep);
  * Purpose: parse the Output object
  * Return: SUCCESS or ERROR
  */
-int Output::parse(Tokenizer &t)
+int Output::parse(Tokenizer *t)
 {
     /* Remove 'while' */
-    TokenPair p = t.getToken();
+    TokenPair p = t->getToken();
     if(p.value != WRITE)
     {
         printf("Expected write keyword\n");
@@ -28,11 +28,11 @@ int Output::parse(Tokenizer &t)
     }
     
     /* Parse the condition */
-    if (Output::iList.parse(&t) != SUCCESS)
+    if (Output::iList.parse(t) != SUCCESS)
         return ERROR;
     
     /* Remove ';' */
-    p = t.getToken();
+    p = t->getToken();
     if(p.value != SEMIC)
     {
         printf("Missing ;\n");

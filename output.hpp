@@ -21,8 +21,8 @@ class Output : ParseObject {
     IdList iList;
     
 public:
-    int parse(Tokenizer &t);
     Output() : iList(IdList()) { };
+    int parse(Tokenizer *t);
     int execute();
     int print();
 };

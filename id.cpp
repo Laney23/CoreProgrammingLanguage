@@ -15,10 +15,10 @@
  * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
-int Id::parse(Tokenizer &t)
+int Id::parse(Tokenizer *t)
 {
     /* Remove identifier token */
-    TokenPair p = t.getToken();
+    TokenPair p = t->getToken();
     if (p.value != IDENTIFIER)
     {
         printf("Identifier expected.\n");

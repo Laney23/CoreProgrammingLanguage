@@ -15,10 +15,10 @@
  * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
-int Iff::parse(Tokenizer &t)
+int Iff::parse(Tokenizer *t)
 {
     /* Initialize variables */
-    TokenPair p = t.getToken();
+    TokenPair p = t->getToken();
     
     /* Remove "if" */
     if(p.value != IF)
@@ -28,11 +28,11 @@ int Iff::parse(Tokenizer &t)
     }
     
     /* Parse the condition */
-    if (Iff::condition.parse(&t) != SUCCESS)
+    if (Iff::condition.parse(t) != SUCCESS)
         return ERROR;
     
     /* Remove "then" */
-    p = t.getToken();
+    p = t->getToken();
     if(p.value != THEN)
     {
         printf("Expected reserved word: then, found: %s\n", p.token.c_str());
@@ -40,23 +40,23 @@ int Iff::parse(Tokenizer &t)
     }
     
     /* Parse the statement sequence */
-    if (Iff::ss1.parse(&t) != SUCCESS)
+    if (Iff::ss1.parse(t) != SUCCESS)
         return ERROR;
     
     /* Check for else statement */
-    p = t.front();
+    p = t->front();
     if (p.value == ELSE)
     {
         Iff::option = 1;
         /* Remove 'else' */
-        p = t.getToken();
+        p = t->getToken();
         Iff::ss2 = StmtSeq();
-        if (Iff::ss2.parse(&t) != SUCCESS)
+        if (Iff::ss2.parse(t) != SUCCESS)
             return ERROR;
     }
     
     /* Remove 'end */
-    p = t.getToken();
+    p = t->getToken();
     if(p.value != END)
     {
         printf("Expected reserved word: end, found: %s\n", p.token.c_str());
@@ -64,7 +64,7 @@ int Iff::parse(Tokenizer &t)
     }
     
     /* Remove ';' */
-    p = t.getToken();
+    p = t->getToken();
     if(p.value != SEMIC)
     {
         printf("Expected semicolon\n");

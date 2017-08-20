@@ -15,10 +15,10 @@
  * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
-int DeclSeq::parse(Tokenizer &t)
+int DeclSeq::parse(Tokenizer *t)
 {
     /* Verify the first token */
-    TokenPair p = t.front();
+    TokenPair p = t->front();
     std::transform(p.token.begin(), p.token.end(), p.token.begin(), ::tolower);
     if (p.token.compare("int") != 0)
     {
@@ -31,7 +31,7 @@ int DeclSeq::parse(Tokenizer &t)
         return ERROR;
     
     /* If the next token is 'int', then this is a sequence. Create the DeclSeq child and parse it */
-    p = t.front();
+    p = t->front();
     std::transform(p.token.begin(), p.token.end(), p.token.begin(), ::tolower);
     if (p.token.compare("int") == 0)
     {

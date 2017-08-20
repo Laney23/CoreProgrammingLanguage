@@ -20,7 +20,6 @@
 #include "assign.hpp"
 
 
-class Stmt : ParseObject t {
 class Stmt : ParseObject {
     int option;
     If iff;
@@ -30,8 +29,8 @@ class Stmt : ParseObject {
     Assign assign;
     
 public:
-    int parse(Tokenizer &t);
     Stmt() : option(0) {};
+    int parse(Tokenizer *t);
     int execute();
     int print();
 };

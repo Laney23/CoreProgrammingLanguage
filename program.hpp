@@ -24,7 +24,7 @@ class Program : ParseObject {
     
 public:
     Program();
-    int parse(Tokenizer &t);
+    int parse(Tokenizer *t);
     int execute();
     int print();
     

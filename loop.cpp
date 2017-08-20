@@ -14,10 +14,10 @@
  * Purpose: parse the Loop object
  * Return: SUCCESS or ERROR
  */
-int Loop::parse(Tokenizer &t)
+int Loop::parse(Tokenizer *t)
 {
     /* Remove 'while' */
-    TokenPair p = t.getToken();
+    TokenPair p = t->getToken();
     if(p.value != WHILE)
     {
         printf("Expected while keyword\n");
@@ -25,11 +25,11 @@ int Loop::parse(Tokenizer &t)
     }
     
     /* Parse the condition */
-    if (Loop::c.parse(&t) != SUCCESS)
+    if (Loop::c.parse(t) != SUCCESS)
         return ERROR;
     
     /* Remove 'loop' */
-    p = t.getToken();
+    p = t->getToken();
     if(p.value != LOOP)
     {
         printf("Expected loop keyword\n");
@@ -37,11 +37,11 @@ int Loop::parse(Tokenizer &t)
     }
     
     /* Parse the statement sequence */
-    if (Loop::ss.parse(&t) != SUCCESS)
+    if (Loop::ss.parse(t) != SUCCESS)
         return ERROR;
     
     /* Remove 'end' */
-    p = t.getToken();
+    p = t->getToken();
     if(p.value != END)
     {
         printf("Expected end keyword\n");
@@ -49,7 +49,7 @@ int Loop::parse(Tokenizer &t)
     }
     
     /* Remove ';' */
-    p = t.getToken();
+    p = t->getToken();
     if(p.value != SEMIC)
     {
         printf("Missing ;\n");

@@ -15,10 +15,10 @@
  * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
-int Int::parse(Tokenizer &t)
+int Int::parse(Tokenizer *t)
 {
     /* Verify the integer token  */
-    TokenPair p = t.front();
+    TokenPair p = t->front();
     if(p.value != NUMBER)
     {
         printf("Expected a number.\n");
@@ -26,10 +26,10 @@ int Int::parse(Tokenizer &t)
     }
 
     /* Parse integer */
-    Int::value = t.intVal();
+    Int::value = t->intVal();
     
     /* Remove integer token */
-    t.getToken();
+    t->getToken();
     
     return SUCCESS;
 } /* function parse */

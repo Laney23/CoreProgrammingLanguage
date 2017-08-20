@@ -22,8 +22,8 @@ class Loop : ParseObject {
     StmtSeq ss;
     
 public:
-    int parse(Tokenizer &t);
     Loop() : c(Cond()), ss(StmtSeq()) {};
+    int parse(Tokenizer *t);
     int execute();
     int print();
 };

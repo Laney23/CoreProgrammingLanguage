@@ -23,8 +23,8 @@ class Comp : ParseObject {
     CompOp cop;
     
 public:
-    int parse(Tokenizer &t);
     Comp() : op1(Op()), op2(Op()), cop(CompOp()) {};
+    int parse(Tokenizer *t);
     int execute();
     int print();
 };

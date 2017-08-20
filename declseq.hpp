@@ -22,8 +22,8 @@ class DeclSeq : ParseObject {
     DeclSeq declSeq;
     
 public:
-    int parse(Tokenizer &t);
     DeclSeq() : option(0), decl(Decl()) {};
+    int parse(Tokenizer *t);
     int execute();
     int print();
 };

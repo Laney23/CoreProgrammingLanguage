@@ -15,10 +15,10 @@
  * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
-int Stmt::parse(Tokenizer t)
+int Stmt::parse(Tokenizer *t)
 {
     /* Check the first token */
-    TokenPair p = t.front();
+    TokenPair p = t->front();
     
     /* Parse each type of statement individually */
     switch (p.value) {
@@ -30,25 +30,25 @@ int Stmt::parse(Tokenizer t)
         case 8:       /* while */
             Stmt::option = 1;
             Stmt::loop = Loop();
-            if (Stmt::loop.parse() != SUCCESS)
+            if (Stmt::loop.parse(t) != SUCCESS)
                 return ERROR;
             break;
         case 10:     /* read */
             Stmt::option = 2;
             Stmt::in = Input();
-            if (Stmt::in.parse() != SUCCESS)
+            if (Stmt::in.parse(t) != SUCCESS)
                 return ERROR;
             break;
         case 11:     /* write */
             Stmt::option = 3;
             Stmt::out = Output();
-            if (Stmt::out.parse() != SUCCESS)
+            if (Stmt::out.parse(t) != SUCCESS)
                 return ERROR;
             break;
         case 32:     /* identifier */
             Stmt::option = 4;
             Stmt::assign = Assign();
-            if (Stmt::assign.parse() != SUCCESS)
+            if (Stmt::assign.parse(t) != SUCCESS)
                 return ERROR;
             break;
             

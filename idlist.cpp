@@ -15,20 +15,20 @@
  * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
-int IdList::parse(Tokenizer &t)
+int IdList::parse(Tokenizer *t)
 {
     /* Parse id */
-    if (IdList::id.parse(&t) != SUCCESS)
+    if (IdList::id.parse(t) != SUCCESS)
         return ERROR;
     
     /* If list of ids, continue parsing */
-    TokenPair p = t.front();
+    TokenPair p = t->front();
     if (p.value == COMMA)
     {
-        t.getToken();       /* remove ',' */
+        t->getToken();       /* remove ',' */
         IdList::option = 1;
         IdList::iList = IdList();
-        if (IdList::iList.parse(&t) != SUCCESS)
+        if (IdList::iList.parse(t) != SUCCESS)
             return ERROR;
     }
     

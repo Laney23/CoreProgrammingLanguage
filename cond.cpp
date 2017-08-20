@@ -15,57 +15,57 @@
  * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
-int Cond::parse(Tokenizer &t)
+int Cond::parse(Tokenizer *t)
 {
     /* Parse based on the first token  */
-    TokenPair p = t.front();
+    TokenPair p = t->front();
     if(p.value == LP)
     {
         Cond::comp = Comp();
-        Cond::comp.parse(&t);
+        Cond::comp.parse(t);
     }
     else if (p.value == EXCL)
     {
         Cond::option = 1;
         /* Remove '!' */
-        t.getToken();
+        t->getToken();
         
         /* Parse condition */
         Cond::c1 = Cond();
-        Cond::c1.parse(&t);
+        Cond::c1.parse(t);
     }
     else if (p.value == LB)
     {
         /* Remove '[' */
-        t.getToken();
+        t->getToken();
         
         /* Parse condition */
         Cond::c1 = Cond();
-        Cond::c1.parse(&t);
+        Cond::c1.parse(t);
         
         /* Check next token */
-        p = t.front();
+        p = t->front();
         if (p.value == AND)
         {
             Cond::option = 2;
             
             /* Remove '&&' */
-            t.getToken();
+            t->getToken();
             
             /* Parse the second condition */
             Cond::c2 = Cond();
-            Cond::c2.parse(&t);
+            Cond::c2.parse(t);
         }
         else if (p.value == OR)
         {
             Cond::option = 3;
             
             /* Remove '||' */
-            t.getToken();
+            t->getToken();
             
             /* Parse the second condition */
             Cond::c2 = Cond();
-            Cond::c2.parse(&t);
+            Cond::c2.parse(t);
         }
         else
         {
@@ -74,7 +74,7 @@ int Cond::parse(Tokenizer &t)
         }
         
         /* Remove ']' */
-        p = t.getToken();
+        p = t->getToken();
         if (p.value != RB)
         {
             printf("Missing: ]");

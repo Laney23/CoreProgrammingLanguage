@@ -14,14 +14,14 @@
  * Purpose: parse the Assign object
  * Return: SUCCESS or ERROR
  */
-int Assign::parse(Tokenizer &t)
+int Assign::parse(Tokenizer *t)
 {
     /* Parse the identifier */
-    if (Assign::id.parse(&t) != SUCCESS)
+    if (Assign::id.parse(t) != SUCCESS)
         return ERROR;
     
     /* Remove '=' */
-    TokenPair p = t.getToken();
+    TokenPair p = t->getToken();
     if(p.value != EQUAL)
     {
         printf("Expected '=' \n");
@@ -29,11 +29,11 @@ int Assign::parse(Tokenizer &t)
     }
     
     /* Parse the expression */
-    if (Assign::e.parse(&t) != SUCCESS)
+    if (Assign::e.parse(t) != SUCCESS)
         return ERROR;
     
     /* Remove ';' */
-    p = t.getToken();
+    p = t->getToken();
     if(p.value != SEMIC)
     {
         printf("Expected ';' \n");

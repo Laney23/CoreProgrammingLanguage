@@ -22,8 +22,8 @@ class StmtSeq : ParseObject {
     StmtSeq stsq;
     
 public:
-    int parse(Tokenizer &t);
     StmtSeq() : option(0), st(Stmt()) {};
+    int parse(Tokenizer *t);
     int execute();
     int print();
 };

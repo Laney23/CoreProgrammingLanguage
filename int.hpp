@@ -20,7 +20,7 @@ class Int : ParseObject {
     
 public:
     Int();
-    int parse(Tokenizer &t);
+    int parse(Tokenizer *t);
     int execute();
     int print();
 };

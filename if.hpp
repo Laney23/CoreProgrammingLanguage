@@ -24,8 +24,8 @@ class Iff  : ParseObject {
     StmtSeq ss2;
     
 public:
-    int parse(Tokenizer &t);
     Iff() : option(0), ss1(StmtSeq()), condition(Cond()) {};
+    int parse(Tokenizer *t);
     int execute();
     int print();
 };

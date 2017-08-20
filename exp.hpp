@@ -22,7 +22,6 @@ class Exp : ParseObject {
     Exp exp;
     
 public:
-    int parse(Tokenizer &t);
     Exp() : option(0), fact(Fact()), exp(Exp()) {};
     int parse(Tokenizer *t);
     int execute();

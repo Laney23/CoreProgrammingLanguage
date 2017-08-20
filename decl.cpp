@@ -15,10 +15,10 @@
  * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
-int Decl::parse(Tokenizer &t)
+int Decl::parse(Tokenizer *t)
 {
     /* Remove the first token ('int') */
-    TokenPair p = t.getToken();
+    TokenPair p = t->getToken();
     if (p.value != INT)
     {
         printf("Expected keyword: int.\n");
@@ -26,11 +26,11 @@ int Decl::parse(Tokenizer &t)
     }
     
     /* Parse the IdList */
-    if (Decl::iList.parse(&t) != SUCCESS)
+    if (Decl::iList.parse(t) != SUCCESS)
         return ERROR;
     
     /* Verify next token */
-    p = t.getToken();
+    p = t->getToken();
     if (p.value != SEMIC)
     {
         printf("Semicolon expected.\n");

@@ -31,10 +31,10 @@ Program::Program()
  * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
-int Program::parse(Tokenizer &t)
+int Program::parse(Tokenizer *t)
 {
     /* Initialize variables */
-    TokenPair p = t.getToken();
+    TokenPair p = t->getToken();
     
     /* Remove "program" */
     if(p.value != PROGRAM)
@@ -48,7 +48,7 @@ int Program::parse(Tokenizer &t)
         return ERROR;
     
     /* Remove "begin" */
-    p = t.getToken();
+    p = t->getToken();
     if(p.value != BEGIN)
     {
         printf("Expected reserved word: begin");
@@ -60,7 +60,7 @@ int Program::parse(Tokenizer &t)
         return ERROR;
     
     /* Remove "end" */
-    p = t.getToken();
+    p = t->getToken();
     if(p.value != END)
     {
         printf("Expected reserved word: end");

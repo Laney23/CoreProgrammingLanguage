@@ -16,15 +16,15 @@ static bool isStmt(int value);
  * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
-int StmtSeq::parse(Tokenizer &t)
+int StmtSeq::parse(Tokenizer *t)
 {
     /* Check the first token */
-    TokenPair p = t.front();
+    TokenPair p = t->front();
     
     /* Call parse on statement object */
     if (isStmt(p.value))
     {
-        if (StmtSeq::st.parse(&t) != SUCCESS)
+        if (StmtSeq::st.parse(t) != SUCCESS)
             return ERROR;
     }
     else
@@ -34,12 +34,12 @@ int StmtSeq::parse(Tokenizer &t)
     }
     
     /* Check if following token is a Statement Sequence as well */
-    p = t.front();
+    p = t->front();
     if (isStmt(p.value))
     {
         StmtSeq::option = 1;
         StmtSeq::stsq = StmtSeq();
-        StmtSeq::stsq.parse(&t);
+        StmtSeq::stsq.parse(t);
     }
     
     return SUCCESS;

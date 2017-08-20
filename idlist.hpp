@@ -22,8 +22,8 @@ class IdList : ParseObject {
     IdList iList;
     
 public:
-    int parse(Tokenizer &t);
     IdList() : option(0), id(Id()) {};
+    int parse(Tokenizer *t);
     int execute();
     int print();
     std::string getIdNames();

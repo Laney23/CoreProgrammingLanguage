@@ -15,40 +15,40 @@
  * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
-int Op::parse(Tokenizer &t)
+int Op::parse(Tokenizer *t)
 {
     /* Grab the first token and parse accordingly  */
-    TokenPair p = t.front();
+    TokenPair p = t->front();
     if(p.value == NUMBER)
     {
         /* Parse integer */
         Op::i = Int();
-        if (Op::i.parse(&t) != SUCCESS)
+        if (Op::i.parse(t) != SUCCESS)
             return ERROR;
     }
     else if(p.value == IDENTIFIER)
     {
         Op::option = 1;
         /* Remove identifier */
-        t.getToken();
+        t->getToken();
         
         /* Parse Identifier */
         Op::id = Id();
-        if (Op::id.parse(&t) != SUCCESS)
+        if (Op::id.parse(t) != SUCCESS)
             return ERROR;
     }
     else if(p.value == LP)
     {
         Op::option = 2;
         /* Remove '(' */
-        t.getToken();
+        t->getToken();
         
         /* Parse factor */
         Op::e = Exp();
-        if (Op::e.parse(&t) != SUCCESS)   //NOTE: DIfferent from Python
+        if (Op::e.parse(t) != SUCCESS)   //NOTE: DIfferent from Python
             return ERROR;
         
-        p = t.getToken();
+        p = t->getToken();
         if (p.value != RP) {
             printf("Expected end parenthesis.\n");
             return ERROR;

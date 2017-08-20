@@ -15,23 +15,23 @@
  * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
-int Fact::parse(Tokenizer &t)
+int Fact::parse(Tokenizer *t)
 {
     /* Parse the operator */
-    if (Fact::op.parse(&t) != SUCCESS)
+    if (Fact::op.parse(t) != SUCCESS)
         return ERROR;
     
     /* Check if it's + or -  */
-    TokenPair p = t.front();
+    TokenPair p = t->front();
     if(p.value == TIMES)
     {
         Fact::option = 1;
         /* Remove '*' */
-        t.getToken();
+        t->getToken();
         
         /* Parse factor */
         Fact::f = Fact();
-        if (Fact::f.parse(&t) != SUCCESS)
+        if (Fact::f.parse(t) != SUCCESS)
             return ERROR;
     }
     

@@ -35,6 +35,11 @@
 #define SEMIC                12
 #define COMMA            13
 #define EQUAL               14
+#define EXCL                  15
+#define LB                       16
+#define RB                       17
+#define AND                   18
+#define OR                      19
 #define LP                       20
 #define RP                       21
 #define PLUS                   22

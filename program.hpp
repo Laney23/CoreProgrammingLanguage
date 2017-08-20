@@ -16,7 +16,7 @@
 #include "stmtseq.hpp"
 
 
-class Program : ParseObject {
+class Program : public ParseObject {
     DeclSeq *ds;
     StmtSeq *ss;
     

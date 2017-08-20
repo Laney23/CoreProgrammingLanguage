@@ -22,7 +22,7 @@ class Loop : ParseObject {
     StmtSeq *ss;
     
 public:
-    Loop();
+    Loop() { };
     ~Loop();
     int parse(Tokenizer *t);
     int execute();

@@ -26,7 +26,7 @@ int Int::parse(Tokenizer *t)
     }
 
     /* Parse integer */
-    Int::value = t->intVal();
+    value = t->intVal();
     
     /* Remove integer token */
     t->getToken();
@@ -42,7 +42,7 @@ int Int::parse(Tokenizer *t)
  */
 int Int::execute()
 {
-    return Int::value;
+    return value;
 } /* function execute */
 
 
@@ -54,7 +54,7 @@ int Int::execute()
 int Int::print()
 {
     /* Print the integer */
-    printf("%i", Int::value);
+    printf("%i", value);
     
     return SUCCESS;
 } /* function print */

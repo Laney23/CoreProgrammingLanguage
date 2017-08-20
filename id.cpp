@@ -90,26 +90,25 @@ int Id::setId(int value)
 {
     /* See if table contains the id already. If so, get a copy of it */
     TableElement te;
-printf("id name: %s\n", name.c_str());
-    ParseObject::printTable();
-    int index = ParseObject::inTable(name);
+printTable();
+    int index = inTable(name);
     if (index > 0)
-        te = ParseObject::idTable.at(index);
+        te = idTable.at(index);
     
     /* In Declaration Sequence and already in table */
-    if (index > 0 && ParseObject::inDecSeq == true) {
+    if (index > 0 && inDecSeq == true) {
         printf("Variable %s has already been declared.\n", te.idName.c_str());
         return ERROR;
     }
     /* In Statement Sequence and in table */
-    else if (index >= 0 && ParseObject::inDecSeq == false)
+    else if (index >= 0 && inDecSeq == false)
     {
         te.idVal = value;
         te.isInit = true;
-        ParseObject::idTable.at(index) = te;
+        idTable.at(index) = te;
     }
     /* In Statement Sequence and not in table */
-    else if (index < 0 && ParseObject::inDecSeq == false)
+    else if (index < 0 && inDecSeq == false)
     {
         printf("Variable %s was never declared. Declartion can only \
                     be done in Declaration Sequence.\n", te.idName.c_str());
@@ -118,10 +117,12 @@ printf("id name: %s\n", name.c_str());
     /* In Declaration Sequence and not in table */
     else
     {
-        te.idName = Id::name;
+        te.idName = name;
         te.idVal = value;
         te.isInit = false;
-        ParseObject::idTable.push_back(te);
+        idTable.push_back(te);
+        printf("In Id");
+printTable();
     }
     
     return SUCCESS;

@@ -16,7 +16,6 @@
  */
 int Assign::parse(Tokenizer *t)
 {
-printf("start of assign %d\n", t->front().value);
     /* Parse the identifier */
     if (id->parse(t) != SUCCESS)
         return ERROR;
@@ -41,7 +40,6 @@ printf("start of assign %d\n", t->front().value);
         return ERROR;
     }
     
-printf("end of assign %d\n", t->front().value);
     return SUCCESS;
 } /* function parse */
 
@@ -78,7 +76,7 @@ int Assign::execute()
 int Assign::print()
 {
     /* Print the identifier */
-    std::string str = std::string("\t", ++ParseObject::indent);
+    std::string str = std::string("\t", ++indent);
     str += id->getName();
     str += " = ";
     printf("%s", str.c_str());
@@ -89,7 +87,7 @@ int Assign::print()
     
     /* Print ';' */
     printf(";\n");
-    ParseObject::indent--;
+    indent--;
     
     return SUCCESS;
 } /* function print */

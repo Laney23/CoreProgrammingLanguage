@@ -17,11 +17,11 @@ using namespace std;
 Program::Program()
 {
     /* Initialize variables */
-    ParseObject::idTable.reserve(100);
-    ParseObject::inDecSeq = true;
-    ParseObject::indent = 0;
-    Program::ds = new DeclSeq();
-    Program::ss = new StmtSeq();
+    idTable.reserve(100);
+    inDecSeq = true;
+    indent = 0;
+    ds = new DeclSeq;
+    ss = new StmtSeq;
 } /* function Program constructor */
 
 
@@ -44,7 +44,7 @@ int Program::parse(Tokenizer *t)
     }
     
     /* Parse declaration sequence */
-    if (Program::ds->parse(t) != SUCCESS)
+    if (ds->parse(t) != SUCCESS)
         return ERROR;
     
     /* Remove "begin" */
@@ -54,9 +54,10 @@ int Program::parse(Tokenizer *t)
         printf("Expected reserved word: begin");
         return ERROR;
     }
-    
+    printf("before ss parse");
+printTable();
     /* Parse statement sequence */
-    if (Program::ss->parse(t) != SUCCESS)
+    if (ss->parse(t) != SUCCESS)
         return ERROR;
     
     /* Remove "end" */
@@ -66,7 +67,8 @@ int Program::parse(Tokenizer *t)
         printf("Expected reserved word: end");
         return ERROR;
     }
-    
+    printf("After ss parse");
+printTable();
     return SUCCESS;
 } /* function parse */
 
@@ -79,16 +81,17 @@ int Program::parse(Tokenizer *t)
 int Program::execute()
 {
     /* Execute the declaration sequence */
-    if (Program::ds->execute() != SUCCESS)
+    if (ds->execute() != SUCCESS)
         return ERROR;
     
     /* Change idTable to Statement Sequence from Declaration Sequence */
-     ParseObject::inDecSeq = false;
+     inDecSeq = false;
     
     /* Execute the statement sequence */
-    if (Program::ss->execute() != SUCCESS)
+    if (ss->execute() != SUCCESS)
         return ERROR;
-    
+    printf("After execute\n");
+printTable();
     return SUCCESS;
 } /* function execute */
 
@@ -103,17 +106,19 @@ int Program::print()
     printf("program\n");
     
     /* Print the declaration sequence */
-    if (Program::ds->print() != SUCCESS)
+    if (ds->print() != SUCCESS)
         return ERROR;
     
     printf("begin\n");
     
     /* Print the statement sequence */
-    if (Program::ss->print() != SUCCESS)
+    if (ss->print() != SUCCESS)
         return ERROR;
     
     printf("end\n");
-    
+
+    printf("After print\n");
+printTable();
     return SUCCESS;
 } /* function print */
 

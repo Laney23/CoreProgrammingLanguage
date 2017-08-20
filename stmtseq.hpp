@@ -22,7 +22,7 @@ class StmtSeq : ParseObject {
     StmtSeq *stsq;
     
 public:
-    StmtSeq();
+    StmtSeq() : option(0) { };
     ~StmtSeq();
     int parse(Tokenizer *t);
     int execute();

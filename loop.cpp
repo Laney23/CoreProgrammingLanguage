@@ -9,13 +9,6 @@
 #include "loop.hpp"
 
 //TODO: comments
-Loop::Loop()
-{
-    Loop::c = new Cond();
-    Loop::ss = new StmtSeq();
-}
-
-
 Loop::~Loop()
 {
     delete c;
@@ -40,7 +33,8 @@ int Loop::parse(Tokenizer *t)
     }
     
     /* Parse the condition */
-    if (Loop::c->parse(t) != SUCCESS)
+    c = new Cond;
+    if (c->parse(t) != SUCCESS)
         return ERROR;
     
     /* Remove 'loop' */
@@ -52,7 +46,8 @@ int Loop::parse(Tokenizer *t)
     }
     
     /* Parse the statement sequence */
-    if (Loop::ss->parse(t) != SUCCESS)
+    ss = new StmtSeq;
+    if (ss->parse(t) != SUCCESS)
         return ERROR;
     
     /* Remove 'end' */
@@ -82,8 +77,8 @@ int Loop::parse(Tokenizer *t)
  */
 int Loop::execute()
 {
-    while (Loop::c->execute())
-        Loop::ss->execute();
+    while (c->execute())
+        ss->execute();
     
     return SUCCESS;
 } /* function execute */
@@ -97,24 +92,24 @@ int Loop::execute()
 int Loop::print()
 {
     /* Print 'while' with correct indentation */
-    std::string str = std::string("\t", ++ParseObject::indent);
+    std::string str = std::string("\t", ++indent);
     
     str += "while ";
     printf("%s", str.c_str());
     
     /* Print the condition */
-    if (Loop::c->print() != SUCCESS)
+    if (c->print() != SUCCESS)
         return ERROR;
     
     /* Print 'loop' */
     printf(" loop\n");
     
     /* Print the statement sequence */
-    if (Loop::ss->print() != SUCCESS)
+    if (ss->print() != SUCCESS)
         return ERROR;
     
     /* Print 'while' with correct indentation */
-    str = std::string("\t", ParseObject::indent--);
+    str = std::string("\t", indent--);
     str += "end;\n";
     
     return SUCCESS;

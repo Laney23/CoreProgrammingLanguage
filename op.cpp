@@ -33,7 +33,7 @@ int Op::parse(Tokenizer *t)
     if(p.value == NUMBER)
     {
         /* Parse integer */
-        i = new Int();
+        i = new Int;
         if (i->parse(t) != SUCCESS)
             return ERROR;
     }
@@ -44,7 +44,7 @@ int Op::parse(Tokenizer *t)
         t->getToken();
         
         /* Parse Identifier */
-        id = new Id();
+        id = new Id;
         if (id->parse(t) != SUCCESS)
             return ERROR;
     }
@@ -55,7 +55,7 @@ int Op::parse(Tokenizer *t)
         t->getToken();
         
         /* Parse factor */
-        e = new Exp();
+        e = new Exp;
         if (e->parse(t) != SUCCESS)   //NOTE: DIfferent from Python
             return ERROR;
         
@@ -92,8 +92,8 @@ int Op::execute()
     else if (option == 1)
     {
         /* To execute an Identifier, look up its value in the idTable and return it. Check first if it was initialized */
-        int index = ParseObject::inTable(Op::id->getName());
-        TableElement te = ParseObject::idTable.at(index);
+        int index = ParseObject::inTable(id->getName());
+        TableElement te = idTable.at(index);
         if (!te.isInit) {
             printf("Variable %s was never initialized.\n", te.idName.c_str());
             return ERROR;
@@ -128,9 +128,9 @@ int Op::print()
             return ERROR;
     }
     /* Print the identifier */
-    if (option == 1)
+    else if (option == 1)
     {
-        if (Op::id->print() != SUCCESS)
+        if (id->print() != SUCCESS)
             return ERROR;
     }
     /* Print the expression */

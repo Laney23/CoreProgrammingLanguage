@@ -26,7 +26,7 @@ int Decl::parse(Tokenizer *t)
     }
     
     /* Parse the IdList */
-    if (Decl::iList->parse(t) != SUCCESS)
+    if (iList->parse(t) != SUCCESS)
         return ERROR;
     
     /* Verify next token */
@@ -52,7 +52,7 @@ int Decl::execute()
      * Set all values to 0 initially. The isInit value will determine if the variable has actually
      * been set. This will just add the variable to the lookup table
      */
-    if (Decl::iList->setId(0) != SUCCESS)
+    if (iList->setId(0) != SUCCESS)
         return ERROR;
      
     return SUCCESS;
@@ -67,7 +67,7 @@ int Decl::execute()
 int Decl::print()
 {
     printf("\tint ");
-    printf("%s", Decl::iList->getIdNames().c_str());
+    printf("%s", iList->getIdNames().c_str());
     printf(";\n");
     
     return SUCCESS;

@@ -26,7 +26,7 @@ Fact::~Fact()
 int Fact::parse(Tokenizer *t)
 {
     /* Parse the operator */
-    op = new Op();
+    op = new Op;
     if (op->parse(t) != SUCCESS)
         return ERROR;
     
@@ -34,12 +34,12 @@ int Fact::parse(Tokenizer *t)
     TokenPair p = t->front();
     if(p.value == TIMES)
     {
-        Fact::option = 1;
+        option = 1;
         /* Remove '*' */
         t->getToken();
         
         /* Parse factor */
-        f = new Fact();
+        f = new Fact;
         if (f->parse(t) != SUCCESS)
             return ERROR;
     }

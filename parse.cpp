@@ -17,14 +17,14 @@
  */
 int ParseObject::inTable(std::string key)
 {
-    if (ParseObject::idTable.size() == 0)
+    if (idTable.size() == 0)
         return -1;
     
     int index = 0;
     TableElement te;
-    while (index < ParseObject::idTable.size())
+    while (index < idTable.size())
     {
-        te = ParseObject::idTable.at(index++);
+        te = idTable.at(index++);
         if (te.idName.compare(key) == 0)
             return index;
     }
@@ -35,7 +35,7 @@ int ParseObject::inTable(std::string key)
 //TODO: comment this
 int ParseObject::printTable()
 {
-    printf("t sz: %lu", idTable.size());
+    printf("t sz: %lu\n", idTable.size());
     for (int i = 0; i < idTable.size(); i++)
         printf("\n%i: %s\n", i, idTable.at(i).idName.c_str());
     

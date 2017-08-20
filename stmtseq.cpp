@@ -11,16 +11,11 @@ static bool isStmt(int value);
 
 
 //TODO: comment this
-StmtSeq::StmtSeq()
-{
-    StmtSeq::option = 0;
-    StmtSeq::st = new Stmt();
-}
 StmtSeq::~StmtSeq()
 {
-    delete StmtSeq::st;
+    delete st;
     if(option == 1)
-        delete StmtSeq::stsq;
+        delete stsq;
 }
 
 /*
@@ -37,7 +32,8 @@ int StmtSeq::parse(Tokenizer *t)
     /* Call parse on statement object */
     if (isStmt(p.value))
     {
-        if (StmtSeq::st->parse(t) != SUCCESS)
+        st = new Stmt;
+        if (st->parse(t) != SUCCESS)
             return ERROR;
     }
     else
@@ -50,9 +46,9 @@ int StmtSeq::parse(Tokenizer *t)
     p = t->front();
     if (isStmt(p.value))
     {
-        StmtSeq::option = 1;
-        StmtSeq::stsq = new StmtSeq();
-        StmtSeq::stsq->parse(t);
+        option = 1;
+        stsq = new StmtSeq;
+        stsq->parse(t);
     }
     
     return SUCCESS;
@@ -67,13 +63,13 @@ int StmtSeq::parse(Tokenizer *t)
 int StmtSeq::execute()
 {
     /* Execute the statement */
-    if (StmtSeq::st->execute() != SUCCESS)
+    if (st->execute() != SUCCESS)
         return ERROR;
     
     /* Execute the declaration sequence */
-    if (StmtSeq::option == 1)
+    if (option == 1)
     {
-        if (StmtSeq::stsq->execute() != SUCCESS)
+        if (stsq->execute() != SUCCESS)
             return ERROR;
     }
     
@@ -89,15 +85,14 @@ int StmtSeq::execute()
 int StmtSeq::print()
 {
     /* Print the statement with correct number of tabs  */
-    std::string returnString = std::string("\t", ParseObject::indent);
-    if (StmtSeq::st->print() != SUCCESS)
+    std::string returnString = std::string("\t", indent);
+    if (st->print() != SUCCESS)
         return ERROR;
     
     /* If it's part of a statement sequence, print the statement sequence */
-    if (StmtSeq::option == 1)
+    if (option == 1)
     {
-        printf("\n");
-        if (StmtSeq::stsq->print() != SUCCESS)
+        if (stsq->print() != SUCCESS)
             return ERROR;
     }
     

@@ -21,18 +21,18 @@ int Cond::parse(Tokenizer *t)
     TokenPair p = t->front();
     if(p.value == LP)
     {
-        Cond::comp = new Comp();
-        Cond::comp->parse(t);
+        comp = new Comp;
+        comp->parse(t);
     }
     else if (p.value == EXCL)
     {
-        Cond::option = 1;
+        option = 1;
         /* Remove '!' */
         t->getToken();
         
         /* Parse condition */
-        Cond::c1 = new Cond();
-        Cond::c1->parse(t);
+        c1 = new Cond;
+        c1->parse(t);
     }
     else if (p.value == LB)
     {
@@ -40,32 +40,32 @@ int Cond::parse(Tokenizer *t)
         t->getToken();
         
         /* Parse condition */
-        Cond::c1 = new Cond();
-        Cond::c1->parse(t);
+        c1 = new Cond;
+        c1->parse(t);
         
         /* Check next token */
         p = t->front();
         if (p.value == AND)
         {
-            Cond::option = 2;
+            option = 2;
             
             /* Remove '&&' */
             t->getToken();
             
             /* Parse the second condition */
-            Cond::c2 = new Cond();
-            Cond::c2->parse(t);
+            c2 = new Cond;
+            c2->parse(t);
         }
         else if (p.value == OR)
         {
-            Cond::option = 3;
+            option = 3;
             
             /* Remove '||' */
             t->getToken();
             
             /* Parse the second condition */
-            Cond::c2 = new Cond();
-            Cond::c2->parse(t);
+            c2 = new Cond;
+            c2->parse(t);
         }
         else
         {
@@ -94,16 +94,16 @@ int Cond::parse(Tokenizer *t)
 int Cond::execute()
 {
     //TODO: Error check these
-    switch (Cond::option) {
+    switch (option) {
         case 0:
-            return Cond::comp->execute();
+            return comp->execute();
         case 1:
-            return Cond::c1->execute();
+            return c1->execute();
         case 2:
-            return (Cond::c1->execute() && Cond::c2->execute());
+            return (c1->execute() && c2->execute());
             
         default:
-            return (Cond::c1->execute() || Cond::c2->execute());
+            return (c1->execute() || c2->execute());
     }
 } /* function execute */
 
@@ -115,25 +115,25 @@ int Cond::execute()
  */
 int Cond::print()
 {
-    switch (Cond::option)
+    switch (option)
     {
         case 0:
-            return Cond::comp->print();
+            return comp->print();
         case 1:
             printf("!");
-            return Cond::c1->print();
+            return c1->print();
             
         default:
             printf("[");
-            if (Cond::c1->print() != SUCCESS)
+            if (c1->print() != SUCCESS)
                 return ERROR;
             
-            if (Cond::option == 2)
+            if (option == 2)
                 printf(" && ");
             else
                 printf(" || ");
             
-            if (Cond::c2->print() != SUCCESS)
+            if (c2->print() != SUCCESS)
                 return ERROR;
             printf("]");
     }

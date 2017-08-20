@@ -40,9 +40,8 @@ int main(int argc, const char * argv[])
     /* Print outputs */
     if (program.print() != SUCCESS)
         return ERROR;
-    
+printf("Finished printing.\n");
 //TODO: Figure out standardized error messages
-    //TODO: Build destroy function
     /* Execute program */
     if (program.execute() != SUCCESS)
         return ERROR;

@@ -18,8 +18,8 @@ class Output : ParseObject {
     IdList *iList;
     
 public:
-    Output() : iList(new IdList()) { };
-    ~Output() { delete iList; }
+    Output() { };
+    ~Output();
     int parse(Tokenizer *t);
     int execute();
     int print();

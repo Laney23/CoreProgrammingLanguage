@@ -10,18 +10,13 @@
 
 
 //TODO: comment these
-Iff::Iff()
-{
-    Iff:option = 0;
-    Iff::ss1 = new StmtSeq();
-    Iff::cond = new Cond();
-}
+
 Iff::~Iff()
 {
-    delete Iff::cond;
-    delete Iff::ss1;
+    delete cond;
+    delete ss1;
     if(option == 1)
-        delete Iff::ss2;
+        delete ss2;
 }
 
 /*
@@ -43,7 +38,8 @@ int Iff::parse(Tokenizer *t)
     }
     
     /* Parse the condition */
-    if (Iff::cond->parse(t) != SUCCESS)
+    cond = new Cond;
+    if (cond->parse(t) != SUCCESS)
         return ERROR;
     
     /* Remove "then" */
@@ -55,18 +51,19 @@ int Iff::parse(Tokenizer *t)
     }
     
     /* Parse the statement sequence */
-    if (Iff::ss1->parse(t) != SUCCESS)
+    ss1 = new StmtSeq;
+    if (ss1->parse(t) != SUCCESS)
         return ERROR;
     
     /* Check for else statement */
     p = t->front();
     if (p.value == ELSE)
     {
-        Iff::option = 1;
+        option = 1;
         /* Remove 'else' */
         p = t->getToken();
-        Iff::ss2 = new StmtSeq();
-        if (Iff::ss2->parse(t) != SUCCESS)
+        ss2 = new StmtSeq;
+        if (ss2->parse(t) != SUCCESS)
             return ERROR;
     }
     
@@ -98,16 +95,16 @@ int Iff::parse(Tokenizer *t)
 int Iff::execute()
 {
     /* Execute the condition */
-    if (Iff::cond->execute() == true)
+    if (cond->execute() == true)
     {
         /* If the condition is true, execute the statement sequence */
-        if (Iff::ss1->execute() != SUCCESS)
+        if (ss1->execute() != SUCCESS)
             return ERROR;
     }
     /* if this is an if/then/else statement, execute the second statement sequence */
-    else if (Iff::option == 1)
+    else if (option == 1)
     {
-        if (Iff::ss2->execute() != SUCCESS)
+        if (ss2->execute() != SUCCESS)
             return ERROR;
     }
 
@@ -123,37 +120,37 @@ int Iff::execute()
 int Iff::print()
 {
     /* Print 'if' with correct indentation */
-    std::string str = std::string("\t", ++ParseObject::indent);
+    std::string str = std::string("\t", ++indent);
     str += "if ";
     printf("%s", str.c_str());
     
     /* Print condition */
-    if (Iff::cond->print() != SUCCESS)
+    if (cond->print() != SUCCESS)
         return ERROR;
     
     /* Print 'then' */
     printf(" then\n");
     
     /* Print statement sequence */
-    if (Iff::ss1->print() != SUCCESS)
+    if (ss1->print() != SUCCESS)
         return ERROR;
     
     /* Print else if necessary */
-    if (Iff::option == 1)
+    if (option == 1)
     {
         printf("\n");
-        std::string str = std::string("\t", ParseObject::indent);
+        std::string str = std::string("\t", indent);
         str += "else\n";
         printf("%s", str.c_str());
         
         /* Print statement sequence */
-        if (Iff::ss2->print() != SUCCESS)
+        if (ss2->print() != SUCCESS)
             return ERROR;
     }
     
     /* Print 'end' */
     printf("\n");
-    str = std::string("\t", ParseObject::indent--);
+    str = std::string("\t", indent--);
     str += "end;";
     printf("%s\n", str.c_str());
     

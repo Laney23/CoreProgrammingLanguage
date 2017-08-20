@@ -24,19 +24,19 @@ int CompOp::parse(Tokenizer *t)
             /* Option 0 by default */
             break;
         case ISEQ:
-            CompOp::option = 1;
+            option = 1;
             break;
         case LT:
-            CompOp::option = 2;
+            option = 2;
             break;
         case GT:
-            CompOp::option = 3;
+            option = 3;
             break;
         case LTEQ:
-            CompOp::option = 4;
+            option = 4;
             break;
         case GTEQ:
-            CompOp::option = 5;
+            option = 5;
             break;
             
         default:
@@ -55,7 +55,7 @@ int CompOp::parse(Tokenizer *t)
  */
 int CompOp::execute()
 {
-    return CompOp::option;
+    return option;
 } /* function execute */
 
 
@@ -67,7 +67,7 @@ int CompOp::execute()
 int CompOp::print()
 {
     /* Print the comparison operator */
-    switch (CompOp::option)
+    switch (option)
     {
         case 0:
             printf("!=");

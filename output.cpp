@@ -11,6 +11,11 @@
 
 static std::vector<std::string> splitter(const std::string &text, char sep);
 
+//TODO: comment this
+Output::~Output()
+{
+    delete iList;
+}
 
 /*
  * Name: parse
@@ -28,7 +33,8 @@ int Output::parse(Tokenizer *t)
     }
     
     /* Parse the condition */
-    if (Output::iList->parse(t) != SUCCESS)
+    iList = new IdList;
+    if (iList->parse(t) != SUCCESS)
         return ERROR;
     
     /* Remove ';' */
@@ -51,7 +57,7 @@ int Output::parse(Tokenizer *t)
 int Output::execute()
 {
     /* Get list of identifiers */
-    std::string s = Output::iList->getIdNames();
+    std::string s = iList->getIdNames();
     
     /* Split the string by comma delimeter and lookup each item */
     std::vector<std::string> ids = splitter(s, ',');
@@ -60,7 +66,7 @@ int Output::execute()
     while (count < ids.size())
     {
         int index = ParseObject::inTable(ids[count++]);
-        TableElement te = ParseObject::idTable.at(index);
+        TableElement te = idTable.at(index);
         
         if (index == ERROR)
         {
@@ -88,19 +94,19 @@ int Output::execute()
 int Output::print()
 {
     /* Print 'while' with correct indentation */
-    std::string str = std::string("\t", ++ParseObject::indent);
+    std::string str = std::string("\t", ++indent);
     str += "write ";
     printf("%s", str.c_str());
     
     /* Print the id list */
-    if (Output::iList->print() != SUCCESS)
+    if (iList->print() != SUCCESS)
         return ERROR;
     
     /* Print ';' */
     printf(";\n");
     
     /* Reset indentation */
-    ParseObject::indent--;
+    indent--;
     
     return SUCCESS;
 } /* function print */

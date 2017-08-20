@@ -42,7 +42,7 @@ int Exp::parse(Tokenizer *t)
     }
     else if (p.value == MINUS)
     {
-        Exp::option = 2;
+        option = 2;
         /* Remove '-' */
         t->getToken();
         exp = new Exp;
@@ -88,7 +88,6 @@ int Exp::print()
         return ERROR;
     
     /* Add +/- if necessary */
-    printf("%d", option);
     if (option == 0)
         return SUCCESS;
     else if (option == 1)

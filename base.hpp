@@ -14,4 +14,11 @@
 #define ERROR                 -2
 
 
+struct TableElement {
+    std::string idName;
+    int idVal;
+    bool isInit;
+};
+
+
 #endif /* base_hpp */

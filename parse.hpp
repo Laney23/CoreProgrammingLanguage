@@ -14,18 +14,10 @@
 #include "tokenizer.hpp"
 
 
-struct TableElement {
-    std::string idName;
-    int idVal;
-    bool isInit;
-};
-
-
 class ParseObject {
 protected:
     static bool inDecSeq;
     static int indent;
-    static std::vector<TableElement> idTable;
 
 public:
     ParseObject();

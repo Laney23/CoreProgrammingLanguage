@@ -8,11 +8,17 @@
 
 #include <iostream>
 #include <stdio.h>
+#include <vector>
 #include "tokenizer.hpp"
 #include "base.hpp"
+#include "parse.hpp"
 #include "program.hpp"
 
 using namespace std;
+
+bool ParseObject::inDecSeq = true;
+int ParseObject::indent = 0;
+extern std::vector<TableElement> idTable;
 
 int main(int argc, const char * argv[])
 {
@@ -20,6 +26,7 @@ int main(int argc, const char * argv[])
     if (argc != 3) return ERROR;
 
     /* Initialize variables */
+    idTable.reserve(100);
     Tokenizer *toke = new Tokenizer(argv[1]);
     
     /* Tokenize */

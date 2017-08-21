@@ -92,9 +92,9 @@ int Tokenizer::tokenize()
 int Tokenizer::tokenizeLine(const string& str)
 {
     /* Skip delimiters at beginning */
-    string::size_type lastPos = str.find_first_not_of(DELIMS_, 0);
+    string::size_type lastPos = str.find_first_not_of(DELIMS, 0);
     /* Find first "non-delimiter" */
-    string::size_type pos     = str.find_first_of(DELIMS_, lastPos);
+    string::size_type pos     = str.find_first_of(DELIMS, lastPos);
         
     while (string::npos != pos || string::npos != lastPos)
     {
@@ -142,10 +142,10 @@ int Tokenizer::tokenizeLine(const string& str)
         tokens.push_back(pair);
             
         /* Skip delimiters.  Note the "not_of" */
-        lastPos = str.find_first_not_of(DELIMS_, pos);
+        lastPos = str.find_first_not_of(DELIMS, pos);
         
         /* Find next "non-delimiter" */
-        pos = str.find_first_of(DELIMS_, lastPos);
+        pos = str.find_first_of(DELIMS, lastPos);
     }
         
     return SUCCESS;
@@ -211,19 +211,19 @@ TokenPair Tokenizer::getToken()
 
 
 /*
- * Name: skipToken
+ * Name: tokenLookAhead
  * Purpose: gives the token value of the second token without
  *                 incrementing the cursor
  * Return: the second token or empty TokenPair if out of tokens
  */
-TokenPair Tokenizer::skipToken()
+TokenPair Tokenizer::tokenLookAhead()
 {
     if (cursor+1 < tokens.size())
         return tokens.at(cursor+1);
 
     cout << "Out of tokens";
     return { 0, "0" };
-} /* function skipToken */
+} /* function tokenLookAhead */
 
 
 /*

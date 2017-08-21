@@ -22,7 +22,8 @@
 #include "base.hpp"
 
 
-#define DELIMS_             " \f\n\r\t\v"
+#define DELIMS             " \f\n\r\t\v"//;,*()[]<>=|&!+-"
+#define KEEPERS           ";,*()[]<>=|&!+-"
 #define PROGRAM         1
 #define BEGIN                2
 #define END                   3
@@ -76,7 +77,7 @@ public:
     int processFileArgument(std::string file_name);
     void print();
     TokenPair getToken();
-    TokenPair skipToken();
+    TokenPair tokenLookAhead();
     int intVal();
     std::string idName();
     int totalTokens();

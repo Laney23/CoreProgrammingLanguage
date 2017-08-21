@@ -33,9 +33,8 @@ int main(int argc, const char * argv[])
     
     /* Tokenize */
     if(toke->tokenize() != SUCCESS) return ERROR;
-    toke->print();
-IdTable *itable = IdTable::instance();
-itable->printTable();
+//    toke->print();
+    
     /* Parse tokens */
     Program program = Program();
     if (program.parse(toke) != SUCCESS)
@@ -50,8 +49,8 @@ itable->printTable();
     /* Print outputs */
     if (program.print() != SUCCESS)
         return ERROR;
-printf("Finished printing.\n");
-//TODO: Figure out standardized error messages
+
+    //TODO: Figure out standardized error messages
     /* Execute program */
     if (program.execute() != SUCCESS)
         return ERROR;

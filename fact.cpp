@@ -59,7 +59,9 @@ int Fact::execute()
     if (option == 1)
         return op->execute() * f->execute();
     else
+    {
         return op->execute();
+    }
  } /* function execute */
 
 

@@ -17,6 +17,7 @@
 #include <map>
 #include <sys/stat.h>
 #include <vector>
+#include "table.hpp"
 #include "base.hpp"
 
 

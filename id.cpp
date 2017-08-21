@@ -90,9 +90,9 @@ int Id::setId(int value)
 {
     /* See if table contains the id already. If so, get a copy of it */
     TableElement te;
-    int index = ParseObject::inTable(name);
+    int index = idTable->inTable(name);
     if (index > 0)
-        te = idTable.at(index);
+        te = idTable->getElement(index);
     
     /* In Declaration Sequence and already in table */
     if (index > 0 && inDecSeq == true) {
@@ -104,7 +104,7 @@ int Id::setId(int value)
     {
         te.idVal = value;
         te.isInit = true;
-        idTable.at(index) = te;
+        idTable->setElement(index, te);
     }
     /* In Statement Sequence and not in table */
     else if (index < 0 && inDecSeq == false)
@@ -119,7 +119,7 @@ int Id::setId(int value)
         te.idName = name;
         te.idVal = value;
         te.isInit = false;
-        idTable.push_back(te);
+        idTable->addElement(te);
     }
     
     return SUCCESS;

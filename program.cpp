@@ -32,7 +32,7 @@ int Program::parse(Tokenizer *t)
     ds = new DeclSeq;
     if (ds->parse(t) != SUCCESS)
         return ERROR;
-    
+
     /* Remove "begin" */
     p = t->getToken();
     if(p.value != BEGIN)
@@ -40,8 +40,7 @@ int Program::parse(Tokenizer *t)
         printf("Expected reserved word: begin");
         return ERROR;
     }
-    printf("before ss parse");
-idTable->printTable();
+
     /* Parse statement sequence */
     ss = new StmtSeq;
     if (ss->parse(t) != SUCCESS)
@@ -54,8 +53,7 @@ idTable->printTable();
         printf("Expected reserved word: end");
         return ERROR;
     }
-    printf("After ss parse");
-idTable->printTable();
+    
     return SUCCESS;
 } /* function parse */
 
@@ -67,18 +65,18 @@ idTable->printTable();
  */
 int Program::execute()
 {
+    printf("===================\nExecution Output\n");
     /* Execute the declaration sequence */
     if (ds->execute() != SUCCESS)
         return ERROR;
-    
+
     /* Change idTable to Statement Sequence from Declaration Sequence */
      inDecSeq = false;
     
     /* Execute the statement sequence */
     if (ss->execute() != SUCCESS)
         return ERROR;
-    printf("After execute\n");
-idTable->printTable();
+
     return SUCCESS;
 } /* function execute */
 
@@ -104,8 +102,6 @@ int Program::print()
     
     printf("end\n");
 
-    printf("After print\n");
-idTable->printTable();
     return SUCCESS;
 } /* function print */
 

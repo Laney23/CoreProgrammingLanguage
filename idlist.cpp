@@ -25,7 +25,8 @@ int IdList::parse(Tokenizer *t)
     TokenPair p = t->front();
     if (p.value == COMMA)
     {
-        t->getToken();       /* remove ',' */
+        /* remove ',' */
+        t->getToken();
         option = 1;
         iList = new IdList;
         if (iList->parse(t) != SUCCESS)
@@ -43,18 +44,16 @@ int IdList::parse(Tokenizer *t)
  */
 int IdList::execute()
 {
-    //TODO
-    /*
-     """
-     Execute returns a string with the id names delimited with commas to the caller. This is a
-     cheat so that IdList can be called recursively
-     """
-     def execute(self):
-     returnString = self.id.execute()
-     if self.option == 1:
-     returnString += ',' + self.iList.execute()
-     return returnString
-     */
+    /* Execute the id */
+    if (id->execute() != SUCCESS)
+        return ERROR;
+    
+    /* Execute the id list if necessary */
+    if (option == 1)
+    {
+        if (iList->execute() != SUCCESS)
+            return ERROR;
+    }
     
     return SUCCESS;
 } /* function execute */

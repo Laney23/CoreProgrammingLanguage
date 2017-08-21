@@ -102,36 +102,48 @@ int Tokenizer::tokenizeLine(const string& str)
             
         /* Found a token, add it to the vector */
         string token = str.substr(lastPos, pos - lastPos);
-        // TODO : Check lowercase here
-        auto value = token_lookup_table.find(token.c_str());
-            
-        /* Token is a value in th lookup table */
-        if(value != token_lookup_table.end())
-                pair.value = value->second;
-        else if (firstUpper(token))  /* Token is an identifier */
+        /* Make a lowercase copy so that the lookup table can find it */
+        string lowercase = token;
+        transform(lowercase.begin(), lowercase.end(), lowercase.begin(), ::tolower);
+        auto value = token_lookup_table.find(lowercase);
+        
+        /* Token is a value in the lookup table */
+        if (value != token_lookup_table.end())
         {
-                /* Check if rest of word contains capital letters and/or digits */
-                if (token.length() > 1 && !string_is_valid(token))
-                {
-                        cout << "Token " << token << " is an invalid identifier. Please consult the CFG.\n";
-                        return ERROR;
-                }
-                    pair.value = 32;
+            pair.token = lowercase;
+            pair.value = value->second;
         }
-        else if (isInteger(token)) /* Token is a number */
+        /* Token is an identifier */
+        else if (firstUpper(token))
+        {
+            /* Check if rest of word contains capital letters and/or digits */
+            if (token.length() > 1 && !string_is_valid(token))
+            {
+                cout << "Token " << token << " is an invalid identifier. Please consult the CFG.\n";
+                return ERROR;
+            }
+            pair.value = 32;
+            pair.token = token;
+        }
+        /* Token is a number */
+        else if (isInteger(token))
+        {
             pair.value = 31;
-        else /* badly formatted */
+            pair.token = token;
+        }
+        /* badly formatted */
+        else
         {
             cout << "Token " << token << " is invalid. Please consult the CFG.\n";
             return ERROR;
         }
             
         /* Add TokenPair into the storage vector */
-        pair.token = token;
         tokens.push_back(pair);
             
         /* Skip delimiters.  Note the "not_of" */
         lastPos = str.find_first_not_of(DELIMS_, pos);
+        
         /* Find next "non-delimiter" */
         pos = str.find_first_of(DELIMS_, lastPos);
     }

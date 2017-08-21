@@ -17,7 +17,6 @@ ParseObject::ParseObject()
 {
     inDecSeq = true;
     indent = 0;
-    idTable.reserve(100);
 } /* function ParseObject constructor */
 
 

@@ -22,7 +22,8 @@ int Cond::parse(Tokenizer *t)
     if(p.value == LP)
     {
         comp = new Comp;
-        comp->parse(t);
+        if (comp->parse(t) != SUCCESS)
+            return ERROR;
     }
     else if (p.value == EXCL)
     {
@@ -32,7 +33,8 @@ int Cond::parse(Tokenizer *t)
         
         /* Parse condition */
         c1 = new Cond;
-        c1->parse(t);
+        if (c1->parse(t) != SUCCESS)
+            return ERROR;
     }
     else if (p.value == LB)
     {
@@ -41,31 +43,22 @@ int Cond::parse(Tokenizer *t)
         
         /* Parse condition */
         c1 = new Cond;
-        c1->parse(t);
+        if (c1->parse(t) != SUCCESS)
+            return ERROR;
         
         /* Check next token */
         p = t->front();
-        if (p.value == AND)
+        if (p.value == AND || p.value == OR)
         {
-            option = 2;
+            p.value == AND ? option = 2 : option = 3;
             
-            /* Remove '&&' */
+            /* Remove '&&' or '||' */
             t->getToken();
             
             /* Parse the second condition */
             c2 = new Cond;
-            c2->parse(t);
-        }
-        else if (p.value == OR)
-        {
-            option = 3;
-            
-            /* Remove '||' */
-            t->getToken();
-            
-            /* Parse the second condition */
-            c2 = new Cond;
-            c2->parse(t);
+            if (c2->parse(t) != SUCCESS)
+                return ERROR;
         }
         else
         {

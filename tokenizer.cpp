@@ -54,13 +54,21 @@ Tokenizer::Tokenizer(string file_name)
 int Tokenizer::tokenize()
 {
     /* Make sure constructor successfully opened file */
-    if (!core_program.is_open()) return ERROR;
+    if (!core_program.is_open())
+    {
+        cout << "File is not opened.\n";
+        return ERROR;
+    }
         
     /* Tokenize file line by line */
     string line;
     //TODO: What if program is in all capitals?
     while (getline(core_program, line)) {
-        if(tokenizeLine(line) != SUCCESS) return ERROR;
+        if(tokenizeLine(line) != SUCCESS)
+        {
+            cout << "Could not tokenize line.\n";
+            return ERROR;
+        }
     }
         
     /* Add EOF token */
@@ -105,7 +113,7 @@ int Tokenizer::tokenizeLine(const string& str)
                 /* Check if rest of word contains capital letters and/or digits */
                 if (token.length() > 1 && !string_is_valid(token))
                 {
-                        printf("Token %s is an invalid identifier. Please consult the CFG.\n", token.c_str());
+                        cout << "Token " << token << " is an invalid identifier. Please consult the CFG.\n";
                         return ERROR;
                 }
                     pair.value = 32;
@@ -114,7 +122,7 @@ int Tokenizer::tokenizeLine(const string& str)
             pair.value = 31;
         else /* badly formatted */
         {
-            printf("Token %s is invalid. Please consult the CFG.\n", token.c_str());
+            cout << "Token " << token << " is invalid. Please consult the CFG.\n";
             return ERROR;
         }
             
@@ -144,7 +152,7 @@ int Tokenizer::processFileArgument(string file_name)
     struct stat buffer;
     if (stat (file_name.c_str(), &buffer) != 0)
     {
-        printf("File does not exist in current directory");
+        cout << "File does not exist in current directory";
         return ERROR;
     }
     
@@ -166,11 +174,11 @@ int Tokenizer::processFileArgument(string file_name)
 void Tokenizer::print()
 {
     int i = 0;
-    printf("Number of tokens: %lu\n", tokens.size());
-    printf("================\n");
+    cout << "Number of tokens: " << tokens.size() << endl;
+    cout << "================\n";
     while (i < tokens.size()) {
         TokenPair x = tokens.at(i++);
-        printf("Value: %i\t\tToken: %s\n", x.value, x.token.c_str());
+        cout << "Value: " << x.value << "\t\tToken: " << x.token << endl;
     }
 } /* function print */
 
@@ -185,7 +193,7 @@ TokenPair Tokenizer::getToken()
     if (cursor < tokens.size())
         return tokens.at(cursor++);
     
-    printf("Out of tokens");
+    cout << "Out of tokens";
     return { 0, "0" };
 } /* function getToken */
 
@@ -201,7 +209,7 @@ TokenPair Tokenizer::skipToken()
     if (cursor+1 < tokens.size())
         return tokens.at(cursor+1);
 
-    printf("Out of tokens");
+    cout << "Out of tokens";
     return { 0, "0" };
 } /* function skipToken */
 
@@ -218,7 +226,7 @@ int Tokenizer::intVal()
     /* Verify string is integer */
     if(!isInteger(p.token))
     {
-        printf("Function intVal() can only be called on integers. Calling on token: %s\n", p.token.c_str());
+        cout << "Function intVal() can only be called on integers. Calling on token: " p.token << endl;
         return ERROR;
     }
     
@@ -261,7 +269,7 @@ TokenPair Tokenizer::front()
         return tokens.at(cursor);
     else
     {
-        printf("Out of tokens.\n");
+        cout << "Out of tokens.\n";
         return { 0, "0" };
     }
 } /* function front */

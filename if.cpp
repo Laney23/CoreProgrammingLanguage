@@ -120,9 +120,7 @@ int Iff::execute()
 int Iff::print()
 {
     /* Print 'if' with correct indentation */
-    std::string str = std::string("\t", ++indent);
-    str += "if ";
-    printf("%s", str.c_str());
+    printf("%*s""if ", ++indent, "\t");
     
     /* Print condition */
     if (cond->print() != SUCCESS)
@@ -134,14 +132,11 @@ int Iff::print()
     /* Print statement sequence */
     if (ss1->print() != SUCCESS)
         return ERROR;
-    
+
     /* Print else if necessary */
     if (option == 1)
     {
-        printf("\n");
-        std::string str = std::string("\t", indent);
-        str += "else\n";
-        printf("%s", str.c_str());
+        printf("\n%*s""else\n", indent, "\t");
         
         /* Print statement sequence */
         if (ss2->print() != SUCCESS)
@@ -149,11 +144,7 @@ int Iff::print()
     }
     
     /* Print 'end' */
-    printf("\n");
-    str = std::string("\t", indent--);
-    str += "end;";
-    printf("%s\n", str.c_str());
-    
+    printf("%*s""end;\n", --indent, "\t");
     
     return SUCCESS;
 } /* function print */

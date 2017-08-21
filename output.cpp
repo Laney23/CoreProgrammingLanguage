@@ -24,7 +24,7 @@ Output::~Output()
  */
 int Output::parse(Tokenizer *t)
 {
-    /* Remove 'while' */
+    /* Remove 'write' */
     TokenPair p = t->getToken();
     if(p.value != WRITE)
     {
@@ -94,9 +94,7 @@ int Output::execute()
 int Output::print()
 {
     /* Print 'while' with correct indentation */
-    std::string str = std::string("\t", ++indent);
-    str += "write ";
-    printf("%s", str.c_str());
+    printf("%*s""write ", ++indent, "\t");
     
     /* Print the id list */
     if (iList->print() != SUCCESS)

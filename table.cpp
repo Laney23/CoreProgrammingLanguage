@@ -13,24 +13,24 @@
  * Name: inTable
  * Purpose: check if the identifier has been declared
  * Parameters: string key               identifier to search for
- * Return: -1 if not in table, index location if it is
+ * Return: ERROR if not in table, index location if it is
  */
 int IdTable::inTable(std::string key)
 {
     if (!count)
-        return -1;
+        return ERROR;
     
     int index = 0;
     TableElement te;
     while (index < count)
     {
-        te = internalIdTable.at(index++);
-printf("key: %s\ttable: %s\n", key.c_str(), te.idName.c_str());
+        te = internalIdTable.at(index);
         if (te.idName.compare(key) == 0)
-            return --index;
+            return index;
+        index++;
     }
     
-    return -1;
+    return ERROR;
 } /* function inTable */
 
 //TODO: comment this
@@ -53,7 +53,7 @@ int IdTable::printTable()
         printf("Invalid index location.\n");
         return ERROR;
     }
-    
+
     return SUCCESS;
 }
 

@@ -85,7 +85,8 @@ int Op::execute()
     if (option == 0)
     {
         int rv;
-        if ((rv = i->execute()) != SUCCESS)
+        //TODO: Calling function Fact needs to handle this
+        if ((rv = i->execute()) == ERROR)
             return ERROR;
         return rv;
     }
@@ -105,7 +106,7 @@ int Op::execute()
     else
     {
         int rv;
-        if ((rv = e->execute()) != SUCCESS)
+        if ((rv = e->execute()) == ERROR)
             return ERROR;
         return rv;
     }

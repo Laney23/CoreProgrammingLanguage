@@ -1,0 +1,1 @@
+PROGRAM INT X ; BEGIN X = 25 ; IF ( X == 25 ) THEN WRITE X ; END ; END

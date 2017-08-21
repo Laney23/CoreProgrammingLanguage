@@ -8,6 +8,7 @@
 
 #include "compop.hpp"
 
+using namespace std;
 
 /*
  * Name: parse
@@ -19,6 +20,7 @@ int CompOp::parse(Tokenizer *t)
 {
     /* Remove comparison operator token */
     TokenPair p = t->getToken();
+    
     switch (p.value) {
         case NOTEQ:
             /* Option 0 by default */
@@ -40,7 +42,7 @@ int CompOp::parse(Tokenizer *t)
             break;
             
         default:
-            printf("Invalid comparison operator.\n");
+            cout << "Invalid comparison operator.\n";
             return ERROR;
     }
     
@@ -70,22 +72,22 @@ int CompOp::print()
     switch (option)
     {
         case 0:
-            printf("!=");
+            cout << "!=";
             break;
         case 1:
-            printf("==");
+            cout << "==";
             break;
         case 2:
-            printf("<");
+            cout << "<";
             break;
         case 3:
-            printf(">");
+            cout << ">";
             break;
         case 4:
-            printf("<=");
+            cout << "<=";
             break;
         case 5:
-            printf(">=");
+            cout << ">=";
             break;
             
         default:

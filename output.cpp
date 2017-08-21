@@ -8,6 +8,7 @@
 
 #include "output.hpp"
 
+using namespace std;
 
 static std::vector<std::string> splitter(const std::string &text, char sep);
 
@@ -28,7 +29,7 @@ int Output::parse(Tokenizer *t)
     TokenPair p = t->getToken();
     if(p.value != WRITE)
     {
-        printf("Expected write keyword\n");
+        cout << "Expected write keyword\n";
         return ERROR;
     }
     
@@ -41,7 +42,7 @@ int Output::parse(Tokenizer *t)
     p = t->getToken();
     if(p.value != SEMIC)
     {
-        printf("Missing ;\n");
+        cout << "Missing ;\n";
         return ERROR;
     }
     
@@ -68,16 +69,16 @@ int Output::execute()
         int index = idTable->inTable(ids[count++]);
         if (index == ERROR)
         {
-            printf("Variable was never declared.\n");
+            cout << "Variable was never declared.\n";
             return ERROR;
         }
         
         TableElement te = idTable->getElement(index);
         if (te.isInit)
-            printf("%s = %d\n", te.idName.c_str(), te.idVal);
+            cout << te.idName << " = " << te.idVal << endl;
         else
         {
-            printf("Variable was never initialized.\n");
+            cout << "Variable was never initialized.\n";
             return ERROR;
         }
     }
@@ -94,17 +95,14 @@ int Output::execute()
 int Output::print()
 {
     /* Print 'while' with correct indentation */
-    printf("%*s""write ", ++indent, "\t");
+    cout << string(indent, '\t') << "write ";
     
     /* Print the id list */
     if (iList->print() != SUCCESS)
         return ERROR;
     
     /* Print ';' */
-    printf(";\n");
-    
-    /* Reset indentation */
-    indent--;
+    cout << ";\n";
     
     return SUCCESS;
 } /* function print */

@@ -8,6 +8,7 @@
 
 #include "declseq.hpp"
 
+using namespace std;
 
 /*
  * Name: parse
@@ -21,7 +22,7 @@ int DeclSeq::parse(Tokenizer *t)
     TokenPair p = t->front();
     if (p.value != INT)
     {
-        printf("int keyword expected. Got %d\n", p.value);
+        cout << "int keyword expected. Got " << p.value << endl;
         return ERROR;
     }
     
@@ -31,7 +32,7 @@ int DeclSeq::parse(Tokenizer *t)
     
     /* If the next token is 'int', then this is a sequence. Create the DeclSeq child and parse it */
     p = t->front();
-    std::transform(p.token.begin(), p.token.end(), p.token.begin(), ::tolower);
+    transform(p.token.begin(), p.token.end(), p.token.begin(), ::tolower);
     if (p.value == INT)
     {
         option = 1;

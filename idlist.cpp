@@ -8,6 +8,7 @@
 
 #include "idlist.hpp"
 
+using namespace std;
 
 /*
  * Name: parse
@@ -73,7 +74,7 @@ int IdList::print()
     
     if (option == 1)
     {
-        printf(", ");
+        cout << ", ";
         if (iList->print() != SUCCESS) {
             return ERROR;
         }
@@ -89,6 +90,7 @@ int IdList::print()
  */
 std::string IdList::getIdNames()
 {
+    //TODO: Here is the print error
     std::string returnString = id->getName();
     if (option == 1)
     {

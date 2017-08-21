@@ -8,9 +8,9 @@
 
 #include "if.hpp"
 
+using namespace std;
 
 //TODO: comment these
-
 Iff::~Iff()
 {
     delete cond;
@@ -18,6 +18,7 @@ Iff::~Iff()
     if(option == 1)
         delete ss2;
 }
+
 
 /*
  * Name: parse
@@ -33,7 +34,7 @@ int Iff::parse(Tokenizer *t)
     /* Remove "if" */
     if(p.value != IF)
     {
-        printf("Expected reserved word: if, found: %s\n", p.token.c_str());
+        cout << "Expected reserved word: if, found: " << p.token << endl;
         return ERROR;
     }
     
@@ -46,7 +47,7 @@ int Iff::parse(Tokenizer *t)
     p = t->getToken();
     if(p.value != THEN)
     {
-        printf("Expected reserved word: then, found: %s\n", p.token.c_str());
+        cout << "Expected reserved word: then, found: " << p.token << endl;
         return ERROR;
     }
     
@@ -71,7 +72,7 @@ int Iff::parse(Tokenizer *t)
     p = t->getToken();
     if(p.value != END)
     {
-        printf("Expected reserved word: end, found: %s\n", p.token.c_str());
+        cout << "Expected reserved word: end, found: " << p.token << endl;
         return ERROR;
     }
     
@@ -79,7 +80,7 @@ int Iff::parse(Tokenizer *t)
     p = t->getToken();
     if(p.value != SEMIC)
     {
-        printf("Expected semicolon\n");
+        cout << "Expected semicolon\n";
         return ERROR;
     }
         
@@ -120,14 +121,16 @@ int Iff::execute()
 int Iff::print()
 {
     /* Print 'if' with correct indentation */
-    printf("%*s""if ", ++indent, "\t");
+//    printf("%*s""if ", ++indent, "\t");
+//    cout << "indent: " << indent << endl;
+    cout << string(indent, '\t') << "if ";
     
     /* Print condition */
     if (cond->print() != SUCCESS)
         return ERROR;
     
     /* Print 'then' */
-    printf(" then\n");
+    cout << " then\n";
     
     /* Print statement sequence */
     if (ss1->print() != SUCCESS)
@@ -136,7 +139,8 @@ int Iff::print()
     /* Print else if necessary */
     if (option == 1)
     {
-        printf("\n%*s""else\n", indent, "\t");
+//        printf("%*s""else\n", indent, "\t");
+        cout << string(indent, '\t') << "else\n";
         
         /* Print statement sequence */
         if (ss2->print() != SUCCESS)
@@ -144,7 +148,8 @@ int Iff::print()
     }
     
     /* Print 'end' */
-    printf("%*s""end;\n", --indent, "\t");
+//    printf("%*s""end;\n", indent, "\t");
+    cout << string(indent, '\t') << "end;\n";
     
     return SUCCESS;
 } /* function print */

@@ -8,6 +8,7 @@
 
 #include "int.hpp"
 
+using namespace std;
 
 /*
  * Name: parse
@@ -21,7 +22,7 @@ int Int::parse(Tokenizer *t)
     TokenPair p = t->front();
     if(p.value != NUMBER)
     {
-        printf("Expected a number.\n");
+        cout << "Expected a number.\n";
         return ERROR;
     }
 
@@ -54,7 +55,7 @@ int Int::execute()
 int Int::print()
 {
     /* Print the integer */
-    printf("%i", value);
+    cout <<  value;
     
     return SUCCESS;
 } /* function print */

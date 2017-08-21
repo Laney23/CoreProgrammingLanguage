@@ -8,6 +8,7 @@
 
 #include "cond.hpp"
 
+using namespace std;
 
 /*
  * Name: parse
@@ -62,7 +63,7 @@ int Cond::parse(Tokenizer *t)
         }
         else
         {
-            printf("Invalid condition operator.\n");
+            cout << "Invalid condition operator.\n";
             return ERROR;
         }
         
@@ -70,7 +71,7 @@ int Cond::parse(Tokenizer *t)
         p = t->getToken();
         if (p.value != RB)
         {
-            printf("Missing: ]");
+            cout << "Missing: ]";
             return ERROR;
         }
     }
@@ -113,22 +114,22 @@ int Cond::print()
         case 0:
             return comp->print();
         case 1:
-            printf("!");
+            cout << "!";
             return c1->print();
             
         default:
-            printf("[");
+            cout << "[";
             if (c1->print() != SUCCESS)
                 return ERROR;
             
             if (option == 2)
-                printf(" && ");
+                cout << " && ";
             else
-                printf(" || ");
+                cout << " || ";
             
             if (c2->print() != SUCCESS)
                 return ERROR;
-            printf("]");
+            cout << "]";
     }
 
     return SUCCESS;

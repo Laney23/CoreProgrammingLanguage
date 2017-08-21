@@ -8,6 +8,7 @@
 
 #include "comp.hpp"
 
+using namespace std;
 
 /*
  * Name: parse
@@ -21,7 +22,7 @@ int Comp::parse(Tokenizer *t)
     TokenPair p = t->getToken();
     if(p.value != LP)
     {
-        printf("Expected '('.\n");
+        cout << "Expected '('.\n";
         return ERROR;
     }
     
@@ -40,7 +41,7 @@ int Comp::parse(Tokenizer *t)
     p = t->getToken();
     if(p.value != RP)
     {
-        printf("Expected ')'.\n");
+        cout << "Expected ')'.\n";
         return ERROR;
     }
     
@@ -93,16 +94,16 @@ int Comp::execute()
 int Comp::print()
 {
     /* Print the comparison */
-    printf("(");
+    cout << "(";
     if (op1->print() != SUCCESS)
         return ERROR;
-    printf(" ");
+    cout << " ";
     if (cop->print() != SUCCESS)
         return ERROR;
-    printf(" ");
+    cout << " ";
     if (op2->print() != SUCCESS)
         return ERROR;
-    printf(")");
+    cout << ")";
     
     return SUCCESS;
 } /* function print */

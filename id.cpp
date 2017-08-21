@@ -8,6 +8,7 @@
 
 #include "id.hpp"
 
+using namespace std;
 
 /*
  * Name: parse
@@ -21,13 +22,13 @@ int Id::parse(Tokenizer *t)
     TokenPair p = t->getToken();
     if (p.value != IDENTIFIER)
     {
-        printf("Identifier expected. Token received: %s\n", p.token.c_str());
+        cout << "Identifier expected. Token received: " << p.token << endl;
         return ERROR;
     }
     
     /* Update Identifier name */
     name = p.token;
-    
+cout << name << endl;
     /* Find value in lookup table if out of declaration sequence */
     if (!inDecSeq)
         index = idTable->inTable(name);
@@ -67,7 +68,7 @@ int Id::execute()
  */
 int Id::print()
 {
-    printf("%s", name.c_str());
+    cout << name;
     
     return SUCCESS;
 } /* function print */
@@ -100,7 +101,7 @@ int Id::setId(int value)
     
     /* In Declaration Sequence and already in table */
     if (index > 0 && inDecSeq == true) {
-        printf("Variable %s has already been declared.\n", te.idName.c_str());
+        cout << "Variable " << te.idName << " has already been declared.\n";
         return ERROR;
     }
     /* In Statement Sequence and in table */
@@ -113,8 +114,8 @@ int Id::setId(int value)
     /* In Statement Sequence and not in table */
     else if (index < 0 && inDecSeq == false)
     {
-        printf("Variable %s was never declared. Declartion can only \
-                    be done in Declaration Sequence.\n", te.idName.c_str());
+        cout << "Variable " << te.idName << " was never declared. Declartion can only \
+                    be done in Declaration Sequence.\n";
         return ERROR;
     }
     /* In Declaration Sequence and not in table */

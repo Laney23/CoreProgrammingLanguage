@@ -8,6 +8,7 @@
 
 #include "decl.hpp"
 
+using namespace std;
 
 /*
  * Name: parse
@@ -21,7 +22,7 @@ int Decl::parse(Tokenizer *t)
     TokenPair p = t->getToken();
     if (p.value != INT)
     {
-        printf("Expected keyword: int.\n");
+        cout << "Expected keyword: int.\n";
         return ERROR;
     }
     
@@ -33,7 +34,7 @@ int Decl::parse(Tokenizer *t)
     p = t->getToken();
     if (p.value != SEMIC)
     {
-        printf("Semicolon expected.\n");
+        cout << "Semicolon expected.\n";
         return ERROR;
     }
     
@@ -66,9 +67,7 @@ int Decl::execute()
  */
 int Decl::print()
 {
-    printf("\tint ");
-    printf("%s", iList->getIdNames().c_str());
-    printf(";\n");
+    cout << "\tint " << iList->getIdNames() << ";\n";
     
     return SUCCESS;
 } /* function print */

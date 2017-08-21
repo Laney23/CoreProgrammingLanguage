@@ -8,13 +8,14 @@
 
 #include "loop.hpp"
 
+using namespace std;
+
 //TODO: comments
 Loop::~Loop()
 {
     delete c;
     delete ss;
 }
-
 
 
 /*
@@ -28,7 +29,7 @@ int Loop::parse(Tokenizer *t)
     TokenPair p = t->getToken();
     if(p.value != WHILE)
     {
-        printf("Expected while keyword\n");
+        cout << "Expected while keyword\n";
         return ERROR;
     }
     
@@ -41,7 +42,7 @@ int Loop::parse(Tokenizer *t)
     p = t->getToken();
     if(p.value != LOOP)
     {
-        printf("Expected loop keyword\n");
+        cout << "Expected loop keyword\n";
         return ERROR;
     }
     
@@ -54,7 +55,7 @@ int Loop::parse(Tokenizer *t)
     p = t->getToken();
     if(p.value != END)
     {
-        printf("Expected end keyword\n");
+        cout << "Expected end keyword\n";
         return ERROR;
     }
     
@@ -62,7 +63,7 @@ int Loop::parse(Tokenizer *t)
     p = t->getToken();
     if(p.value != SEMIC)
     {
-        printf("Missing ;\n");
+        cout << "Missing ;\n";
         return ERROR;
     }
     
@@ -92,25 +93,23 @@ int Loop::execute()
 int Loop::print()
 {
     /* Print 'while' with correct indentation */
-    std::string str = std::string("\t", ++indent);
-    
-    str += "while ";
-    printf("%s", str.c_str());
+    cout << string(indent, '\t') <<"while ";
+//    printf("%*s""while ", ++indent, "\t");
     
     /* Print the condition */
     if (c->print() != SUCCESS)
         return ERROR;
     
     /* Print 'loop' */
-    printf(" loop\n");
+    cout << " loop\n";
     
     /* Print the statement sequence */
     if (ss->print() != SUCCESS)
         return ERROR;
     
     /* Print 'while' with correct indentation */
-    str = std::string("\t", indent--);
-    str += "end;\n";
+//    printf("%*s""end;\n", indent--, "\t");
+    cout << string(indent, '\t') << "end;\n";
     
     return SUCCESS;
 } /* function print */

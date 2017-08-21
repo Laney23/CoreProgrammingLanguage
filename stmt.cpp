@@ -8,6 +8,7 @@
 
 #include "stmt.hpp"
 
+using namespace std;
 
 //TODO: comment htis
 Stmt::~Stmt()
@@ -120,6 +121,9 @@ int Stmt::execute()
  */
 int Stmt::print()
 {
+    /* Increase tab */
+    indent++;
+    
     /* Execute the proper statement */
     switch (option) {
         case 0:
@@ -146,6 +150,9 @@ int Stmt::print()
         default:            /* This will never happen */
             break;
     }
+    
+    /* Reduce indent */
+    indent--;
     
     return SUCCESS;
 } /* function print */

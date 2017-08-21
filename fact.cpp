@@ -8,6 +8,7 @@
 
 #include "fact.hpp"
 
+using namespace std;
 
 //TODO: comment this
 Fact::~Fact()
@@ -59,9 +60,7 @@ int Fact::execute()
     if (option == 1)
         return op->execute() * f->execute();
     else
-    {
         return op->execute();
-    }
  } /* function execute */
 
 
@@ -79,7 +78,7 @@ int Fact::print()
     /* Add * if necessary */
     if (option == 1)
     {
-        printf(" * ");
+        cout << " * ";
         if (f->print() != SUCCESS)
             return ERROR;
     }

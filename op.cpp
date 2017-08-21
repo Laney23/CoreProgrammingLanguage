@@ -8,6 +8,7 @@
 
 #include "op.hpp"
 
+using namespace std;
 
 //TODO: comment this
 Op::~Op()
@@ -40,8 +41,6 @@ int Op::parse(Tokenizer *t)
     else if(p.value == IDENTIFIER)
     {
         option = 1;
-        /* Remove identifier */
-        //t->getToken();
         
         /* Parse Identifier */
         id = new Id;
@@ -61,13 +60,13 @@ int Op::parse(Tokenizer *t)
         
         p = t->getToken();
         if (p.value != RP) {
-            printf("Expected end parenthesis.\n");
+            cout << "Expected end parenthesis.\n";
             return ERROR;
         }
     }
     else
     {
-        printf("Invalid operator.\n");
+        cout << "Invalid operator: " << t->front().token << endl;
         return ERROR;
     }
     
@@ -96,7 +95,7 @@ int Op::execute()
         int index = idTable->inTable(id->getName());
         TableElement te = idTable->getElement(index);
         if (!te.isInit) {
-            printf("Variable %s was never initialized.\n", te.idName.c_str());
+            cout << "Variable " << te.idName << " was never initialized.\n";
             return ERROR;
         }
         
@@ -137,10 +136,10 @@ int Op::print()
     /* Print the expression */
     else
     {
-        printf("(");
+        cout << "(";
         if (e->print() != SUCCESS)
             return ERROR;
-        printf(")");
+        cout << ")";
     }
     
     return SUCCESS;

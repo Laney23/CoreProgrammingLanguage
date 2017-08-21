@@ -24,7 +24,7 @@ int Program::parse(Tokenizer *t)
     /* Remove "program" */
     if(p.value != PROGRAM)
     {
-        printf("Expected reserved word: program");
+        cout << "Expected reserved word: program.\n";
         return ERROR;
     }
     
@@ -37,7 +37,7 @@ int Program::parse(Tokenizer *t)
     p = t->getToken();
     if(p.value != BEGIN)
     {
-        printf("Expected reserved word: begin");
+        cout << "Expected reserved word: begin.\n";
         return ERROR;
     }
 
@@ -50,7 +50,7 @@ int Program::parse(Tokenizer *t)
     p = t->getToken();
     if(p.value != END)
     {
-        printf("Expected reserved word: end");
+        cout << "Expected reserved word: end";
         return ERROR;
     }
     
@@ -65,7 +65,7 @@ int Program::parse(Tokenizer *t)
  */
 int Program::execute()
 {
-    printf("===================\nExecution Output\n");
+    cout << "===================\nExecution Output\n";
     /* Execute the declaration sequence */
     if (ds->execute() != SUCCESS)
         return ERROR;
@@ -88,19 +88,19 @@ int Program::execute()
  */
 int Program::print()
 {
-    printf("program\n");
+    cout << "program\n";
     
     /* Print the declaration sequence */
     if (ds->print() != SUCCESS)
         return ERROR;
     
-    printf("begin\n");
+    cout << "begin\n";
     
     /* Print the statement sequence */
     if (ss->print() != SUCCESS)
         return ERROR;
     
-    printf("end\n");
+    cout << "end\n";
 
     return SUCCESS;
 } /* function print */

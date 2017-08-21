@@ -226,7 +226,7 @@ int Tokenizer::intVal()
     /* Verify string is integer */
     if(!isInteger(p.token))
     {
-        cout << "Function intVal() can only be called on integers. Calling on token: " p.token << endl;
+        cout << "Function intVal() can only be called on integers. Calling on token: " << p.token << endl;
         return ERROR;
     }
     

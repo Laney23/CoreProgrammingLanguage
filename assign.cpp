@@ -8,6 +8,7 @@
 
 #include "assign.hpp"
 
+using namespace std;
 
 /*
  * Name: parse
@@ -24,7 +25,7 @@ int Assign::parse(Tokenizer *t)
     TokenPair p = t->getToken();
     if(p.value != EQUAL)
     {
-        printf("Expected '=' \n");
+        cout << "Expected '=' \n";
         return ERROR;
     }
     
@@ -36,7 +37,7 @@ int Assign::parse(Tokenizer *t)
     p = t->getToken();
     if(p.value != SEMIC)
     {
-        printf("Expected ';' \n");
+        cout << "Expected ';' \n";
         return ERROR;
     }
     
@@ -52,7 +53,7 @@ int Assign::parse(Tokenizer *t)
 int Assign::execute()
 {
     /* Check if the identifier is already in the table and then update its value if it is */
-    std::string name = id->getName();
+    string name = id->getName();
     if (idTable->inTable(name) >= 0)
     {
         if (id->setId(e->execute()) != SUCCESS)
@@ -60,7 +61,7 @@ int Assign::execute()
     }
     else
     {
-        printf("Identifier must be declared in declaration sequence.\n");
+        cout << "Identifier must be declared in declaration sequence.\n";
         return ERROR;
     }
     
@@ -76,18 +77,14 @@ int Assign::execute()
 int Assign::print()
 {
     /* Print the identifier */
-    std::string str = std::string("\t", ++indent);
-    str += id->getName();
-    str += " = ";
-    printf("%s", str.c_str());
+    cout << string(indent, '\t') << id->getName() << " = ";
     
     /* Print the expression */
     if (e->print() != SUCCESS)
         return ERROR;
     
     /* Print ';' */
-    printf(";\n");
-    indent--;
+    cout << ";\n";
     
     return SUCCESS;
 } /* function print */

@@ -7,6 +7,9 @@
 //
 
 #include "stmtseq.hpp"
+
+using namespace std;
+
 static bool isStmt(int value);
 
 
@@ -38,7 +41,7 @@ int StmtSeq::parse(Tokenizer *t)
     }
     else
     {
-        printf("%s is an invalid Statment Sequence. Consult the CFG.\n", p.token.c_str());
+        cout << p.token << " is an invalid Statment Sequence. Consult the CFG.\n";
         return ERROR;
     }
     
@@ -86,7 +89,6 @@ int StmtSeq::execute()
 int StmtSeq::print()
 {
     /* Print the statement with correct number of tabs  */
-    std::string returnString = std::string("\t", indent);
     if (st->print() != SUCCESS)
         return ERROR;
     

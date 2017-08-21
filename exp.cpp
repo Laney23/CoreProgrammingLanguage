@@ -8,6 +8,7 @@
 
 #include "exp.hpp"
 
+using namespace std;
 
 //TODO: comment this
 Exp::~Exp()
@@ -92,9 +93,9 @@ int Exp::print()
     if (option == 0)
         return SUCCESS;
     else if (option == 1)
-        printf(" + ");
+        cout << " + ";
     else
-        printf(" - ");
+        cout << " - ";
     
     if (exp->print() != SUCCESS)
         return ERROR;

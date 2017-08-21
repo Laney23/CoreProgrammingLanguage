@@ -48,7 +48,8 @@ int StmtSeq::parse(Tokenizer *t)
     {
         option = 1;
         stsq = new StmtSeq;
-        stsq->parse(t);
+        if (stsq->parse(t) != SUCCESS)
+            return ERROR;
     }
     
     return SUCCESS;

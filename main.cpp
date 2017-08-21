@@ -32,10 +32,12 @@ int main(int argc, const char * argv[])
     Tokenizer *toke = new Tokenizer(argv[1]);
     
     /* Tokenize */
+    printf("Tokenizing...\n");
     if(toke->tokenize() != SUCCESS) return ERROR;
-//    toke->print();
+    toke->print();
     
     /* Parse tokens */
+    printf("Parsing...\n");
     Program program = Program();
     if (program.parse(toke) != SUCCESS)
     {
@@ -47,11 +49,13 @@ int main(int argc, const char * argv[])
     delete toke;
     
     /* Print outputs */
+    printf("Printing...\n");
     if (program.print() != SUCCESS)
         return ERROR;
 
     //TODO: Figure out standardized error messages
     /* Execute program */
+    printf("Executing...\n");
     if (program.execute() != SUCCESS)
         return ERROR;
 

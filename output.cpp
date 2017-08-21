@@ -66,14 +66,14 @@ int Output::execute()
     while (count < ids.size())
     {
         int index = idTable->inTable(ids[count++]);
-        TableElement te = idTable->getElement(index);
-        
         if (index == ERROR)
         {
             printf("Variable was never declared.\n");
             return ERROR;
         }
-        else if (te.isInit)
+        
+        TableElement te = idTable->getElement(index);
+        if (te.isInit)
             printf("%s = %d\n", te.idName.c_str(), te.idVal);
         else
         {

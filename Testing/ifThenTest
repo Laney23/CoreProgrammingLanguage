@@ -1,0 +1,1 @@
+program int X ; begin X = 25 ; if ( X != 25 ) then X = 11 ; write X ; else write X ; end ; end

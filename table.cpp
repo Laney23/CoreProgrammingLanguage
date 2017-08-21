@@ -48,7 +48,12 @@ int IdTable::printTable()
  int IdTable::setElement(int index, TableElement element)
 {
     if (index < count)
-        internalIdTable.at(index) = element;
+    {
+        TableElement te = internalIdTable[index];
+        te.idVal = element.idVal;
+        te.isInit = element.isInit;
+        internalIdTable[index] = te;
+    }
     else
     {
         printf("Invalid index location.\n");

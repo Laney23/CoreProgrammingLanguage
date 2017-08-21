@@ -34,6 +34,7 @@ int Exp::parse(Tokenizer *t)
     TokenPair p = t->front();
     if(p.value == PLUS)
     {
+        option = 1;
         /* Remove '+' */
         t->getToken();
         exp = new Exp;

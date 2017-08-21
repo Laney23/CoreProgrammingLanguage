@@ -90,15 +90,12 @@ int IdList::print()
  */
 std::string IdList::getIdNames()
 {
-    //TODO: Here is the print error
-    std::string returnString = id->getName();
-    if (option == 1)
-    {
-        returnString += ", ";
-        returnString += iList->print();
-    }
+    ostringstream os;
+    os << id->getName();
+    if (option)
+        os << ", " << iList->getIdNames();
     
-    return returnString;
+    return os.str();
 } /* function getIdNames */
 
 

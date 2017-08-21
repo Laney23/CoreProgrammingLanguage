@@ -10,6 +10,7 @@
 #define idlist_hpp
 
 
+#include <sstream>
 #include "parse.hpp"
 #include "id.hpp"
 

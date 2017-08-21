@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <vector>
+#include <iostream>
 #include <string>
 #include "base.hpp"
 

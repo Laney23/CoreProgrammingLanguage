@@ -8,6 +8,7 @@
 
 #include "table.hpp"
 
+using namespace std;
 
 /*
  * Name: inTable
@@ -15,7 +16,7 @@
  * Parameters: string key               identifier to search for
  * Return: ERROR if not in table, index location if it is
  */
-int IdTable::inTable(std::string key)
+int IdTable::inTable(string key)
 {
     if (!count)
         return ERROR;
@@ -36,10 +37,10 @@ int IdTable::inTable(std::string key)
 //TODO: comment this
 int IdTable::printTable()
 {
-    printf("table size: %i\n", count);
+    cout << "table size: " << count << endl;
     for (int i = 0; i < count; i++)
-        printf("Index %i: key %s value: %i initialized: %s\n", i, internalIdTable.at(i).idName.c_str(), \
-               internalIdTable.at(i).idVal, internalIdTable.at(i).isInit ? "true" : "false");
+        cout << "Index: " << i << " key: " << internalIdTable.at(i).idName << " value: "  \
+        << internalIdTable.at(i).idVal << " Initialized: " << (internalIdTable.at(i).isInit ? "true\n" : "false\n");
     
     return SUCCESS;
 }
@@ -56,7 +57,7 @@ int IdTable::printTable()
     }
     else
     {
-        printf("Invalid index location.\n");
+        cout << "Invalid index location.\n";
         return ERROR;
     }
 

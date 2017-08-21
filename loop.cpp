@@ -10,17 +10,22 @@
 
 using namespace std;
 
-//TODO: comments
+
+/*
+ * Name: Loop destructor
+ * Purpose: destroy the Loop object
+ */
 Loop::~Loop()
 {
     delete c;
     delete ss;
-}
+} /* function Loop destructor */
 
 
 /*
  * Name: parse
  * Purpose: parse the Loop object
+ * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
 int Loop::parse(Tokenizer *t)

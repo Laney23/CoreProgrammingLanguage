@@ -10,13 +10,18 @@
 
 using namespace std;
 
-//TODO: comment this
+
+/*
+ * Name: Fact destructor
+ * Purpose: destroy the Fact object
+ */
 Fact::~Fact()
 {
     delete op;
     if(option == 1)
         delete f;
-}
+} /* function Fact destructor */
+
 
 /*
  * Name: parse
@@ -56,7 +61,7 @@ int Fact::parse(Tokenizer *t)
  */
 int Fact::execute()
 {
-    //TODO
+    /* Execute the operators. Multiply them if necessary */
     if (option == 1)
         return op->execute() * f->execute();
     else

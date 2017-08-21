@@ -12,15 +12,21 @@ using namespace std;
 
 static std::vector<std::string> splitter(const std::string &text, char sep);
 
-//TODO: comment this
+
+/*
+ * Name: Output destructor
+ * Purpose: destroys the Output object
+ */
 Output::~Output()
 {
     delete iList;
-}
+} /* function Output destructor */
+
 
 /*
  * Name: parse
  * Purpose: parse the Output object
+ * Parameters: Tokenizer t          token object to parse
  * Return: SUCCESS or ERROR
  */
 int Output::parse(Tokenizer *t)

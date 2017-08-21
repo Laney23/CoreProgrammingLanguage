@@ -10,14 +10,18 @@
 
 using namespace std;
 
-//TODO: comment these
+
+/*
+ * Name: Iff destructor
+ * Purpose: destroy the Iff object
+ */
 Iff::~Iff()
 {
     delete cond;
     delete ss1;
     if(option == 1)
         delete ss2;
-}
+} /* function Iff destructor */
 
 
 /*

@@ -28,7 +28,7 @@ int Id::parse(Tokenizer *t)
     
     /* Update Identifier name */
     name = p.token;
-cout << name << endl;
+
     /* Find value in lookup table if out of declaration sequence */
     if (!inDecSeq)
         index = idTable->inTable(name);

@@ -10,7 +10,11 @@
 
 using namespace std;
 
-//TODO: comment htis
+
+/*
+ * Name: Stmt destructor
+ * Purpose: destroy the Stmt object
+ */
 Stmt::~Stmt()
 {
     if(option == 1)
@@ -22,7 +26,7 @@ Stmt::~Stmt()
         delete out;
     if(option == 5)
         delete assign;
-}
+} /* function Stmt destructor */
 
 
 /*

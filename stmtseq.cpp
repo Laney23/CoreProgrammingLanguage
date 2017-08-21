@@ -13,13 +13,17 @@ using namespace std;
 static bool isStmt(int value);
 
 
-//TODO: comment this
+/*
+ * Name: StmtSeq destructor
+ * Purpose: Destroy the StmtSeq object
+ */
 StmtSeq::~StmtSeq()
 {
     delete st;
     if(option == 1)
         delete stsq;
-}
+} /* function StmtSeq destructor */
+
 
 /*
  * Name: parse

@@ -10,12 +10,16 @@
 
 using namespace std;
 
-//TODO: comment this
+
+/*
+ * Name: Exp destructor
+ * Purpose: destroy the Exp object
+ */
 Exp::~Exp()
 {
     delete fact;
     delete exp;
-}
+} /* function Exp destructor */
 
 
 /*

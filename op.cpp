@@ -10,7 +10,11 @@
 
 using namespace std;
 
-//TODO: comment this
+
+/*
+ * Name: Op destructor
+ * Purpose: destroy the Op object
+ */
 Op::~Op()
 {
     if(option == 0)
@@ -19,7 +23,8 @@ Op::~Op()
         delete id;
     if(option == 2)
         delete e;
-}
+} /* function Op destructor */
+
 
 /*
  * Name: parse

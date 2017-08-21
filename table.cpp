@@ -10,6 +10,7 @@
 
 using namespace std;
 
+
 /*
  * Name: inTable
  * Purpose: check if the identifier has been declared
@@ -34,7 +35,12 @@ int IdTable::inTable(string key)
     return ERROR;
 } /* function inTable */
 
-//TODO: comment this
+
+/*
+ * Name: printTable
+ * Purpose: prints all the values within the table
+ * Return: SUCCESS
+ */
 int IdTable::printTable()
 {
     cout << "table size: " << count << endl;
@@ -43,11 +49,19 @@ int IdTable::printTable()
         << internalIdTable.at(i).idVal << " Initialized: " << (internalIdTable.at(i).isInit ? "true\n" : "false\n");
     
     return SUCCESS;
-}
+} /* function printTable */
 
 
+/*
+ * Name: setElement
+ * Purpose: Updates a TableElement already in the table
+ * Parameters: int index                            TableElement to be updated
+ *                     TableElement element      TE containing values to update to
+ * Return: SUCCESS or ERROR
+ */
  int IdTable::setElement(int index, TableElement element)
 {
+    /* Ensure no bounds issues */
     if (index < count)
     {
         TableElement te = internalIdTable[index];
@@ -62,21 +76,32 @@ int IdTable::printTable()
     }
 
     return SUCCESS;
-}
+} /* function setElement */
 
 
-
+/*
+ * Name: getElement
+ * Purpose: Grab a TableElement from the table
+ * Parameters: int index                  TableElement to get
+ * Return: the TableElement at index, or an error TableElement
+ */
 TableElement IdTable::getElement(int index)
 {
     if (index < count)
         return internalIdTable.at(index);
     return { "", ERROR, false };
-}
+} /* function getElement */
 
+
+/*
+ * Name: addElement
+ * Purpose: Adds a new TableElement to the table
+ * Parameters: TableElement element                  TableElement to add
+ */
 void IdTable::addElement(TableElement element)
 {
     count++;
     internalIdTable.push_back(element);
-}
+} /* function addElement */
 
 

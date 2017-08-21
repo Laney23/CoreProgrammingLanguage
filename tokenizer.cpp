@@ -218,7 +218,7 @@ int Tokenizer::intVal()
     /* Verify string is integer */
     if(!isInteger(p.token))
     {
-        printf("Function intVal() can only be called on integers.\n");
+        printf("Function intVal() can only be called on integers. Calling on token: %s\n", p.token.c_str());
         return ERROR;
     }
     

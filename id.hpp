@@ -15,9 +15,10 @@
 
 class Id : ParseObject {
     std::string name;
+    int index;
     
 public:
-    Id() {};
+    Id() : index(-1) { };
     int parse(Tokenizer *t);
     int execute();
     int print();

@@ -35,7 +35,7 @@ int Comp::parse(Tokenizer *t)
     op2 = new Op;
     if (op2->parse(t) != SUCCESS)
         return ERROR;
-    
+
     /* Remove the ')'  */
     p = t->getToken();
     if(p.value != RP)

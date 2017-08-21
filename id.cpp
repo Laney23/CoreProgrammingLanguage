@@ -21,12 +21,16 @@ int Id::parse(Tokenizer *t)
     TokenPair p = t->getToken();
     if (p.value != IDENTIFIER)
     {
-        printf("Identifier expected.\n");
+        printf("Identifier expected. Token received: %s\n", p.token.c_str());
         return ERROR;
     }
     
     /* Update Identifier name */
     name = p.token;
+    
+    /* Find value in lookup table if out of declaration sequence */
+    if (!inDecSeq)
+        index = idTable->inTable(name);
     
     return SUCCESS;
 } /* function parse */

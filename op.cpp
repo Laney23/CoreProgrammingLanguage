@@ -41,7 +41,7 @@ int Op::parse(Tokenizer *t)
     {
         option = 1;
         /* Remove identifier */
-        t->getToken();
+        //t->getToken();
         
         /* Parse Identifier */
         id = new Id;

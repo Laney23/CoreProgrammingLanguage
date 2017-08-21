@@ -28,7 +28,7 @@ int Int::parse(Tokenizer *t)
     /* Parse integer */
     value = t->intVal();
     
-    /* Remove integer token */
+    /* Remove number token */
     t->getToken();
     
     return SUCCESS;

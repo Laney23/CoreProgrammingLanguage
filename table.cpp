@@ -38,7 +38,8 @@ int IdTable::printTable()
 {
     printf("table size: %i\n", count);
     for (int i = 0; i < count; i++)
-        printf("\n%i: %s\n", i, internalIdTable.at(i).idName.c_str());
+        printf("Index %i: key %s value: %i initialized: %s\n", i, internalIdTable.at(i).idName.c_str(), \
+               internalIdTable.at(i).idVal, internalIdTable.at(i).isInit ? "true" : "false");
     
     return SUCCESS;
 }

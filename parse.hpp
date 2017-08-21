@@ -21,9 +21,9 @@ protected:
     static int indent;
 
 public:
-    ParseObject();
+    ParseObject() { idTable = IdTable::instance(); inDecSeq = true; indent = 0; };
     ~ParseObject() {};
-    IdTable *idTable = IdTable::instance();
+    IdTable *idTable;
     virtual int parse(Tokenizer *toke) { return SUCCESS; };
     virtual int execute() { return SUCCESS; };
     virtual int print() { return SUCCESS; };

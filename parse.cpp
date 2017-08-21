@@ -7,14 +7,3 @@
 //
 
 #include "parse.hpp"
-
-
-/*
- * Name: ParseObject constructor
- * Purpose: initializes class values
- */
-ParseObject::ParseObject()
-{
-    inDecSeq = true;
-    indent = 0;
-} /* function ParseObject constructor */

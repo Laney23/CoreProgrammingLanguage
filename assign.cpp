@@ -53,7 +53,7 @@ int Assign::execute()
 {
     /* Check if the identifier is already in the table and then update its value if it is */
     std::string name = id->getName();
-    if (ParseObject::inTable(name) >= 0)
+    if (idTable->inTable(name) >= 0)
     {
         if (id->setId(e->execute()) != SUCCESS)
             return ERROR;

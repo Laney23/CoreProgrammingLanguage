@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <vector>
 #include "tokenizer.hpp"
+#include "table.hpp"
 
 
 class ParseObject {
@@ -22,11 +23,10 @@ protected:
 public:
     ParseObject();
     ~ParseObject() {};
+    IdTable *idTable = IdTable::instance();
     virtual int parse(Tokenizer *toke) { return SUCCESS; };
     virtual int execute() { return SUCCESS; };
     virtual int print() { return SUCCESS; };
-    int printTable();
-    int inTable(std::string key);
 };
 
 

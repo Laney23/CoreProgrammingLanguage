@@ -65,8 +65,8 @@ int Output::execute()
     int count = 0;
     while (count < ids.size())
     {
-        int index = ParseObject::inTable(ids[count++]);
-        TableElement te = idTable.at(index);
+        int index = idTable->inTable(ids[count++]);
+        TableElement te = idTable->getElement(index);
         
         if (index == ERROR)
         {

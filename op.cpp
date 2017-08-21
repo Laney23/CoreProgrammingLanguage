@@ -92,8 +92,8 @@ int Op::execute()
     else if (option == 1)
     {
         /* To execute an Identifier, look up its value in the idTable and return it. Check first if it was initialized */
-        int index = ParseObject::inTable(id->getName());
-        TableElement te = idTable.at(index);
+        int index = idTable->inTable(id->getName());
+        TableElement te = idTable->getElement(index);
         if (!te.isInit) {
             printf("Variable %s was never initialized.\n", te.idName.c_str());
             return ERROR;

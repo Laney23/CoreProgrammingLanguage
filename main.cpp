@@ -10,15 +10,18 @@
 #include <stdio.h>
 #include <vector>
 #include "tokenizer.hpp"
+#include "table.hpp"
 #include "base.hpp"
 #include "parse.hpp"
 #include "program.hpp"
 
 using namespace std;
 
+
 bool ParseObject::inDecSeq = true;
 int ParseObject::indent = 0;
-extern std::vector<TableElement> idTable;
+IdTable *IdTable::table_instance = NULL;
+
 
 int main(int argc, const char * argv[])
 {
@@ -26,13 +29,13 @@ int main(int argc, const char * argv[])
     if (argc != 3) return ERROR;
 
     /* Initialize variables */
-    idTable.reserve(100);
     Tokenizer *toke = new Tokenizer(argv[1]);
     
     /* Tokenize */
     if(toke->tokenize() != SUCCESS) return ERROR;
     toke->print();
-    
+IdTable *itable = IdTable::instance();
+itable->printTable();
     /* Parse tokens */
     Program program = Program();
     if (program.parse(toke) != SUCCESS)

@@ -41,7 +41,7 @@ int Program::parse(Tokenizer *t)
         return ERROR;
     }
     printf("before ss parse");
-printTable();
+idTable->printTable();
     /* Parse statement sequence */
     ss = new StmtSeq;
     if (ss->parse(t) != SUCCESS)
@@ -55,7 +55,7 @@ printTable();
         return ERROR;
     }
     printf("After ss parse");
-printTable();
+idTable->printTable();
     return SUCCESS;
 } /* function parse */
 
@@ -78,7 +78,7 @@ int Program::execute()
     if (ss->execute() != SUCCESS)
         return ERROR;
     printf("After execute\n");
-printTable();
+idTable->printTable();
     return SUCCESS;
 } /* function execute */
 
@@ -105,7 +105,7 @@ int Program::print()
     printf("end\n");
 
     printf("After print\n");
-printTable();
+idTable->printTable();
     return SUCCESS;
 } /* function print */
 

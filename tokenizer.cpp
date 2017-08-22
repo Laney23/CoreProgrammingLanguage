@@ -62,7 +62,7 @@ int Tokenizer::tokenize()
         
     /* Tokenize file line by line */
     string line;
-    //TODO: What if program is in all capitals?
+    
     while (getline(core_program, line)) {
         if(tokenizeLine(line) != SUCCESS)
         {

@@ -10,7 +10,9 @@
 *  Copyright © 2017 Aginor. All rights reserved.
 */
 
+
 #include "tokenizer.hpp"
+
 using namespace std;
 
 
@@ -162,9 +164,10 @@ int Tokenizer::processFileArgument(string file_name)
 {
     /* Verify file exists in current directory */
     struct stat buffer;
+    cout << file_name << endl;
     if (stat (file_name.c_str(), &buffer) != 0)
     {
-        cout << "File does not exist in current directory";
+        cout << "File does not exist.\n";
         return ERROR;
     }
     

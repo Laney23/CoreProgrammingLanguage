@@ -1,6 +1,7 @@
 # Ignore the build and lib dirs
 build
 lib/*
+spike
 
 # Ignore any executables
 bin/*

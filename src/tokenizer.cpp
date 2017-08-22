@@ -20,7 +20,8 @@ static inline bool isInteger(const std::string & s);
 static inline bool is_not_alnum(char c);
 static bool string_is_valid(const std::string &str);
 static bool firstUpper(const std::string& word);
-
+static bool isDelimType(char letter, const char* delimiter);
+static bool isValidOperator(string possible_operator);
 
 /*
  * Name: Tokenizer constructor
@@ -94,16 +95,34 @@ int Tokenizer::tokenize()
 int Tokenizer::tokenizeLine(const string& str)
 {
     /* Skip delimiters at beginning */
-    string::size_type lastPos = str.find_first_not_of(DELIMS, 0);
+    string::size_type lastPos = str.find_first_not_of(WSDELIMS, 0);
+    
     /* Find first "non-delimiter" */
-    string::size_type pos     = str.find_first_of(DELIMS, lastPos);
-        
+    string::size_type pos = str.find_first_of(ALLDELIMS, lastPos);
+    
     while (string::npos != pos || string::npos != lastPos)
     {
         TokenPair pair;
             
         /* Found a token, add it to the vector */
+        if (pos - lastPos == 0)
+            pos++;
         string token = str.substr(lastPos, pos - lastPos);
+        
+        /* Remove whitespace and ensure that comparison operators stay together */
+        if (pos - lastPos == 1)
+        {
+            /* Skip whitespace tokens */
+            if (isDelimType(*token.c_str(), WSDELIMS))
+                continue;
+            /* Check for !=, ==, =<, >=, &&, || */
+            else if (isDelimType(*token.c_str(), DUALS))
+            {
+                if (isValidOperator(str.substr(lastPos, (pos+1) - lastPos)))
+                    token = str.substr(lastPos, ++pos - lastPos);
+            }
+        }
+            
         /* Make a lowercase copy so that the lookup table can find it */
         string lowercase = token;
         transform(lowercase.begin(), lowercase.end(), lowercase.begin(), ::tolower);
@@ -144,14 +163,41 @@ int Tokenizer::tokenizeLine(const string& str)
         tokens.push_back(pair);
             
         /* Skip delimiters.  Note the "not_of" */
-        lastPos = str.find_first_not_of(DELIMS, pos);
+        lastPos = str.find_first_not_of(WSDELIMS, pos);
         
         /* Find next "non-delimiter" */
-        pos = str.find_first_of(DELIMS, lastPos);
+        
+        pos = str.find_first_of(ALLDELIMS, lastPos);
     }
         
     return SUCCESS;
 } /* function tokenizeLine */
+
+
+//TODO: comment this
+// Check for !=, ==, <=, >=, &&, ||
+static bool isValidOperator(string possible_operator)
+{
+    unordered_set<string> s = {"!=", "==", "<=", ">=", "&&", "||"};
+    if (s.find(possible_operator) != s.end())
+        return true;
+    return false;
+}
+
+
+//TODO: comment this
+static bool isDelimType(char letter, const char* delimiter )
+{
+    const char* ws = delimiter;
+    do // Delimiter string cannot be empty, so don't check for it.  Real code should assert on it.
+    {
+        if( letter == *ws )
+            return true;
+        ++ws;
+    } while( *ws );
+    return false;
+}
+
 
 
 /*

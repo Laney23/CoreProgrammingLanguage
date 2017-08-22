@@ -18,12 +18,15 @@
 #include <map>
 #include <sys/stat.h>
 #include <vector>
+#include <unordered_set>
 #include "table.hpp"
 #include "base.hpp"
 
 
-#define DELIMS             " \f\n\r\t\v"//;,*()[]<>=|&!+-"
+#define ALLDELIMS       " \f\n\r\t\v;,*()[]<>=|&!+-"
+#define WSDELIMS        " \f\n\r\t\v"
 #define KEEPERS           ";,*()[]<>=|&!+-"
+#define DUALS               "<>=!&|"
 #define PROGRAM         1
 #define BEGIN                2
 #define END                   3

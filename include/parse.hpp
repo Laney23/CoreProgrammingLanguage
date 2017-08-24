@@ -23,7 +23,7 @@ protected:
 
 public:
     ParseObject() { idTable = IdTable::instance(); inDecSeq = true; indent = 0; };
-    ~ParseObject() {};
+    virtual ~ParseObject() {};
     IdTable *idTable;
     virtual int parse(Tokenizer *toke) { return SUCCESS; };
     virtual int execute() { return SUCCESS; };

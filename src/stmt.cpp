@@ -17,14 +17,14 @@ using namespace std;
  */
 Stmt::~Stmt()
 {
-    if(option == 1)
+    if(option == 0)
         delete iff;
-    if(option == 2)
+    if(option == 1)
         delete loop;
-    /*if(option == 3) delete in;*/
-    if(option == 4)
+    /*if(option == 2) delete in;*/
+    if(option == 3)
         delete out;
-    if(option == 5)
+    if(option == 4)
         delete assign;
 } /* function Stmt destructor */
 
@@ -42,30 +42,30 @@ int Stmt::parse(Tokenizer *t)
     
     /* Parse each type of statement individually */
     switch (p.value) {
-        case 5:        /* if */
+        case IF:        /* if */
             iff = new Iff;
             if (iff->parse(t) != SUCCESS)
                 return ERROR;
             break;
-        case 8:       /* while */
+        case WHILE:       /* while */
             option = 1;
             loop = new Loop();
             if (loop->parse(t) != SUCCESS)
                 return ERROR;
             break;
-//        case 10:     /* read */
+//        case READ:     /* read */
 //            option = 2;
 //            in = new Input();
 //            if (in->parse(t) != SUCCESS)
 //                return ERROR;
 //            break;
-        case 11:     /* write */
+        case WRITE:     /* write */
             option = 3;
             out = new Output();
             if (out->parse(t) != SUCCESS)
                 return ERROR;
             break;
-        case 32:     /* identifier */
+        case IDENTIFIER:     /* identifier */
             option = 4;
             assign = new Assign();
             if (assign->parse(t) != SUCCESS)

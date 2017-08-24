@@ -18,7 +18,8 @@ using namespace std;
 Exp::~Exp()
 {
     delete fact;
-    delete exp;
+    if (option > 0)
+        delete exp;
 } /* function Exp destructor */
 
 

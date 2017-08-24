@@ -87,7 +87,7 @@ int Cond::parse(Tokenizer *t)
  */
 int Cond::execute()
 {
-    //TODO: Error check these
+    /* These are error checked by calling function */
     switch (option) {
         case 0:
             return comp->execute();
@@ -95,9 +95,11 @@ int Cond::execute()
             return c1->execute();
         case 2:
             return (c1->execute() && c2->execute());
+        case 3:
+            return (c1->execute() || c2->execute());
             
         default:
-            return (c1->execute() || c2->execute());
+            return ERROR;
     }
 } /* function execute */
 

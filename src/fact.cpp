@@ -62,10 +62,20 @@ int Fact::parse(Tokenizer *t)
 int Fact::execute()
 {
     /* Execute the operators. Multiply them if necessary */
+    int rvo;
     if (option == 1)
-        return op->execute() * f->execute();
+    {
+        int rvf = f->execute();
+        if (((rvo = op->execute()) != SUCCESS) || (rvf != SUCCESS))
+            return ERROR;
+        return rvo * rvf;
+    }
     else
-        return op->execute();
+    {
+        if ((rvo = op->execute()) != SUCCESS)
+            return ERROR;
+        return rvo;
+    }
  } /* function execute */
 
 

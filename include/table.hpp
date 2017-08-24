@@ -41,6 +41,7 @@ public:
     TableElement getElement(int index);
     int setElement(int index, TableElement element);
     void addElement(TableElement element);
+    int tableSize() { return count; }
     int printTable();
     int inTable(std::string key);
 };

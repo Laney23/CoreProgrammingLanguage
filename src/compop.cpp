@@ -6,7 +6,7 @@
 //  Copyright © 2017 Aginor. All rights reserved.
 //
 
-#include "compop.hpp"
+#include "../include/compop.hpp"
 
 using namespace std;
 

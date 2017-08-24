@@ -6,7 +6,7 @@
 //  Copyright © 2017 Aginor. All rights reserved.
 //
 
-#include "decl.hpp"
+#include "../include/decl.hpp"
 
 using namespace std;
 

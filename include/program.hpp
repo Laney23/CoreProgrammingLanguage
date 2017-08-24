@@ -11,9 +11,9 @@
 
 
 #include <string>
-#include "parse.hpp"
-#include "declseq.hpp"
-#include "stmtseq.hpp"
+#include "../include/parse.hpp"
+#include "../include/declseq.hpp"
+#include "../include/stmtseq.hpp"
 
 
 class Program : public ParseObject {

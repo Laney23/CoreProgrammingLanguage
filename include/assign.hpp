@@ -10,9 +10,9 @@
 #define assign_hpp
 
 
-#include "parse.hpp"
-#include "exp.hpp"
-#include "id.hpp"
+#include "../include/parse.hpp"
+#include "../include/exp.hpp"
+#include "../include/id.hpp"
 
 
 class Assign : ParseObject {

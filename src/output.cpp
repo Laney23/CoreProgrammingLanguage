@@ -6,7 +6,7 @@
 //  Copyright © 2017 Aginor. All rights reserved.
 //
 
-#include "output.hpp"
+#include "../include/output.hpp"
 
 using namespace std;
 

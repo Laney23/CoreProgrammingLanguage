@@ -12,8 +12,8 @@
 #include <stdio.h>
 #include <vector>
 #include <iostream>
-#include "tokenizer.hpp"
-#include "table.hpp"
+#include "../include/tokenizer.hpp"
+#include "../include/table.hpp"
 
 
 class ParseObject {

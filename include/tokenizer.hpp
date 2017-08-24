@@ -19,8 +19,8 @@
 #include <sys/stat.h>
 #include <vector>
 #include <unordered_set>
-#include "table.hpp"
-#include "base.hpp"
+#include "../include/table.hpp"
+#include "../include/base.hpp"
 
 
 #define ALLDELIMS       " \f\n\r\t\v;,*()[]<>=|&!+-"

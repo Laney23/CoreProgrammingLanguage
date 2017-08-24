@@ -10,8 +10,8 @@
 #define decl_hpp
 
 
-#include "parse.hpp"
-#include "idlist.hpp"
+#include "../include/parse.hpp"
+#include "../include/idlist.hpp"
 
 
 class Decl : ParseObject {

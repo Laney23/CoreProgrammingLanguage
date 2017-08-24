@@ -11,8 +11,8 @@
 
 
 #include <vector>
-#include "parse.hpp"
-#include "idlist.hpp"
+#include "../include/parse.hpp"
+#include "../include/idlist.hpp"
 
 class Output : ParseObject {
     IdList *iList;

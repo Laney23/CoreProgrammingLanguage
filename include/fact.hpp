@@ -10,8 +10,8 @@
 #define fact_hpp
 
 
-#include "parse.hpp"
-#include "op.hpp"
+#include "../include/parse.hpp"
+#include "../include/op.hpp"
 
 
 class Op;

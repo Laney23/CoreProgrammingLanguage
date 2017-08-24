@@ -6,7 +6,7 @@
 //  Copyright © 2017 Aginor. All rights reserved.
 //
 
-#include "cond.hpp"
+#include "../include/cond.hpp"
 
 using namespace std;
 

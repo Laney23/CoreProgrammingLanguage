@@ -6,7 +6,7 @@
 //  Copyright © 2017 Aginor. All rights reserved.
 //
 
-#include "fact.hpp"
+#include "../include/fact.hpp"
 
 using namespace std;
 

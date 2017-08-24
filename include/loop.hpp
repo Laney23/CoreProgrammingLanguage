@@ -10,9 +10,9 @@
 #define loop_hpp
 
 
-#include "parse.hpp"
-#include "cond.hpp"
-#include "stmtseq.hpp"
+#include "../include/parse.hpp"
+#include "../include/cond.hpp"
+#include "../include/stmtseq.hpp"
 
 
 class StmtSeq;

@@ -6,4 +6,4 @@
 //  Copyright © 2017 Aginor. All rights reserved.
 //
 
-#include "catch.hpp"
+#include "../include/catch.hpp"

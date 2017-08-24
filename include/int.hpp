@@ -10,7 +10,7 @@
 #define int_hpp
 
 
-#include "parse.hpp"
+#include "../include/parse.hpp"
 
 
 class Int : ParseObject {

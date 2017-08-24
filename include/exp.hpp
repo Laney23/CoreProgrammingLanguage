@@ -10,8 +10,8 @@
 #define exp_hpp
 
 
-#include "parse.hpp"
-#include "fact.hpp"
+#include "../include/parse.hpp"
+#include "../include/fact.hpp"
 
 
 class Fact;

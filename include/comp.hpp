@@ -10,9 +10,9 @@
 #define comp_hpp
 
 
-#include "parse.hpp"
-#include "op.hpp"
-#include "compop.hpp"
+#include "../include/parse.hpp"
+#include "../include/op.hpp"
+#include "../include/compop.hpp"
 
 
 class Comp : ParseObject {

@@ -11,8 +11,8 @@
 
 
 #include <sstream>
-#include "parse.hpp"
-#include "id.hpp"
+#include "../include/parse.hpp"
+#include "../include/id.hpp"
 
 
 class IdList : ParseObject {

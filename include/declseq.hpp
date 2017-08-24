@@ -10,8 +10,8 @@
 #define declseq_hpp
 
 
-#include "parse.hpp"
-#include "decl.hpp"
+#include "../include/parse.hpp"
+#include "../include/decl.hpp"
 
 
 class DeclSeq : ParseObject {

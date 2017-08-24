@@ -10,10 +10,10 @@
 #define op_hpp
 
 
-#include "parse.hpp"
-#include "id.hpp"
-#include "int.hpp"
-#include "exp.hpp"
+#include "../include/parse.hpp"
+#include "../include/id.hpp"
+#include "../include/int.hpp"
+#include "../include/exp.hpp"
 
 
 class Exp;

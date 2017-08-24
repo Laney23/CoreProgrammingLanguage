@@ -10,8 +10,8 @@
 #define stmtseq_hpp
 
 
-#include "parse.hpp"
-#include "stmt.hpp"
+#include "../include/parse.hpp"
+#include "../include/stmt.hpp"
 
 
 class Stmt;

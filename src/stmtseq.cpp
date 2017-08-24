@@ -6,7 +6,7 @@
 //  Copyright © 2017 Aginor. All rights reserved.
 //
 
-#include "stmtseq.hpp"
+#include "../include/stmtseq.hpp"
 
 using namespace std;
 

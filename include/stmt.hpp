@@ -10,13 +10,13 @@
 #define stmt_hpp
 
 
-#include "parse.hpp"
-#include "stmtseq.hpp"
-#include "if.hpp"
-#include "loop.hpp"
-#include "output.hpp"
-//#include "input.hpp"
-#include "assign.hpp"
+#include "../include/parse.hpp"
+#include "../include/stmtseq.hpp"
+#include "../include/if.hpp"
+#include "../include/loop.hpp"
+#include "../include/output.hpp"
+//#include "../include/input.hpp"
+#include "../include/assign.hpp"
 
 
 class Iff;

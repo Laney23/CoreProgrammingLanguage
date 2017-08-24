@@ -8,12 +8,12 @@
 
 #include <iostream>
 #include <vector>
-#include "tokenizer.hpp"
-#include "table.hpp"
-#include "base.hpp"
-#include "parse.hpp"
-#include "program.hpp"
-#include "catch.hpp"
+#include "../include/tokenizer.hpp"
+#include "../include/table.hpp"
+#include "../include/base.hpp"
+#include "../include/parse.hpp"
+#include "../include/program.hpp"
+#include "../include/catch.hpp"
 
 
 using namespace std;
@@ -60,8 +60,5 @@ int main(int argc, const char * argv[])
     if (program.execute() != SUCCESS)
         return ERROR;
 
-    cout << "Hello, World!\n";
-    
-    
     return 0;
 }

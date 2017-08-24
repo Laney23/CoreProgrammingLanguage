@@ -6,7 +6,7 @@
 //  Copyright © 2017 Aginor. All rights reserved.
 //
 
-#include "comp.hpp"
+#include "../include/comp.hpp"
 
 using namespace std;
 

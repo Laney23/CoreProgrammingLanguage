@@ -10,8 +10,8 @@
 #define cond_hpp
 
 
-#include "parse.hpp"
-#include "comp.hpp"
+#include "../include/parse.hpp"
+#include "../include/comp.hpp"
 
 
 class Cond : ParseObject {

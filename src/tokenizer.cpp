@@ -11,7 +11,7 @@
 */
 
 
-#include "tokenizer.hpp"
+#include "../include/tokenizer.hpp"
 
 using namespace std;
 

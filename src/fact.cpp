@@ -36,7 +36,7 @@ int Fact::parse(Tokenizer *t)
     if (op->parse(t) != SUCCESS)
         return ERROR;
     
-    /* Check if it's + or -  */
+    /* Check if it's '*'  */
     TokenPair p = t->front();
     if(p.value == TIMES)
     {
@@ -72,7 +72,7 @@ int Fact::execute()
     }
     else
     {
-        if ((rvo = op->execute()) != SUCCESS)
+        if ((rvo = op->execute()) == ERROR)
             return ERROR;
         return rvo;
     }

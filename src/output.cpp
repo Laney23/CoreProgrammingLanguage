@@ -68,7 +68,7 @@ int Output::execute()
     
     /* Split the string by comma delimeter and lookup each item */
     std::vector<std::string> ids = splitter(s, ',');
-    
+
     int count = 0;
     while (count < ids.size())
     {

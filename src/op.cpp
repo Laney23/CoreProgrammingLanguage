@@ -89,7 +89,6 @@ int Op::execute()
     if (option == 0)
     {
         int rv;
-
         if ((rv = i->execute()) == ERROR)
             return ERROR;
         return rv;

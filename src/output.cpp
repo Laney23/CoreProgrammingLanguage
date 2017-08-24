@@ -114,14 +114,19 @@ int Output::print()
 } /* function print */
 
 
-
-//TODO: fill out this comment section
-// https://stackoverflow.com/a/7408245/2127502
-std::vector<std::string> splitter(const std::string &text, char sep)
+/*
+ * Name: splitter
+ * Purpose: splits a string by delimiter
+ * Parameters: string &text         string to split
+ *                     char sep               delimiter
+ * Return: SUCCESS or ERROR
+ * Note: taken from https://stackoverflow.com/a/7408245/2127502
+ */
+vector<string> splitter(const string &text, char sep)
 {
-    std::vector<std::string> tokens;
-    std::size_t start = 0, end = 0;
-    while ((end = text.find(sep, start)) != std::string::npos) {
+    vector<string> tokens;
+    size_t start = 0, end = 0;
+    while ((end = text.find(sep, start)) != string::npos) {
         tokens.push_back(text.substr(start, end - start));
         start = end + 1;
     }

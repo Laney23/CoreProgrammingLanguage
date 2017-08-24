@@ -57,7 +57,7 @@ int Comp::parse(Tokenizer *t)
 int Comp::execute()
 {
     int compOp = cop->execute();
-    
+
     /* Evaluate each operator and return true or false based on the comparison */
     switch (compOp) {
         case 0:

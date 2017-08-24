@@ -174,36 +174,45 @@ int Tokenizer::tokenizeLine(const string& str)
 } /* function tokenizeLine */
 
 
-//TODO: comment this
-// Check for !=, ==, <=, >=, &&, ||
+/*
+ * Name: isValidOperator
+ * Purpose: Verifies that the given string is a valid operator: !=, ==, <=, >=, &&, ||
+ * Parameters: string possible_operator                     string to verify
+ * Return: true or false
+ */// Check for !=, ==, <=, >=, &&, ||
 static bool isValidOperator(string possible_operator)
 {
     unordered_set<string> s = {"!=", "==", "<=", ">=", "&&", "||"};
     if (s.find(possible_operator) != s.end())
         return true;
     return false;
-}
+} /* function isValidOperator */
 
 
-//TODO: comment this
-static bool isDelimType(char letter, const char* delimiter )
+/*
+ * Name: isDelimType
+ * Purpose: Verifies that the given character is one of the given delimiters
+ * Parameters: char letter                      character to verify
+ *                     char *delimiter               string of delimiters to check against
+ * Return: true or false
+ */
+static bool isDelimType(char letter, const char* delimiter)
 {
     const char* ws = delimiter;
-    do // Delimiter string cannot be empty, so don't check for it.  Real code should assert on it.
+    do
     {
-        if( letter == *ws )
+        if(letter == *ws)
             return true;
         ++ws;
-    } while( *ws );
+    } while (*ws);
     return false;
-}
-
+} /* function isDelimType */
 
 
 /*
  * Name: processFileArgument
  * Purpose: Processes and validates the file argument
- * Parameters: string file_nam         name of file to open
+ * Parameters: string file_name         name of file to open
  * Return: SUCCESS or ERROR
  */
 int Tokenizer::processFileArgument(string file_name)

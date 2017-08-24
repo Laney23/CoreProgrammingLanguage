@@ -13,6 +13,7 @@
 #include "base.hpp"
 #include "parse.hpp"
 #include "program.hpp"
+#include "catch.hpp"
 
 
 using namespace std;

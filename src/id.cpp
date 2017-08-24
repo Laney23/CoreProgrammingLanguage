@@ -40,21 +40,12 @@ int Id::parse(Tokenizer *t)
 /*
  * Name: execute
  * Purpose: execute the IdList object
- * Return: SUCCESS or ERROR
+ * Return: SUCCESS
  */
 int Id::execute()
 {
-    //TODO
     /*
-     """
-     Execute returns a string with the id names delimited with commas to the caller. This is a
-     cheat so that IdList can be called recursively
-     """
-     def execute(self):
-     returnString = self.id.execute()
-     if self.option == 1:
-     returnString += ',' + self.iList.execute()
-     return returnString
+     Nothing is done when an Identifier is executed
      */
     
     return SUCCESS;

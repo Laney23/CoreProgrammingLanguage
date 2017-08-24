@@ -13,7 +13,7 @@
 #include "../include/base.hpp"
 #include "../include/parse.hpp"
 #include "../include/program.hpp"
-#include "../include/catch.hpp"
+//#include "../include/catch.hpp"
 
 
 using namespace std;
@@ -35,7 +35,7 @@ int main(int argc, const char * argv[])
     /* Tokenize */
     printf("Tokenizing...\n");
     if(toke->tokenize() != SUCCESS) return ERROR;
-    toke->print();
+//    toke->print();
     
     /* Parse tokens */
     printf("Parsing...\n");
